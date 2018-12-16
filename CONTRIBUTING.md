@@ -5,20 +5,22 @@
 The following is a set of guidelines for contributing to Fyt. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
-
+  * [SCRUM](#scrum)
   * [Reporting Bugs](#reporting-bugs)
   * [Suggesting Enhancements](#suggesting-enhancements)
-  * [Your First Code Contribution](#your-first-code-contribution)
   * [Pull Requests](#pull-requests)
 
 [Styleguides](#styleguides)
   * [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
   * [Git Commit Messages](#git-commit-messages)
-  * [Specs Styleguide](#specs-styleguide)
+  * [Tests Styleguide](#tests-styleguide)
   * [Documentation Styleguide](#documentation-styleguide)
 
 [Additional Notes](#additional-notes)
   * [Issue and Pull Request Labels](#issue-and-pull-request-labels)
+
+### SCRUM
+Add your cards to the SCRUM Board when they are assigned to you. Move them towards the right into their current status as you continue work on the issue.
 
 
 ### Reporting Bugs
