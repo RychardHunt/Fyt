@@ -24,7 +24,8 @@ export default class WorkoutPanel extends React.Component {
     console.log("is this going at least");
     return (
       <View style={styles.container}>
-       <EditSetMenu displayModal={this.displayModal} modalVisible={this.state.modalVisible}/>
+       <EditSetMenu displayModal={this.displayModal} modalVisible={this.state.modalVisible}
+        weight="50" reps="100"/>
         <View style={styles.topView}>
         <Text style={styles.header}>
         {this.state.excercise}
