@@ -1,11 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import WorkoutPanel from './components/WorkoutPanel';
 
 export default class App extends React.Component {
+
   render() {
+    let excercise = "Squat";
     return (
       <View style={styles.container}>
-        <Text>Hello Rychard</Text>
+        <WorkoutPanel excercise ="Clean"/>
       </View>
     );
   }
@@ -14,7 +17,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#a9a9a9',
     alignItems: 'center',
     justifyContent: 'center',
   },
