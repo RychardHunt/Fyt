@@ -1,4 +1,13 @@
 ---
+name: Bug Report
+about: Create a report to help us improve
+title: "[Bug]"
+labels: ''
+assignees: ''
+
+---
+
+---
 name: 🐛 Bug Report
 about: If something isn't working as expected 🤔.
 
