@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import Set from './Set';
 import EditSetMenu from './EditSetMenu';
 
+// This panel lists the sets for an excercise that a user will perform
 export default class WorkoutPanel extends React.Component {
 
+// * `excercise`  The {String} excercise that this panel is for
   constructor(props){
     super(props);
     this.state = {
@@ -15,13 +17,11 @@ export default class WorkoutPanel extends React.Component {
 
   }
   displayModal(){
-    console.log("yeah")
     this.setState({
       modalVisible: !this.state.modalVisible
     });
   }
   render() {
-    console.log("is this going at least");
     return (
       <View style={styles.container}>
        <EditSetMenu displayModal={this.displayModal} modalVisible={this.state.modalVisible}
@@ -33,9 +33,6 @@ export default class WorkoutPanel extends React.Component {
         <Set editSet={this.displayModal.bind(this)} setNumber="1" reps="10" weight="100"/>
         <Set editSet={this.displayModal.bind(this)} setNumber="1" reps="10" weight="110"/>
         <Set editSet={this.displayModal.bind(this)} setNumber="1" reps="10" weight="120"/>
-        </View>
-        <View style={styles.bottomView}>
-        <Text> Yod</Text>
         </View>
       </View>
     );
@@ -52,20 +49,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#a5a5a5',
   },
   topView: {
-    flex: 3,
-    backgroundColor: '#ece523',
-    alignItems: 'center',
-    // justifyContent: 'flex-start',
-
-  },
-  bottomView: {
     flex: 1,
-    backgroundColor: '#723543',
-  },
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    },
   header: {
     fontSize: 40,
-    // width: 200,
-    // height: 100,
     padding: 10,
 
   }

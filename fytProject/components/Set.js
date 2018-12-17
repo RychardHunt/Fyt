@@ -1,8 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+// This Component represents a set during a work-out
 class Set extends React.Component {
 
+// * `setNumber` The {Number} set number of this set (1-n)
+// * `reps` The {Number} number of reps to be doone during this set
+// * `weight` The {Number} weight that is going to be done for this set
+// * `editSet` A {Function} function that tells the component what to do when the user tries to edit the set
   constructor(props){
     super(props);
     this.state = {
