@@ -3,7 +3,7 @@
 // Alex Stewart
 
 import React from 'react';
-import {Button} from 'react-native';
+import { Button } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 const selectedColor = '#4b4c4c'
