@@ -1,4 +1,5 @@
 import React from 'react';
+import EditSetMenu from './EditSetMenu';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 // This Component represents a set during a work-out
@@ -14,19 +15,27 @@ class Set extends React.Component {
       setNumber: this.props.setNumber,
       reps: this.props.reps,
       weight: this.props.weight,
-      editSet: this.props.editSet
+      modalVisible: false
     }
+    this.displayModal = this.displayModal.bind(this);
   }
-  editFields(){
+  displayModal(){
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    });
+  }
 
-  }
   render() {
     return (
       <View style={styles.container}>
+      <EditSetMenu displayModal={this.displayModal} modalVisible= {this.state.modalVisible}
+                   setNumber={this.props.setNumber}
+                   exercise={this.props.exercise}
+                   weight={this.state.weight} reps={this.state.reps}/>
       <Text style={styles.textView}>
       Sets: {this.state.setNumber} | {this.props.reps}x{this.props.weight}
       </Text>
-      <Button onPress={this.state.editSet} title="Edit"/>
+      <Button onPress={this.displayModal} title="Edit"/>
       </View>
     );
   }

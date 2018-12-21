@@ -1,6 +1,11 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View, Modal, Button } from 'react-native';
 import t from 'tcomb-form-native';
+import {editSet} from  '../actions/WorkoutActions';
+
+
 const Form = t.form.Form;
 
 
@@ -19,10 +24,12 @@ class EditSetMenu extends React.Component {
     this.state = {
       modalVisible: this.props.modalVisible,
       displayModal: this.props.displayModal
+
     }
   }
-  handleFormSubmit= () => {
+  handleFormSubmit = () => {
     const formInput = this.formRef.getValue();
+    this.props.editSet(this.props.exercise, this.props.setNumber, formInput.reps, formInput.weight);
   }
   render() {
     return (
@@ -46,9 +53,18 @@ class EditSetMenu extends React.Component {
   }
 }
 
-
+mapStateToProps
 const styles = StyleSheet.create({
 
 
 });
-export default EditSetMenu;
+
+function mapStateToProps(state){
+  return state;
+}
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({editSet: editSet}, dispatch);
+
+}
+export default connect(null, matchDispatchToProps)(EditSetMenu);

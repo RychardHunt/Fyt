@@ -1,43 +1,54 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import Set from './Set';
-import EditSetMenu from './EditSetMenu';
+
 
 // This panel lists the sets for an excercise that a user will perform
-export default class WorkoutPanel extends React.Component {
+class WorkoutPanel extends React.Component {
 
-// * `excercise`  The {String} excercise that this panel is for
+// * `exercise`  The {String} excercise that this panel is for
   constructor(props){
     super(props);
     this.state = {
-      excercise: this.props.excercise,
-      modalVisible: false
+      exercise: this.props.exercise,
+
     }
-    this.displayModal = this.displayModal.bind(this);
+
 
   }
-  displayModal(){
-    this.setState({
-      modalVisible: !this.state.modalVisible
-    });
+  createSetPanels(){
+    setPanels = [];
+    for(set in this.props.workout[this.props.exercise]){
+      const setPanel = (<Set key={set} exercise={this.props.exercise}
+                             setNumber={set} reps = "10"
+                       weight="100"/>);
+      setPanels.push(setPanel);
+
+    }
+    return setPanels;
+
   }
+
   render() {
     return (
       <View style={styles.container}>
-       <EditSetMenu displayModal={this.displayModal} modalVisible={this.state.modalVisible}
-        weight="50" reps="100"/>
         <View style={styles.topView}>
         <Text style={styles.header}>
         {this.state.excercise}
         </Text>
-        <Set editSet={this.displayModal.bind(this)} setNumber="1" reps="10" weight="100"/>
-        <Set editSet={this.displayModal.bind(this)} setNumber="1" reps="10" weight="110"/>
-        <Set editSet={this.displayModal.bind(this)} setNumber="1" reps="10" weight="120"/>
+        {this.createSetPanels()}
         </View>
       </View>
     );
   }
 }
+function mapStateToProps(state){
+  return {
+     workout : state.workout
+  };
+}
+export default connect(mapStateToProps)(WorkoutPanel);
 
 
 const styles = StyleSheet.create({
