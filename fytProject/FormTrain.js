@@ -36,29 +36,32 @@ console.log("Go to next screen");
 console.log(this.state.inputholder);
 
     return (
-      <View style={styles.container}>
+      <Card style={{backgroundColor:'pink'}}>
       <Text style={styles.textView}>Please Input {this.state.nameholder[this.state.counter]}</Text>
-	<View style={styles.innerView}>
+	<View style={{backgroundColor:'#ff2216'}}>
       <TextInput style={styles.textInputView}
       
     onChangeText={(statistic) => this.setState({statistic})}
     value={this.state.statistic}
       placeholder="Type here"/>
+
  <TouchableOpacity text="Submit" style={styles.buttonView} onPress={this.handleClick} title="Submit">
 <Text style={styles.textViewtwo}>Submit</Text>
+
 </TouchableOpacity>
 	</View>
-      </View>
+      </Card>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-	flex:1,
+	
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding: 24,
+backgroundColor:'#f98b7a',
+    
   },
   paragraph: {
     margin: 24,
@@ -76,11 +79,12 @@ const styles = StyleSheet.create({
     width: 128,
   },
 cardView:{
-minWidth:1000,},
+minWidth:1000,
+backgroundColor:'#f98b7a',},
 
 textView:{
 width:'100%',
-height:'10%',
+height:60,
 backgroundColor:'#FA5845',
 textAlign:'center',
 fontSize:30,
@@ -96,18 +100,20 @@ alignItems: 'center',
 },
 
 textInputView:{
+margin:10,
 height:80,
 fontSize:30,
-borderBottomWidth:2,
-borderBottomColor:'#999999'},
+backgroundColor:'#f98b7a',
+color:'#FFFFFF',},
 
 buttonView:{
 width:'40%',
-height:'30%',
+height:45,
 marginLeft:'50%',
 marginTop:10,
+marginBottom:10,
 textAlign:'center',
-backgroundColor:'#efc25f',
+backgroundColor:'#FA5845',
 alignItems: 'center',
 color:'#FFFFFF',},
 
