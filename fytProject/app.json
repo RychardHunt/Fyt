@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "fytProject",
-    "slug": "fytProject",
+    "name": "FYTAPP",
+    "slug": "FYTAPP",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -10,7 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
     "splash": {
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
