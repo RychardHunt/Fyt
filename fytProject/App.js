@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-//import WorkoutPanel from './components/WorkoutPanel';
+import WorkoutPanel from './components/WorkoutPanel';
 import NavBar from './components/NavBar/NavBar';
 
 const styles = StyleSheet.create({
