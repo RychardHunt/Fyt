@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+//import WorkoutPanel from './components/WorkoutPanel';
 import NavBar from './components/NavBar/NavBar';
 
 const styles = StyleSheet.create({
@@ -29,8 +29,10 @@ export default class App extends React.Component {
     if (this.state.loading) {
       return <Expo.AppLoading />;
     }
+    let excercise = "Squat";
     return (
-      <NavBar/>
+      <View style={styles.container}>
+      </View>
     );
   }
 }
