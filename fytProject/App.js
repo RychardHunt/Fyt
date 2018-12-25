@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import WorkoutPanel from './components/WorkoutPanel';
+import WorkoutContainer from './components/containers/WorkoutContainer';
+import { Provider } from 'react-redux';
+import store from './store';
 import NavBar from './components/NavBar/NavBar';
 
 const styles = StyleSheet.create({
@@ -12,10 +14,14 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
 export default class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = { loading: true };
+    console.ignoredYellowBox = ['Remote debugger'];
   }
   async componentWillMount() {
     await Expo.Font.loadAsync({
@@ -25,14 +31,20 @@ export default class App extends React.Component {
     });
     this.setState({ loading: false });
   }
+
+
   render() {
     if (this.state.loading) {
       return <Expo.AppLoading />;
     }
-    let excercise = "Squat";
+    else{
     return (
+      <Provider store={store}>
       <View style={styles.container}>
+
       </View>
+      </Provider>
     );
   }
+}
 }

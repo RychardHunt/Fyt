@@ -1,6 +1,11 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View, Modal, Button } from 'react-native';
 import t from 'tcomb-form-native';
+import {editSet} from  '../actions/WorkoutActions';
+
+
 const Form = t.form.Form;
 
 
@@ -14,16 +19,6 @@ const setInformation = t.struct({
 
 class EditSetMenu extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      modalVisible: this.props.modalVisible,
-      displayModal: this.props.displayModal
-    }
-  }
-  handleFormSubmit= () => {
-    const formInput = this.formRef.getValue();
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -32,13 +27,17 @@ class EditSetMenu extends React.Component {
         transparent={false}
         visible={this.props.modalVisible}
         onRequestClose={() => {
-            this.state.displayModal();
+            this.props.toggleModalFunction();
             return true;
         }}>
         <Form ref={ref => this.formRef = ref} type={setInformation} value={{reps: this.props.reps, weight: this.props.weight}}/>
         <Button
           title="Enter"
-          onPress={this.handleFormSubmit}/>
+          onPress={()=>{
+            this.props.editSetFunction(this.formRef.getValue());
+            this.props.toggleModalFunction();
+            return true;
+          }}/>
     </Modal>
 
       </View>
@@ -46,9 +45,17 @@ class EditSetMenu extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
 
 
 });
-export default EditSetMenu;
+
+function mapStateToProps(state){
+  return state;
+}
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({editSet: editSet}, dispatch);
+
+}
+export default connect(null, matchDispatchToProps)(EditSetMenu);
