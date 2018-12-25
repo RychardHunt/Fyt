@@ -3,8 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import WorkoutContainer from './components/containers/WorkoutContainer';
 import { Provider } from 'react-redux';
 import store from './store';
+import NavBar from './components/NavBar/NavBar';
 
-import BottomBar from './components/BottomBar';
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
