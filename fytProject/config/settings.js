@@ -1,3 +1,5 @@
+export const DEBUG_MODE_ON = false
+
 export const EDIT_SET = "EDIT_SET";
 export const CHANGE_SET_COMPLETION_STATUS="CHANGE_SET_COMPLETION_STATUS";
 export const COLOR_1 = '#5DFC0A';

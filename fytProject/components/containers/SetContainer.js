@@ -25,8 +25,6 @@ class SetContainer extends React.Component {
         completionButtonColor: COLOR_1
       });
     }
-    console.log(this.state.completionButtonColor);
-
     this.props.changeSetCompletionStatus(exercise, setNumber);
   }
   handleFormSubmit = (formInput) => {
