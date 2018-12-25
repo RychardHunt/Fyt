@@ -19,18 +19,6 @@ const setInformation = t.struct({
 
 class EditSetMenu extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      modalVisible: this.props.modalVisible,
-      displayModal: this.props.displayModal
-
-    }
-  }
-  handleFormSubmit = () => {
-    const formInput = this.formRef.getValue();
-    this.props.editSet(this.props.exercise, this.props.setNumber, formInput.reps, formInput.weight);
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -39,13 +27,17 @@ class EditSetMenu extends React.Component {
         transparent={false}
         visible={this.props.modalVisible}
         onRequestClose={() => {
-            this.state.displayModal();
+            this.props.toggleModalFunction();
             return true;
         }}>
         <Form ref={ref => this.formRef = ref} type={setInformation} value={{reps: this.props.reps, weight: this.props.weight}}/>
         <Button
           title="Enter"
-          onPress={this.handleFormSubmit}/>
+          onPress={()=>{
+            this.props.editSetFunction(this.formRef.getValue());
+            this.props.toggleModalFunction();
+            return true;
+          }}/>
     </Modal>
 
       </View>
@@ -53,7 +45,6 @@ class EditSetMenu extends React.Component {
   }
 }
 
-mapStateToProps
 const styles = StyleSheet.create({
 
 

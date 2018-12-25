@@ -1,25 +1,49 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import WorkoutPanel from './components/WorkoutPanel';
+import WorkoutContainer from './components/containers/WorkoutContainer';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import BottomBar from './components/BottomBar';
-
-export default class App extends React.Component {
-
-  render() {
-    let excercise = "Squat";
-    return (
-      <View style={styles.container}>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#a9a9a9',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+    console.ignoredYellowBox = ['Remote debugger'];
+  }
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+      'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf'),
+    });
+    this.setState({ loading: false });
+  }
+
+
+  render() {
+    if (this.state.loading) {
+      return <Expo.AppLoading />;
+    }
+    else{
+    return (
+      <Provider store={store}>
+      <View style={styles.container}>
+
+      </View>
+      </Provider>
+    );
+  }
+}
+}
