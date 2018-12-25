@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {  StyleSheet, Image,TextInput} from 'react-native';
+import {  Animated, Dimensions, StyleSheet} from 'react-native';
 import {Button,Card,Text,View,Form,Item,Input} from 'native-base';
 
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 export default class FormTrain extends React.Component {
   constructor(props) {
@@ -13,6 +12,7 @@ export default class FormTrain extends React.Component {
 typeholder:this.props.type,
   nameholder:this.props.name,
   inputholder:[],
+ offsetX: new Animated.Value(0),
 },
 
 
@@ -21,31 +21,6 @@ this.handleBackClick = this.handleBackClick.bind(this);
 }
 
 
-onSwipeRight(gestureState){
-if(this.state.counter>0){
-this.setState({
-counter:this.state.counter-1,
-});
-}}
-onSwipeLeft(gestureState){
-console.log(this.props.name);
-let tempholder=this.state.inputholder.slice()
-tempholder[this.state.counter]=this.state.statistic;
-if(this.state.counter<this.state.nameholder.length-1){
-  this.setState({
-      inputholder:tempholder,counter:this.state.counter+1,
-	statistic:"",
-    });
-console.log("condition working");}
-else{
-this.setState({
-      inputholder:tempholder,counter:this.state.counter+1,
-	statistic:"",
-    });
-console.log("Go to next screen");
-}
-
-}
 
 
 
@@ -58,7 +33,26 @@ if(this.state.counter<this.state.nameholder.length-1){
       inputholder:tempholder,counter:this.state.counter+1,
 	statistic:"",
     });
-console.log("condition working");}
+
+Animated.sequence([
+
+    Animated.timing(
+      this.state.offsetX,
+      { toValue: -500,
+duration:500 }
+    ),
+Animated.timing(
+      this.state.offsetX,
+      { toValue: 500,duration:0}
+    ),
+Animated.timing(
+      this.state.offsetX,
+      { toValue: 0,duration:500}
+    ),
+]).start();
+
+
+}
 else{
 this.setState({
       inputholder:tempholder,counter:this.state.counter+1,
@@ -74,6 +68,23 @@ if(this.state.counter>0){
 this.setState({
 counter:this.state.counter-1,
 });
+Animated.sequence([
+
+    Animated.timing(
+      this.state.offsetX,
+      { toValue: 500,
+duration:500 }
+    ),
+Animated.timing(
+      this.state.offsetX,
+      { toValue: -500,duration:0}
+    ),
+Animated.timing(
+      this.state.offsetX,
+      { toValue: 0,duration:500}
+    ),
+]).start();
+
 }}
 
 
@@ -81,26 +92,9 @@ counter:this.state.counter-1,
   render() {
 	let percent=(this.state.counter/this.state.nameholder.length)*100;
 percent=percent.toString()+"%";
-    console.log(this.state.counter);
-console.log(percent);
-console.log(this.state.inputholder);
-   const config = {
-      velocityThreshold: 0.3,
-      directionalOffsetThreshold: 80
-    };
-    return (
- <GestureRecognizer
-        onSwipeLeft={(state) => this.onSwipeLeft(state)}
-        onSwipeRight={(state) => this.onSwipeRight(state)}
-        config={config}
-        
-        >
-
-
-
-
-
-      <Card>
+return (
+ <Animated.View style={{ transform: [{translateX: this.state.offsetX}] }}>
+<Card>
 <View style={{flexDirection:"row"}}>
 
 <Button text="Back" style={styles.buttonView} onPress={this.handleBackClick} title="Back" name="Back">
@@ -133,8 +127,7 @@ console.log(this.state.inputholder);
 	</View>
 
       </Card>
-</GestureRecognizer>
-
+ </Animated.View>
     );
   }
 }
@@ -147,25 +140,7 @@ const styles = StyleSheet.create({
 backgroundColor:'#f98b7a',
     
   },
-  paragraph: {
-    margin: 24,
-    marginTop: 0,
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  logo: {
-    height: 128,
-    width: 128,
-  },
-  span: {
-    height: 128,
-    width: 128,
-  },
-cardView:{
-minWidth:1000,
-backgroundColor:'#f98b7a',},
-
+  
 textView:{
 width:'50%',
 height:50,
@@ -197,10 +172,6 @@ textAlign:'center',
 backgroundColor:'#FA5845',
 alignItems: 'center',
 color:'#FFFFFF',},
-
-innerView:{width:'100%',
-height:'20%',
-},
 
 textViewtwo:{
 fontSize:15,
