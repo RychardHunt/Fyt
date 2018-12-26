@@ -100,7 +100,7 @@ return (
 <Button text="Back" style={styles.buttonView} onPress={this.handleBackClick} title="Back" name="Back">
 <Text style={styles.textViewtwo}>Back</Text>
 </Button>
-      <Text style={styles.textView}>Please Input {this.state.nameholder[this.state.counter]}</Text>
+      <Text style={styles.textView}> {this.state.nameholder[this.state.counter]}</Text>
 
 <Button text="Submit" style={styles.buttonView} onPress={this.handleClick} title="Submit" name="Submit">
 
@@ -113,7 +113,7 @@ return (
 <View style={{width:percent,backgroundColor:'#3cc11f',height:"2%",marginTop:"1%",marginBottom:"1%",
 }}></View>
 
-<Text style={{fontSize:30}}> {this.state.nameholder[this.state.counter]}</Text>
+<Text style={{fontSize:30}}>Please Input {this.state.nameholder[this.state.counter]}</Text>
 
 	<View style={{backgroundColor:'#ffffff'}}>
 <Form>
@@ -145,7 +145,7 @@ textView:{
 width:'50%',
 height:50,
 backgroundColor:'#FA5845',
-textAlign:'left',
+textAlign:'center',
 fontSize:20,
 color:'#FFFFFF',},
 
