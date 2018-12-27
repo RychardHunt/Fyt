@@ -5,7 +5,7 @@ import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
 export default class FormTrain extends React.Component {
   constructor(props) {
     super(props);
-    (this.state = {
+    this.state = {
       isToggleOn: true,
       statistic: '',
       counter: 0,
@@ -13,7 +13,7 @@ export default class FormTrain extends React.Component {
       nameholder: this.props.name,
       inputholder: [],
       offsetX: new Animated.Value(0)
-    }),
+    };
     this.handleClick = this.handleClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
   }
