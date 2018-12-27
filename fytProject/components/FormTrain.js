@@ -107,7 +107,7 @@ export default class FormTrain extends React.Component {
 
           <View style={{ backgroundColor: '#ffffff' }}>
             <Form>
-              <Item>
+              <Item regular>
                 <Input
                   style={styles.textInputView}
                   onChangeText={statistic => this.setState({ statistic })}
