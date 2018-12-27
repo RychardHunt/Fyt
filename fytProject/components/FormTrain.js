@@ -14,7 +14,7 @@ export default class FormTrain extends React.Component {
       inputholder: [],
       offsetX: new Animated.Value(0)
     }),
-      (this.handleClick = this.handleClick.bind(this));
+    this.handleClick = this.handleClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
   }
 
