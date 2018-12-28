@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import WorkoutPanel from './components/WorkoutPanel';
-import NavBar from './components/NavBar/NavBar';
+import DrawerNav from './components/Navigation/DrawerNav';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,8 +31,7 @@ export default class App extends React.Component {
     }
     let excercise = "Squat";
     return (
-      <View style={styles.container}>
-      </View>
+      <DrawerNav/>
     );
   }
 }
