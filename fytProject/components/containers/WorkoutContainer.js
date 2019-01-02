@@ -6,6 +6,8 @@ import {editSet, changeSetCompletionStatus} from '../../actions/WorkoutActions';
 
 class WorkoutContainer extends React.Component {
 
+
+
   render(){
     return(<WorkoutList workout={this.props.workout}/>);
   }
