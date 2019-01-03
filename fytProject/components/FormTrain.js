@@ -3,7 +3,7 @@ import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
 var onboarding = true;
 
-var jsonpath = FileSystem.documentDirectory  'users.json';
+var jsonpath = FileSystem.documentDirectory+'users.json';
 var jsonpathobject = FileSystem.getInfoAsync(jsonpath, { md5: false });
 if (jsonpathobject.exists == false) {
   console.log('file exists=false');
