@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { FileSystem } from 'expo';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
@@ -42,7 +43,7 @@ if (jsonpathobject.exists == false) {
     var jsonobjectstring = JSON.stringify(jsonobject);
     const prevdata = await FileSystem.readAsStringAsync(jsonpath);
     console.log('Previous data = ' + prevdata);
-    var finalstring = prevdata  ',' + jsonobjectstring;
+    var finalstring = prevdata +',' + jsonobjectstring;
     console.log('Final String = ' + finalstring);
     FileSystem.writeAsStringAsync(jsonpath, finalstring);
     console.log('Final String = ' + finalstring);
