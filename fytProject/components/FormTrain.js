@@ -175,8 +175,8 @@ startstep="ONBOARDING_FINISHED";}
                 </Item>
               </Form>
             </View>
-            <View style={{ alignItems: 'center', width: '100%' }}>
-              <Button text="Skip" style={styles.buttonView} onPress={this.handleSkipClick} title="Skip" name="Skip">
+            <View style={{ width: '100%',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',  }}>
+              <Button text="Skip" style={styles.skipbuttonView} onPress={this.handleSkipClick} title="Skip" name="Skip">
                 <Text style={styles.textViewtwo}>Skip</Text>
               </Button>
             </View>
@@ -252,7 +252,6 @@ const styles = StyleSheet.create({
     margin: 10,
     height: 40,
     fontSize: 30,
-    backgroundColor: '#e5e5e5',
     color: '#000000'
   },
  
@@ -265,7 +264,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: '#FFFFFF'
   },
- 
+  
+  skipbuttonView:{
+    marginLeft:'41%',
+    marginRight:'41%',
+    width: '18%',
+    height: 50,
+    alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: '#FA5845',
+    color: '#FFFFFF'
+
+},
+
   textViewtwo: {
     fontSize: 15,
     color: '#FFFFFF'
