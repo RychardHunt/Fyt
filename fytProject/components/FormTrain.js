@@ -3,7 +3,7 @@ import {ONBOARDING} from '../config/settings';
 import { FileSystem } from 'expo';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
-const onboardingvar=ONBOARDING
+const onboardingvar=ONBOARDING;
 var startstep="LOGINSIGNUP";
 if (onboardingvar==false){
 startstep="ONBOARDING_FINISHED";}
