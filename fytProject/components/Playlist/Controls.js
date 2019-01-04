@@ -16,14 +16,8 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   container: {
-    padding: 10,
-    paddingBottom: 25,
-    flex: 0.25,
     flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    position: "absolute",
-    bottom: 0
+    justifyContent: "space-around"
   },
   check: {
     fontSize: 50
@@ -32,6 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     elevation: 0,
     alignSelf: "center",
+    justifyContent: "center",
     width: 100,
     height: 100
   },
@@ -47,8 +42,8 @@ export default class Controls extends Component {
 
   render() {
     return (
-      <View row style={styles.container}>
-        <Button style={styles.arrow_button}>
+      <View style={styles.container}>
+        <Button style={styles.arrow_button} onPress={this.props.prev}>
           <Icon
             style={styles.arrow}
             type="MaterialIcons"
@@ -58,7 +53,7 @@ export default class Controls extends Component {
         <Button style={styles.play_button}>
           <Icon style={styles.check} type="Feather" name="check" />
         </Button>
-        <Button style={styles.arrow_button}>
+        <Button style={styles.arrow_button} onPress={this.props.next}>
           <Icon
             style={styles.arrow}
             type="MaterialIcons"
