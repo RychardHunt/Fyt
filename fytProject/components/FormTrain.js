@@ -1,9 +1,13 @@
+import * as React from 'react';
 import { FileSystem } from 'expo';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
-var onboarding = true;
+var onboarding = false;
+var startstep=0;
+if (onboarding==false){
+startstep=2;}
 
-var jsonpath = FileSystem.documentDirectory  'users.json';
+var jsonpath = FileSystem.documentDirectory+'users.json';
 var jsonpathobject = FileSystem.getInfoAsync(jsonpath, { md5: false });
 if (jsonpathobject.exists == false) {
   console.log('file exists=false');
@@ -23,7 +27,7 @@ if (jsonpathobject.exists == false) {
       nameholder: this.props.name,
       inputholder: [],
       offsetX: new Animated.Value(0),
-      step: 0 //0:login/signup 1:registration 2:onboarding 3:login
+      step: startstep //0:login/signup 1:registration 2:onboarding 3:login
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
@@ -42,7 +46,7 @@ if (jsonpathobject.exists == false) {
     var jsonobjectstring = JSON.stringify(jsonobject);
     const prevdata = await FileSystem.readAsStringAsync(jsonpath);
     console.log('Previous data = ' + prevdata);
-    var finalstring = prevdata  ',' + jsonobjectstring;
+    var finalstring = prevdata +',' + jsonobjectstring;
     console.log('Final String = ' + finalstring);
     FileSystem.writeAsStringAsync(jsonpath, finalstring);
     console.log('Final String = ' + finalstring);
@@ -115,7 +119,7 @@ if (jsonpathobject.exists == false) {
   }
  
    render() {
-    let percent = ((this.state.counter + 1) / this.state.nameholder.length) * 100;
+        let percent = ((this.state.counter + 1) / this.state.nameholder.length) * 100;
     percent = percent.toString() + '%';
     if (this.state.step == 0) {
       return (
@@ -197,7 +201,7 @@ if (jsonpathobject.exists == false) {
     if (this.state.step == 2) {
       return (
         <Card style={styles.loginsignupcard}>
-          <Text>Onboarding Screen</Text>
+          <Text>Reached the App</Text>
         </Card>
       );
     }

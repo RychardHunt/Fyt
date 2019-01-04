@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { List, ListItem} from 'native-base';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import  ExercisePanel  from './ExercisePanel';
+import PureChart from 'react-native-pure-chart';
 
 class WorkoutList extends React.Component {
 
@@ -18,5 +15,6 @@ class WorkoutList extends React.Component {
 <PureChart data={sampleData} type='line' />    );
   }
 }
+
 
 
