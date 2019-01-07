@@ -19,7 +19,7 @@ class ExerciseHistoryPanel extends React.Component{
   createSetPanels(){
     const setPanels = []
     for(const set in this.props.exercise){
-      const setPanel = (<View><Text style={styles.setInfo}>{this.props.exercise[set].reps} reps, {this.props.exercise[set].weight} lbs. </Text></View>)
+      const setPanel = (<View key={set}><Text  style={styles.setInfo}>{this.props.exercise[set].reps} reps, {this.props.exercise[set].weight} lbs. </Text></View>)
       setPanels.push(setPanel);
     }
     return setPanels;
