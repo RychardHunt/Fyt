@@ -1,12 +1,10 @@
 import * as React from 'react';
-import {ONBOARDING} from '../config/settings';
+import {ONBOARDING,STARTSTEP} from '../config/settings';
 import { FileSystem } from 'expo';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
-const onboardingvar=ONBOARDING;
-var startstep="LOGINSIGNUP";
-if (onboardingvar==false){
-startstep="ONBOARDING_FINISHED";}
+if (!ONBOARDING){
+STARTSTEP="ONBOARDING_FINISHED";}
 
  
  export default class FormTrain extends React.Component {
@@ -20,7 +18,7 @@ startstep="ONBOARDING_FINISHED";}
       nameholder: this.props.name,
       inputholder: [],
       offsetX: new Animated.Value(0),
-      step: startstep //LOGINSIGNUP:login/signup SIGNUP:registration ONBOARDING_FINISHED:onboarding LOGIN:login
+      step: STARTSTEP //LOGINSIGNUP:login/signup SIGNUP:registration ONBOARDING_FINISHED:onboarding LOGIN:login
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
