@@ -9,7 +9,6 @@ import {editSet, changeSetCompletionStatus} from '../../actions/WorkoutActions';
 
 class WorkoutContainer extends React.Component {
 
-
   render(){
     let workoutProgress = calculateWorkoutProgress(this.props.workout);
     return(
