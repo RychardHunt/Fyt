@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { List, ListItem} from 'native-base';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import  ExercisePanel  from './ExercisePanel';
+import AddExerciseContainer from './containers/AddExerciseContainer';
 import ProgressBar from './ProgressBar.js';
 
 const styles=StyleSheet.create({
@@ -39,7 +40,9 @@ class WorkoutList extends React.Component {
         <View >
           {this.createExercisePanels()}
         </View>
-      </ScrollView>
+        </ScrollView>
+        <AddExerciseContainer/>
+
       <ProgressBar workoutProgress={this.props.workoutProgress}/>
       </View>
     );

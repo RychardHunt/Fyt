@@ -11,6 +11,11 @@ export const isExerciseComplete = (exercise) => {
   return areAllSetsComplete;
 }
 
+export const numberOfSetsInExercise = (exercise) => {
+  return Obect.values(exercise).length;
+}
+
+
 export const calculateWorkoutProgress = (workout) => {
   let totalSets = 0;
   let completedSets = 0;

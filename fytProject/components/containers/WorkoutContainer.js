@@ -7,7 +7,9 @@ import {calculateWorkoutProgress} from '../../config/utilities.js';
 
 import {editSet, changeSetCompletionStatus} from '../../actions/WorkoutActions';
 
-class WorkoutContainer extends React.Component {
+class WorkoutContainer extends React.Component{
+
+
 
 
   render(){

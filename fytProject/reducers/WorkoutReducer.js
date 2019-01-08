@@ -1,4 +1,4 @@
-import {EDIT_SET, CHANGE_SET_COMPLETION_STATUS, INITIAL_STATE} from '../config/settings';
+import {EDIT_SET, CHANGE_SET_COMPLETION_STATUS, INITIAL_STATE, ADD_EXERCISE, ADD_SET} from '../config/settings';
 
 const initialState = INITIAL_STATE;
 export default function workoutReducer(state=initialState, action){
@@ -30,6 +30,15 @@ export default function workoutReducer(state=initialState, action){
              completed: ! state.workout[action.payload.exercise][action.payload.setNumber].completed
            }
          }
+       }
+     }
+     case ADD_EXERCISE:
+     return {
+       ...state,
+       workout: {
+        ...state.workout,
+        [action.payload.exercise] : {
+        }
        }
      }
 

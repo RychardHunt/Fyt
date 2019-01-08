@@ -6,6 +6,8 @@ import Set from '../Set';
 import {COLOR_1, COLOR_2} from '../../config/settings';
 
 class SetContainer extends React.Component {
+
+
   constructor(props){
     super(props);
     this.state={
@@ -13,6 +15,7 @@ class SetContainer extends React.Component {
       modalVisible: false
     }
   }
+
 
   changeSetCompletionStatus = (exercise, setNumber) => {
     if(this.state.completionButtonColor==COLOR_1){
@@ -27,9 +30,12 @@ class SetContainer extends React.Component {
     }
     this.props.changeSetCompletionStatus(exercise, setNumber);
   }
+
+
   handleFormSubmit = (formInput) => {
     this.props.editSet(this.props.exerciseName, this.props.setNumber, formInput.reps, formInput.weight);
   }
+
 
   toggleModal = () => {
     this.setState({
