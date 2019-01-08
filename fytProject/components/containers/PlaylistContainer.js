@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { H1, Text } from "native-base";
 import { connect } from "react-redux";
+import { Pagination } from 'react-native-snap-carousel';
 import {
   Container,
   Header,
@@ -62,6 +63,7 @@ class Playlist extends Component {
     };
     this.prev = this.prev.bind(this);
     this.next = this.next.bind(this);
+    this.updateSetIndex = this.updateSetIndex.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,33 +71,27 @@ class Playlist extends Component {
   }
 
   prev() {
-    let newSetIdx = this.state.setIdx - 1;
-    if (newSetIdx < 0) {
-      let newWorkoutIdx = this.state.workoutIdx - 1;
-      if (newWorkoutIdx < 0) {
-        //Currently at the beginning of the queue
-        return;
-      }
-      newSetIdx = this.state.queue[newWorkoutIdx].sets.length - 1;
-      this.setState({ workoutIdx: newWorkoutIdx, setIdx: newSetIdx });
+    let newWorkoutIdx = this.state.workoutIdx - 1;
+    if (newWorkoutIdx < 0) {
+      //Currently at the beginning of the queue
       return;
     }
-    this.setState({ setIdx: newSetIdx });
+    this.setState({ workoutIdx: newWorkoutIdx });
+    this.refs.dashboard.resetCarousel();
   }
 
   next() {
-    let newSetIdx = this.state.setIdx + 1;
-    if (newSetIdx >= this.state.queue[this.state.workoutIdx].sets.length) {
       let newWorkoutIdx = this.state.workoutIdx + 1;
       if (newWorkoutIdx >= this.state.queue.length) {
         //Currently at the end of the queue
         return;
       }
-      newSetIdx = 0;
-      this.setState({ workoutIdx: newWorkoutIdx, setIdx: newSetIdx });
-      return;
-    }
-    this.setState({ setIdx: newSetIdx });
+      this.setState({ workoutIdx: newWorkoutIdx });
+      this.refs.dashboard.resetCarousel();
+  }
+
+  updateSetIndex(newSetIdx) {
+    this.setState({setIdx: newSetIdx});
   }
 
   render() {
@@ -116,18 +112,11 @@ class Playlist extends Component {
           <H1 style={styles.workout}>
             {this.state.queue[this.state.workoutIdx].workout}
           </H1>
-          <Dashboard
-            set={this.state.setIdx + 1}
-            reps={
-              this.state.queue[this.state.workoutIdx].sets[this.state.setIdx]
-                .reps
-            }
-            weight={
-              this.state.queue[this.state.workoutIdx].sets[this.state.setIdx]
-                .weight
-            }
-          />
-          <Controls prev={this.prev} next={this.next} />
+          <Dashboard ref="dashboard" sets={this.state.queue[this.state.workoutIdx].sets} updateSetIndex={this.updateSetIndex}/>
+          <View>
+            <Pagination dotsLength={this.state.queue[this.state.workoutIdx].sets.length} activeDotIndex={this.state.setIdx} dotColor={"#fff"} inactiveDotColor={"#aaa"}/>
+            <Controls prev={this.prev} next={this.next} />
+          </View>
         </View>
       </Container>
     );
