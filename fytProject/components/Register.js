@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
   StatusBar,
 } from 'react-native';
-import { FIREBASE_API } from 'react-native-dotenv'
+import { FIREBASE_API } from 'react-native-dotenv';
 import * as firebase from 'firebase';
 
 const firebaseConfig = {

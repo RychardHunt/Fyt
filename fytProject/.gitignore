@@ -7,3 +7,4 @@ package-lock.json
 *.key
 *.mobileprovision
 .env
+.DS_Store
