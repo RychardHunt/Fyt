@@ -12,8 +12,10 @@ import {
   StatusBar,
 } from 'react-native';
 import * as firebase from 'firebase';
+require('dotenv').config();
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyBGxUhCLw2tqdxJyrU4HgvjoCCQriAcFKY',
+  apiKey: process.env.FIREBASE_API,
   authDomain: 'fytdatabase.firebaseapp.com',
   databaseURL: 'https://fytdatabase.firebaseio.com',
   projectId: 'fytdatabase',
