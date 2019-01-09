@@ -37,7 +37,6 @@ class Set extends React.Component {
     return (
       <View>
         <EditSetMenu modalVisible= {this.props.modalVisible}
-                     setNumber={this.props.setNumber}
                      exerciseName={this.props.exerciseName}
                      weight={this.props.setDetails.weight}
                      reps={this.props.setDetails.reps}

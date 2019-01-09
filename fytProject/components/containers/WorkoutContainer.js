@@ -9,13 +9,34 @@ import {editSet, changeSetCompletionStatus} from '../../actions/WorkoutActions';
 
 class WorkoutContainer extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state = {
+      addSetMenuVisibility: false
+    }
+  }
+
+  addSet= (exerciseName, reps, weight) => {
+    this.props.addSet(exerciseName, reps, weight);
+  }
+
+  toggleSetMenuVisibility = () => {
+    this.setState({
+      addSetMenuVisibility : ! addSetMenuVisibility
+    });
+  }
+
 
 
 
   render(){
     let workoutProgress = calculateWorkoutProgress(this.props.workout);
     return(
-      <WorkoutList workoutProgress={workoutProgress} workout={this.props.workout}/>
+      <WorkoutList workoutProgress={workoutProgress}
+                   workout={this.props.workout}
+                   addSetMenuVisibility={false}
+                   toggleSetMenuVisibilityFunction={toggleSetMenuVisibility}
+                   addSetFunction={addSet}/>
   );
   }
 
@@ -27,7 +48,8 @@ function mapStateToProps(state){
 }
 function matchDispatchToProps(dispatch){
     return bindActionCreators({editSet: editSet,
-                              changeSetCompletionStatus: changeSetCompletionStatus},
+                              changeSetCompletionStatus: changeSetCompletionStatus,
+                              addSet: addSet},
                               dispatch);
 
 }

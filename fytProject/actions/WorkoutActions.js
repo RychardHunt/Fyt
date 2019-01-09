@@ -14,10 +14,10 @@ export const addExercise = (exercise) => {
 }
 
 export const addSet = (reps, weight, exercise) => {
-  const setNumber = numberOfSetsInExercise(exercise);
+  const setNumber = numberOfSetsInExercise(exercise)+1;
   return (dispatch) => {
     dispatch({
-      type: ADD_SET,
+      type: EDIT_SET,
       payload: {
         exercise: exercise,
         setNumber: setNumber,

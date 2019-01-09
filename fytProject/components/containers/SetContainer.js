@@ -2,7 +2,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { editSet, changeSetCompletionStatus} from '../../actions/WorkoutActions';
-import Set from '../Set';
+import Set from '../workoutList/Set';
 import {COLOR_1, COLOR_2} from '../../config/settings';
 
 class SetContainer extends React.Component {

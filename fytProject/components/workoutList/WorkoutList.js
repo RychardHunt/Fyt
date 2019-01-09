@@ -18,12 +18,15 @@ const styles=StyleSheet.create({
 class WorkoutList extends React.Component {
 
 // * `exercise`  The {String} excercise that this panel is for
-  createExercisePanels(){
+  createExercisePanels= () => {
     exercisePanels = []
     for(exercise in this.props.workout){
       const exercisePanel =  (<ExercisePanel key={exercise}
                                              exerciseName={exercise}
                                              exerciseDetails={this.props.workout[exercise]}
+                                             addSetFunction={this.props.addSetFunction}
+                                             addSetMenuVisibility={this.props.addSetMenuVisibility}
+                                             toggleSetMenuVisibilityFunction={this.props.toggleSetMenuVisibilityFunction}}
                                             />);
       exercisePanels.push(exercisePanel);
     }
