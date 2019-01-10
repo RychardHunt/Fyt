@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { List, ListItem} from 'native-base';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import  ExercisePanel  from './ExercisePanel';
-import ProgressBar from './ProgressBar.js';
 
 const styles=StyleSheet.create({
+  scrollView: {
+    flex: 0
+  },
   workoutHeader: {
     fontSize: 40,
     alignItems: 'center',
     justifyContent: 'center'
-  },
+  }
 });
 
 // This panel lists the sets for an excercise that a user will perform
@@ -40,7 +42,6 @@ class WorkoutList extends React.Component {
           {this.createExercisePanels()}
         </View>
       </ScrollView>
-      <ProgressBar workoutProgress={this.props.workoutProgress}/>
       </View>
     );
   }
