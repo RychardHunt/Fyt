@@ -50,7 +50,7 @@ export default class Controls extends Component {
             name="keyboard-arrow-left"
           />
         </Button>
-        <Button style={styles.play_button}>
+        <Button style={styles.play_button} onPress={this.props.check}>
           <Icon style={styles.check} type="Feather" name="check" />
         </Button>
         <Button style={styles.arrow_button} onPress={this.props.next}>
