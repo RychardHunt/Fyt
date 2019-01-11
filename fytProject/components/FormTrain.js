@@ -272,7 +272,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#FA5845',
     color: '#FFFFFF'
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> fc26f039f410b48409c0e5e3792f1ee24076cdb7
 },
 
   textViewtwo: {
