@@ -2,7 +2,6 @@ import {EDIT_SET, CHANGE_SET_COMPLETION_STATUS, INITIAL_STATE, ADD_EXERCISE, ADD
 
 const initialState = INITIAL_STATE;
 export default function workoutReducer(state=initialState, action){
-  console.log("come on bro");
    switch(action.type){
      case EDIT_SET:
       return {
