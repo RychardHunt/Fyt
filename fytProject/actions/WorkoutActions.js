@@ -1,9 +1,7 @@
-import {EDIT_SET, CHANGE_SET_COMPLETION_STATUS, INITIAL_STATE, ADD_EXERCISE} from '../config/settings';
-import {numberOfSetsInExercise} from '../config/utilities';
-
+import {EDIT_SET, CHANGE_SET_COMPLETION_STATUS, INITIAL_STATE, ADD_EXERCISE, ADD_SET} from '../config/settings';
 
 export const addExercise = (exercise) => {
-  return (dispatch) => {
+  return(dispatch) => {
     dispatch({
       type: ADD_EXERCISE,
       payload: {
@@ -13,9 +11,24 @@ export const addExercise = (exercise) => {
   }
 }
 
-export const addSet = (reps, weight, exercise) => {
-  const setNumber = numberOfSetsInExercise(exercise)+1;
-  return (dispatch) => {
+export const addSet = (exercise, setNumber, reps, weight) => {
+  console.log(exercise + setNumber + reps + weight);
+  return(dispatch) => {
+    dispatch({
+      type: ADD_SET,
+      payload: {
+        exercise: exercise,
+        setNumber: setNumber,
+        reps: reps,
+        weight: weight
+
+      }
+    });
+  }
+}
+
+export const editSet = (exercise, setNumber, reps, weight) => {
+  return(dispatch) => {
     dispatch({
       type: EDIT_SET,
       payload: {
@@ -25,39 +38,24 @@ export const addSet = (reps, weight, exercise) => {
         weight: weight
 
       }
-    })
+
+    });
+
   }
-}
-
-export const editSet = (exercise, setNumber, reps, weight) => {
-  return (dispatch) => {
-   dispatch({
-     type: EDIT_SET,
-     payload: {
-       exercise: exercise,
-       setNumber: setNumber,
-       reps: reps,
-       weight: weight
-
-     }
-
-   });
-
- }
 
 }
 
 export const changeSetCompletionStatus = (exercise, setNumber) => {
-  return (dispatch) => {
-   dispatch({
-     type: CHANGE_SET_COMPLETION_STATUS,
-     payload: {
-       exercise: exercise,
-       setNumber: setNumber,
-     }
+  return(dispatch) => {
+    dispatch({
+      type: CHANGE_SET_COMPLETION_STATUS,
+      payload: {
+        exercise: exercise,
+        setNumber: setNumber
+      }
 
-   });
+    });
 
- }
+  }
 
 }

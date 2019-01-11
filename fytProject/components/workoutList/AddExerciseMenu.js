@@ -23,7 +23,7 @@ class AddExerciseMenu extends React.Component{
          position="bottomRight"
          onPress={() => {this.props.toggleExerciseMenuFunction()}}
          >
-         <Icon name="share" />
+         <Icon name="add-circle" />
        </Fab>
       <Modal
         animationType="slide"

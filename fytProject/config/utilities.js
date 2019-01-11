@@ -12,7 +12,7 @@ export const isExerciseComplete = (exercise) => {
 }
 
 export const numberOfSetsInExercise = (exercise) => {
-  return Obect.values(exercise).length;
+  return Object.values(exercise).length;
 }
 
 

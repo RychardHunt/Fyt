@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { List, ListItem} from 'native-base';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import  ExercisePanel  from './ExercisePanel';
-import AddExerciseContainer from './containers/AddExerciseContainer';
+import AddExerciseContainer from '../containers/AddExerciseContainer';
 import ProgressBar from './ProgressBar.js';
 
 const styles=StyleSheet.create({
@@ -23,15 +23,17 @@ class WorkoutList extends React.Component {
     for(exercise in this.props.workout){
       const exercisePanel =  (<ExercisePanel key={exercise}
                                              exerciseName={exercise}
+                                             setMenuVisible = {this.props.setMenuVisible}
                                              exerciseDetails={this.props.workout[exercise]}
                                              addSetFunction={this.props.addSetFunction}
-                                             addSetMenuVisibility={this.props.addSetMenuVisibility}
-                                             toggleSetMenuVisibilityFunction={this.props.toggleSetMenuVisibilityFunction}}
+                                             toggleSetMenuVisibilityFunction={this.props.toggleSetMenuVisibilityFunction}
                                             />);
       exercisePanels.push(exercisePanel);
     }
+
     return exercisePanels;
   }
+
 
   render() {
     return (

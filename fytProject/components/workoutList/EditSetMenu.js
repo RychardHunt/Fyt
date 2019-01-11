@@ -15,8 +15,15 @@ const Form = t.form.Form;
 
 
 class EditSetMenu extends React.Component {
-
-  getFormInformation= () => {
+    getFormTitle = () => {
+      if(this.props.editSet){
+        return "Edit Set";
+      }
+      else{
+        return "Add a new set";
+      }
+    }
+    getFormInformation = () => {
     const editInformation = t.struct({
       reps: t.maybe(t.Number),
       weight: t.maybe(t.Number)
@@ -28,12 +35,13 @@ class EditSetMenu extends React.Component {
     })
     //editing a set
     if(this.props.editSet){
-      return editInformation
+      return editInformation;
     }
     //adding a set
     else{
-      return addInformation
+      return addInformation;
     }
+
   }
 
   render() {
@@ -47,11 +55,12 @@ class EditSetMenu extends React.Component {
             this.props.toggleModalFunction();
             return true;
         }}>
-        <Form ref={ref => this.formRef = ref} type={this.getFormInformation} value={{reps: this.props.reps, weight: this.props.weight}}/>
+        <Text style={styles.formTitle}>{this.getFormTitle()}</Text>
+        <Form ref={ref => this.formRef = ref} type={this.getFormInformation()} value={{reps: this.props.reps, weight: this.props.weight}}/>
         <Button
           title="Enter"
           onPress={()=>{
-            this.props.editSetFunction(this.formRef.getValue());
+            this.props.editSetFunction(this.formRef.getValue(), this.props.exerciseName);
             this.props.toggleModalFunction();
             return true;
           }}/>
@@ -63,7 +72,9 @@ class EditSetMenu extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+  formTitle: {
+    fontSize: 30
+  }
 
 });
 

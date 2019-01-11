@@ -3,7 +3,6 @@ import {bindActionCreators} from 'redux';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
 import {addExercise} from '../../actions/WorkoutActions';
-
 import AddExerciseMenu from '../workoutList/AddExerciseMenu';
 
 class AddExerciseContainer extends React.Component {
@@ -21,28 +20,29 @@ class AddExerciseContainer extends React.Component {
 
   toggleExerciseMenuFunction = () => {
     this.setState({
-      menuVisible : !this.state.menuVisible
+      menuVisible: !this.state.menuVisible
     });
   }
 
   render() {
 
-    return(
-    <View>
+    return (<View>
       <AddExerciseMenu menuVisible={this.state.menuVisible}
                        toggleExerciseMenuFunction={this.toggleExerciseMenuFunction}
                        handleFormSubmit={this.handleFormSubmit}/>
 
-    </View>
-  );
+    </View>);
   }
 }
 
 function mapStateToProps(state) {
   return {workout: state.workout};
 }
+
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({addExercise: addExercise}, dispatch);
+  return bindActionCreators({
+    addExercise: addExercise
+  }, dispatch);
 
 }
 export default connect(mapStateToProps, matchDispatchToProps)(AddExerciseContainer);

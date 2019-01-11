@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Container, Card, Content} from 'native-base';
-import SetContainer from './containers/SetContainer';
+import SetContainer from '../containers/SetContainer';
 import EditSetMenu from './EditSetMenu';
 
 const styles = StyleSheet.create({
@@ -47,8 +47,6 @@ render(){
           reps={0}
           editSetFunction={this.props.addSetFunction}
           toggleModalFunction={this.props.toggleSetMenuVisibilityFunction}/>
-
-          />
         <TouchableOpacity onPress={()=>{this.props.toggleSetMenuVisibilityFunction()}}>
             <Card style={styles.exerciseHeader}>
                 <Text style={styles.exerciseHeaderText}>{this.props.exerciseName}</Text>

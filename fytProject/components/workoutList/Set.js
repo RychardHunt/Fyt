@@ -41,6 +41,7 @@ class Set extends React.Component {
                      weight={this.props.setDetails.weight}
                      reps={this.props.setDetails.reps}
                      editSetFunction={this.props.editSetFunction}
+                     editSet={true}
                      toggleModalFunction={this.props.toggleModalFunction}/>
       <TouchableOpacity onPress={() => {this.props.toggleModalFunction()}}>
           <Card style={styles.setStyle}>

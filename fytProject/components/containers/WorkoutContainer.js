@@ -2,27 +2,28 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {View} from 'react-native';
 import { connect } from 'react-redux';
-import WorkoutList from '../WorkoutList.js';
-import {calculateWorkoutProgress} from '../../config/utilities.js';
+import WorkoutList from '../workoutList/WorkoutList.js';
+import {calculateWorkoutProgress, numberOfSetsInExercise} from '../../config/utilities.js';
 
-import {editSet, changeSetCompletionStatus} from '../../actions/WorkoutActions';
+import {editSet, changeSetCompletionStatus, addSet} from '../../actions/WorkoutActions';
 
 class WorkoutContainer extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {
-      addSetMenuVisibility: false
+      setMenuVisible: false
     }
   }
 
-  addSet= (exerciseName, reps, weight) => {
-    this.props.addSet(exerciseName, reps, weight);
+  addSet= (exercise, exerciseName) => {
+    const setNumber = numberOfSetsInExercise(this.props.workout[exerciseName])+1;
+    this.props.addSet(exerciseName, setNumber, exercise.reps, exercise.weight);
   }
 
   toggleSetMenuVisibility = () => {
     this.setState({
-      addSetMenuVisibility : ! addSetMenuVisibility
+      setMenuVisible: !this.state.setMenuVisible
     });
   }
 
@@ -34,9 +35,9 @@ class WorkoutContainer extends React.Component{
     return(
       <WorkoutList workoutProgress={workoutProgress}
                    workout={this.props.workout}
-                   addSetMenuVisibility={false}
-                   toggleSetMenuVisibilityFunction={toggleSetMenuVisibility}
-                   addSetFunction={addSet}/>
+                   toggleSetMenuVisibilityFunction={this.toggleSetMenuVisibility}
+                   setMenuVisible={this.state.setMenuVisible}
+                   addSetFunction={this.addSet}/>
   );
   }
 
