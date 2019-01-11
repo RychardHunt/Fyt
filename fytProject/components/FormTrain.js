@@ -1,20 +1,11 @@
 import * as React from 'react';
+import {ONBOARDING,STARTSTEP} from '../config/settings';
 import { FileSystem } from 'expo';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
-var onboarding = false;
-var startstep=0;
-if (onboarding==false){
-startstep=2;}
+if (!ONBOARDING){
+STARTSTEP="ONBOARDING_FINISHED";}
 
-var jsonpath = FileSystem.documentDirectory+'users.json';
-var jsonpathobject = FileSystem.getInfoAsync(jsonpath, { md5: false });
-if (jsonpathobject.exists == false) {
-  console.log('file exists=false');
-  FileSystem.makeDirectoryAsync(path, { intermediates: true });
-} else {
-  console.log('file exists=true');
-}
  
  export default class FormTrain extends React.Component {
    constructor(props) {
@@ -27,7 +18,7 @@ if (jsonpathobject.exists == false) {
       nameholder: this.props.name,
       inputholder: [],
       offsetX: new Animated.Value(0),
-      step: startstep //0:login/signup 1:registration 2:onboarding 3:login
+      step: STARTSTEP //LOGINSIGNUP:login/signup SIGNUP:registration ONBOARDING_FINISHED:onboarding LOGIN:login
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
@@ -44,15 +35,9 @@ if (jsonpathobject.exists == false) {
       jsonobject[namearray[i]] = inputarray[i];
     }
     var jsonobjectstring = JSON.stringify(jsonobject);
-    const prevdata = await FileSystem.readAsStringAsync(jsonpath);
-    console.log('Previous data = ' + prevdata);
-    var finalstring = prevdata +',' + jsonobjectstring;
-    console.log('Final String = ' + finalstring);
-    FileSystem.writeAsStringAsync(jsonpath, finalstring);
-    console.log('Final String = ' + finalstring);
-    if (onboarding == true) {
+    if (onboardingvar == true) {
       this.setState({
-        step: 2
+        step: "ONBOARDING_FINISHED"
       });
     } else {
       console.log('Go to final screen');
@@ -101,17 +86,17 @@ if (jsonpathobject.exists == false) {
   }
   handleLoginClick(event) {
     console.log('Go to login screen');
-    this.setState({ step: 3 });
+    this.setState({ step: "LOGIN" });
   }
  
   handleSignupClick(event) {
     console.log('Go to registration screen');
-    this.setState({ step: 1 });
+    this.setState({ step: "SIGNUP" });
   }
  
   handleRegistrationBackClick(event) {
     console.log('Go to login/signup screen');
-    this.setState({ step: 0 });
+    this.setState({ step: "LOGINSIGNUP" });
   }
  
   handleLoginSubmitClick(event) {
@@ -121,7 +106,7 @@ if (jsonpathobject.exists == false) {
    render() {
         let percent = ((this.state.counter + 1) / this.state.nameholder.length) * 100;
     percent = percent.toString() + '%';
-    if (this.state.step == 0) {
+    if (this.state.step == "LOGINSIGNUP") {
       return (
         <Card style={styles.loginsignupcard}>
           <View>
@@ -149,7 +134,7 @@ if (jsonpathobject.exists == false) {
         </Card>
       );
     }
-    if (this.state.step == 1) {
+    if (this.state.step == "SIGNUP") {
       return (
         <Animated.View style={{ transform: [{ translateX: this.state.offsetX }] }}>
           <Card>
@@ -188,8 +173,8 @@ if (jsonpathobject.exists == false) {
                 </Item>
               </Form>
             </View>
-            <View style={{ alignItems: 'center', width: '100%' }}>
-              <Button text="Skip" style={styles.buttonView} onPress={this.handleSkipClick} title="Skip" name="Skip">
+            <View style={{ width: '100%',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',  }}>
+              <Button text="Skip" style={styles.skipbuttonView} onPress={this.handleSkipClick} title="Skip" name="Skip">
                 <Text style={styles.textViewtwo}>Skip</Text>
               </Button>
             </View>
@@ -198,7 +183,7 @@ if (jsonpathobject.exists == false) {
       );
     }
 
-    if (this.state.step == 2) {
+    if (this.state.step =="ONBOARDING_FINISHED" ) {
       return (
         <Card style={styles.loginsignupcard}>
           <Text>Reached the App</Text>
@@ -206,7 +191,7 @@ if (jsonpathobject.exists == false) {
       );
     }
 
-    if (this.state.step == 3) {
+    if (this.state.step == "LOGIN") {
       return (
         <Card style={styles.loginsignupcard}>
           <Form style={{ width: '100%' }}>
@@ -265,7 +250,6 @@ const styles = StyleSheet.create({
     margin: 10,
     height: 40,
     fontSize: 30,
-    backgroundColor: '#e5e5e5',
     color: '#000000'
   },
  
@@ -278,7 +262,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: '#FFFFFF'
   },
+  
+  skipbuttonView:{
+    marginLeft:'41%',
+    marginRight:'41%',
+    width: '18%',
+    height: 50,
+    alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: '#FA5845',
+    color: '#FFFFFF'
  
+},
+
   textViewtwo: {
     fontSize: 15,
     color: '#FFFFFF'
