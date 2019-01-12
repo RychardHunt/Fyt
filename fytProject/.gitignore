@@ -1,9 +1,13 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
+package-lock.json
 *.jks
 *.p12
 *.key
 *.mobileprovision
-app.js
+
 .env
+.DS_Store
+env.js
+

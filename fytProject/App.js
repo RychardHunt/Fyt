@@ -6,11 +6,15 @@ import WorkoutContainer from './components/containers/WorkoutContainer';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import NavBar from './components/NavBar/NavBar';
+import Login from './components/Login';
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
   },
 });
@@ -34,13 +38,14 @@ export default class App extends React.Component {
       return <Expo.AppLoading />;
     }
     else{
-      return (
-        <Provider store={store}>
-          <View style={styles.container}>
-            <DrawerNav/>
-          </View>
-        </Provider>
-      );
-    }
+
+    return (
+      <Provider store={store}>
+      <View style={styles.container}>
+        <Login/>
+      </View>
+      </Provider>
+    );
+
   }
 }
