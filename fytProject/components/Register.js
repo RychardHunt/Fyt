@@ -11,11 +11,11 @@ import {
   KeyboardAvoidingView,
   StatusBar,
 } from 'react-native';
-import { FIREBASE_API } from 'react-native-dotenv';
+import {API_KEY} from '../env';
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API,
+  apiKey: API_KEY,
   authDomain: 'fytdatabase.firebaseapp.com',
   databaseURL: 'https://fytdatabase.firebaseio.com',
   projectId: 'fytdatabase',
