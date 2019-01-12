@@ -12,6 +12,7 @@
     "@expo/vector-icons": "^8.0.0",
     "axios": "^0.18.0",
     "expo": "^31.0.2",
+    "firebase": "^5.7.3",
     "native-base": "2.8.1",
     "react": "^16.6.3",
     "react-devtools": "^3.4.3",
