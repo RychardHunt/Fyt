@@ -1,13 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Container, Text, Content } from "native-base";
+import { StatusBar } from "react-native";
+import { Constants } from 'expo';
+import Head from '../Navigation/Head';
 
 export default class Diet extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
+    const navigate = this.props.navigation;
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Diet</Text>
-      </View>
+      <Container style={{top: Constants.statusBarHeight}}>
+        <Head title='Diet' navigation = { navigate } />
+        <Content>
+          <Text> Diet </Text>
+        </Content>
+      </Container>
     );
   }
 }

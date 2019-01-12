@@ -6,6 +6,8 @@ package-lock.json
 *.p12
 *.key
 *.mobileprovision
+
 .env
 .DS_Store
 env.js
+

@@ -1,10 +1,14 @@
 import React from 'react';
+import WorkoutPanel from './components/WorkoutPanel';
+import DrawerNav from './components/Navigation/DrawerNav';
 import { StyleSheet, Text, View } from 'react-native';
 import WorkoutContainer from './components/containers/WorkoutContainer';
 import { Provider } from 'react-redux';
 import store from './store';
+
 import NavBar from './components/NavBar/NavBar';
 import Login from './components/Login';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -15,10 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { loading: true };
@@ -32,13 +33,12 @@ export default class App extends React.Component {
     });
     this.setState({ loading: false });
   }
-
-
   render() {
     if (this.state.loading) {
       return <Expo.AppLoading />;
     }
     else{
+
     return (
       <Provider store={store}>
       <View style={styles.container}>
@@ -46,6 +46,6 @@ export default class App extends React.Component {
       </View>
       </Provider>
     );
+
   }
-}
 }
