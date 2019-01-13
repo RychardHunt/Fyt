@@ -12,6 +12,9 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  container: {
+    flex: 1
+  }
 });
 
 // This panel lists the sets for an excercise that a user will perform
@@ -37,7 +40,7 @@ class WorkoutList extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.workoutHeader}>
           Workout
         </Text>
