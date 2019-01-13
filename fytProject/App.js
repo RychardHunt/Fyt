@@ -1,28 +1,39 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import WorkoutContainer from './components/containers/WorkoutContainer';
+import LoginRegisterContainer from './components/containers/LoginRegisterContainer';
+import OnboardingContainer from './components/containers/OnboardingContainer';
 import { Provider } from 'react-redux';
 import store from './store';
-import NavBar from './components/NavBar/NavBar';
+import {ONBOARDING_MODE} from './config/settings';
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
   },
 });
 
-
-
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = {
+       loading: true,
+       onboarding: ONBOARDING_MODE
+    };
     console.ignoredYellowBox = ['Remote debugger'];
   }
+
+  endOnboarding = () => {
+    this.setState({
+      onboarding: false
+    });
+  }
+
   async componentWillMount() {
     await Expo.Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -32,19 +43,31 @@ export default class App extends React.Component {
     this.setState({ loading: false });
   }
 
-
   render() {
     if (this.state.loading) {
       return <Expo.AppLoading />;
     }
     else{
-    return (
-      <Provider store={store}>
-      <View style={styles.container}>
+    if (this.state.onboarding){
+      return (
+        <Provider store={store}>
+        <View style={styles.container}>
+          <OnboardingContainer stopOnboardingFunction={this.endOnboarding}/>
+        </View>
+        </Provider>
+      );
+    }
+    else{
+      return (
+        <Provider store={store}>
+        <View style={styles.container}>
+          <WorkoutContainer/>
+        </View>
+        </Provider>
+      );
+    }
 
-      </View>
-      </Provider>
-    );
+
   }
 }
 }

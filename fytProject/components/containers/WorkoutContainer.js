@@ -1,6 +1,5 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
-import {View} from 'react-native';
 import { connect } from 'react-redux';
 import WorkoutList from '../workoutList/WorkoutList.js';
 import {calculateWorkoutProgress, numberOfSetsInExercise} from '../../config/utilities.js';
@@ -26,7 +25,6 @@ class WorkoutContainer extends React.Component{
       setMenuVisible: !this.state.setMenuVisible
     });
   }
-
 
 
   render(){
