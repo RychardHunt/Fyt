@@ -1,9 +1,9 @@
+
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, Modal, Button } from 'react-native';
 import t from 'tcomb-form-native';
-import {editSet} from  '../actions/WorkoutActions';
 
 
 const Form = t.form.Form;
@@ -11,13 +11,38 @@ const Form = t.form.Form;
 
 // * reps: The number of reps the user wants for this set (to be inputted by user)
 // *  weight: The amount of weight the user wants to do for this set (to be inputted by user)
-const setInformation = t.struct({
-  reps: t.maybe(t.Number),
-  weight: t.maybe(t.Number)
-});
+
 
 
 class EditSetMenu extends React.Component {
+    getFormTitle = () => {
+      if(this.props.editSet){
+        return "Edit Set";
+      }
+      else{
+        return "Add a new set";
+      }
+    }
+    getFormInformation = () => {
+    const editInformation = t.struct({
+      reps: t.maybe(t.Number),
+      weight: t.maybe(t.Number)
+    });
+
+    const addInformation = t.struct({
+      reps: t.Number,
+      weight: t.Number
+    })
+    //editing a set
+    if(this.props.editSet){
+      return editInformation;
+    }
+    //adding a set
+    else{
+      return addInformation;
+    }
+
+  }
 
   render() {
     return (
@@ -30,11 +55,12 @@ class EditSetMenu extends React.Component {
             this.props.toggleModalFunction();
             return true;
         }}>
-        <Form ref={ref => this.formRef = ref} type={setInformation} value={{reps: this.props.reps, weight: this.props.weight}}/>
+        <Text style={styles.formTitle}>{this.getFormTitle()}</Text>
+        <Form ref={ref => this.formRef = ref} type={this.getFormInformation()} value={{reps: this.props.reps, weight: this.props.weight}}/>
         <Button
           title="Enter"
           onPress={()=>{
-            this.props.editSetFunction(this.formRef.getValue());
+            this.props.editSetFunction(this.formRef.getValue(), this.props.exerciseName);
             this.props.toggleModalFunction();
             return true;
           }}/>
@@ -46,16 +72,11 @@ class EditSetMenu extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+  formTitle: {
+    fontSize: 30
+  }
 
 });
 
-function mapStateToProps(state){
-  return state;
-}
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({editSet: editSet}, dispatch);
-
-}
-export default connect(null, matchDispatchToProps)(EditSetMenu);
+export default EditSetMenu;

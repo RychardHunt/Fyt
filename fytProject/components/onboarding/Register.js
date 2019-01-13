@@ -64,9 +64,9 @@ export default class Register extends Component {
         // ...
         return;
       });
-
+      this.props.startOnboardingFunction();
     }
-    this.props.startOnboardingFunction();
+
     //navigate it to the login page
   };
 
