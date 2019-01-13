@@ -1,19 +1,24 @@
 import * as React from 'react';
 import {ONBOARDING_MODE} from '../../config/settings';
-import { FileSystem } from 'expo';
-import { Animated, Dimensions, StyleSheet } from 'react-native';
-import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
+import {FileSystem} from 'expo';
+import {Animated, Dimensions, StyleSheet} from 'react-native';
+import {
+  Button,
+  Card,
+  Text,
+  View,
+  Form,
+  Item,
+  Input
+} from 'native-base';
 import InputForm from './InputForm';
 
-
-var startstep="SIGNUP";
-if (!ONBOARDING_MODE){
-startstep="ONBOARDING_FINISHED";}
+var startstep = "SIGNUP";
 
 
- export default class FormTrain extends React.Component {
+export default class FormTrain extends React.Component {
 
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       isToggleOn: true,
@@ -26,7 +31,6 @@ startstep="ONBOARDING_FINISHED";}
       step: startstep //LOGINSIGNUP:login/signup SIGNUP:registration ONBOARDING_FINISHED:onboarding LOGIN:login
     };
   }
-
 
   finishOnboarding = (namearray, typearray, inputarray) => {
     var jsonobject = {};
@@ -47,9 +51,18 @@ startstep="ONBOARDING_FINISHED";}
       });
 
       Animated.sequence([
-        Animated.timing(this.state.offsetX, { toValue: -500, duration: 500 }),
-        Animated.timing(this.state.offsetX, { toValue: 500, duration: 0 }),
-        Animated.timing(this.state.offsetX, { toValue: 0, duration: 500 })
+        Animated.timing(this.state.offsetX, {
+          toValue: -500,
+          duration: 500
+        }),
+        Animated.timing(this.state.offsetX, {
+          toValue: 500,
+          duration: 0
+        }),
+        Animated.timing(this.state.offsetX, {
+          toValue: 0,
+          duration: 500
+        })
       ]).start();
     } else {
       this.setState({
@@ -59,7 +72,7 @@ startstep="ONBOARDING_FINISHED";}
       });
       this.finishOnboarding(this.state.nameholder, this.state.typeholder, this.state.inputholder);
     }
-   }
+  }
 
   handleBackClick(event) {
     if (this.state.counter > 0) {
@@ -67,36 +80,34 @@ startstep="ONBOARDING_FINISHED";}
         counter: this.state.counter - 1
       });
       Animated.sequence([
-        Animated.timing(this.state.offsetX, { toValue: 500, duration: 500 }),
-        Animated.timing(this.state.offsetX, { toValue: -500, duration: 0 }),
-        Animated.timing(this.state.offsetX, { toValue: 0, duration: 500 })
+        Animated.timing(this.state.offsetX, {
+          toValue: 500,
+          duration: 500
+        }),
+        Animated.timing(this.state.offsetX, {
+          toValue: -500,
+          duration: 0
+        }),
+        Animated.timing(this.state.offsetX, {
+          toValue: 0,
+          duration: 500
+        })
       ]).start();
     }
   }
-  handleSkipClick= (event) => {
+  handleSkipClick = (event) => {
     this.finishOnboarding(this.state.nameholder, this.state.typeholder, this.state.inputholder);
   }
 
-
-
-   render() {
+  render() {
     let percent = ((this.state.counter + 1) / this.state.nameholder.length) * 100;
     percent = percent.toString() + '%';
     if (this.state.step == "SIGNUP") {
-      return (
-        <InputForm formFieldName={this.state.nameholder[this.state.counter]}
-                   formType={this.state.typeholder[this.state.counter]}
-                   handleBackClick={this.handleBackClick}
-                   handleSkipClick={this.handleSkipClick}
-                   submitOnboardingForm={this.handleClick}/>
-      );
+      return (<InputForm formFieldName={this.state.nameholder[this.state.counter]} formType={this.state.typeholder[this.state.counter]} handleBackClick={this.handleBackClick} handleSkipClick={this.handleSkipClick} submitOnboardingForm={this.handleClick}/>);
     }
 
-
-
-    }
   }
-
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -104,8 +115,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: '#f98b7a'
   },
-
-
 
   inputView: {
     width: '100%',
@@ -122,7 +131,6 @@ const styles = StyleSheet.create({
     color: '#000000'
   },
 
-
   buttonView: {
     width: '25%',
     height: 50,
@@ -132,9 +140,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF'
   },
 
-  skipbuttonView:{
-    marginLeft:'41%',
-    marginRight:'41%',
+  skipbuttonView: {
+    marginLeft: '41%',
+    marginRight: '41%',
     width: '18%',
     height: 50,
     alignItems: 'center',
@@ -142,7 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FA5845',
     color: '#FFFFFF'
 
-},
+  },
 
   textViewtwo: {
     fontSize: 15,
@@ -152,10 +160,10 @@ const styles = StyleSheet.create({
   loginsignupcard: {
     flexDirection: 'column',
     justifyContent: 'center',
-     alignItems: 'center',
+    alignItems: 'center',
     height: 400,
     width: 200
-   },
+  },
 
   loginsignupbutton: {
     textAlign: 'center',
