@@ -9,9 +9,10 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
+  TouchableHighlight,
   StatusBar,
 } from 'react-native';
-import {API_KEY} from '../env';
+import {API_KEY} from '../../env';
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
@@ -26,7 +27,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +47,7 @@ export default class Login extends Component {
       );
       return;
     }
-
+    else{
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -63,7 +64,9 @@ export default class Login extends Component {
         // ...
         return;
       });
-    <Login />;
+
+    }
+    this.props.startOnboardingFunction();
     //navigate it to the login page
   };
 
@@ -118,6 +121,12 @@ export default class Login extends Component {
           }>
           <Text style={styles.buttonText}> REGISTER </Text>
         </TouchableOpacity>
+        <TouchableHighlight
+          onPress={ () => this.props.showLogin()}
+          >
+        <Text style={styles.showLoginButton}> Already a user? Click here to log in </Text>
+
+        </TouchableHighlight>
       </KeyboardAvoidingView>
     );
   }
@@ -154,4 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingHorizontal: 10,
   },
+  showLoginButton: {
+    fontSize: 18
+  }
 });

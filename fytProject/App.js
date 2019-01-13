@@ -1,13 +1,12 @@
 import React from 'react';
-import WorkoutPanel from './components/WorkoutPanel';
-import DrawerNav from './components/Navigation/DrawerNav';
 import { StyleSheet, Text, View } from 'react-native';
 import WorkoutContainer from './components/containers/WorkoutContainer';
+import LoginRegisterContainer from './components/containers/LoginRegisterContainer';
+import OnboardingContainer from './components/containers/OnboardingContainer';
 import { Provider } from 'react-redux';
 import store from './store';
+import {ONBOARDING_MODE} from './config/settings';
 
-import NavBar from './components/NavBar/NavBar';
-import Login from './components/Login';
 
 
 const styles = StyleSheet.create({
@@ -22,9 +21,19 @@ const styles = StyleSheet.create({
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = {
+       loading: true,
+       onboarding: ONBOARDING_MODE
+    };
     console.ignoredYellowBox = ['Remote debugger'];
   }
+
+  endOnboarding = () => {
+    this.setState({
+      onboarding: false
+    });
+  }
+
   async componentWillMount() {
     await Expo.Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -33,19 +42,32 @@ export default class App extends React.Component {
     });
     this.setState({ loading: false });
   }
+
   render() {
     if (this.state.loading) {
       return <Expo.AppLoading />;
     }
     else{
+    if (this.state.onboarding){
+      return (
+        <Provider store={store}>
+        <View style={styles.container}>
+          <OnboardingContainer stopOnboardingFunction={this.endOnboarding}/>
+        </View>
+        </Provider>
+      );
+    }
+    else{
+      return (
+        <Provider store={store}>
+        <View style={styles.container}>
+          <WorkoutContainer/>
+        </View>
+        </Provider>
+      );
+    }
 
-    return (
-      <Provider store={store}>
-      <View style={styles.container}>
-        <Login/>
-      </View>
-      </Provider>
-    );
 
   }
+}
 }

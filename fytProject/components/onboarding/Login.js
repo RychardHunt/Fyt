@@ -7,10 +7,11 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  TouchableHighlight,
   KeyboardAvoidingView,
   StatusBar,
 } from 'react-native';
-import { API_KEY } from '../env.js';
+import { API_KEY } from '../../env.js';
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
@@ -107,6 +108,12 @@ export default class Login extends Component {
           onPress={() => this.loginUser(this.state.email, this.state.password)}>
           <Text style={styles.buttonText}> LOGIN </Text>
         </TouchableOpacity>
+        <TouchableHighlight
+          onPress={ () => this.props.showRegistration()}
+          >
+        <Text style={styles.showRegistrationButton}> Click here to register</Text>
+
+        </TouchableHighlight>
       </KeyboardAvoidingView>
     );
   }
@@ -143,4 +150,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingHorizontal: 10,
   },
+  showRegistrationButton: {
+    fontSize: 18
+  }
 });

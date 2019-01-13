@@ -1,9 +1,14 @@
 export const DEBUG_MODE_ON = false;
-export const ONBOARDING = true;
+export const ONBOARDING_MODE = true;
 export const EDIT_SET = "EDIT_SET";
 export const CHANGE_SET_COMPLETION_STATUS="CHANGE_SET_COMPLETION_STATUS";
 export const COLOR_1 = '#5DFC0A';
 export const COLOR_2 = '#df2222';
+
+export const LOGIN = 'LOGIN';
+export const REGISTRATION = 'REGISTRATION';
+export const STRING = 'STRING';
+export const NUMBER = 'NUMBER';
 export const INITIAL_STATE =  { workout: {"squat" :{
       1 : {
           "reps": 1,
