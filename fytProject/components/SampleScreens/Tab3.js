@@ -10,7 +10,7 @@ export default class Tab3 extends React.Component {
     return (
       <Container style={{top: Constants.statusBarHeight}}>
         <Head title='Tab3' navigation = { navigate } />
-        <Content>
+        <Content style={{justifyContent:'center',alignItems:'center'}}>
           <Text> Tab3 </Text>
         </Content>
       </Container>

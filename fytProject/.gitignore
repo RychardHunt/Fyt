@@ -5,5 +5,5 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-app.js
+App.js
 .env

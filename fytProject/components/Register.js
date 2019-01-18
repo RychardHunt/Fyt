@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,KeyboardAvoi
     export default class Login extends Component {
         render() {
           return (
-        
+
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <Text style={styles.title}>
             Register
@@ -12,8 +12,8 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,KeyboardAvoi
             <StatusBar
             barStyle="light-content"
             />
- 
-            <TextInput 
+
+            <TextInput
             placeholder="email"
             placeholderTextColor='rgba(255,255,255,0.7)'
             returnKeyLabel="next"
@@ -22,7 +22,7 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,KeyboardAvoi
             autoCapitalize="none"
             autoCorrect={false}
             style={styles.input}
-            
+
             />
             <TextInput
             placeholder="password"
@@ -39,7 +39,7 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,KeyboardAvoi
             placeholderTextColor='rgba(255,255,255,0.7)'
             secureTextEntry
             returnKeyLabel="go"
-            
+
             style={styles.input}
             ref={(input) => this.sample=input}
             />
@@ -50,37 +50,37 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,KeyboardAvoi
 
 
             </KeyboardAvoidingView>
-            
+
           );
         }
       }
-      
+
       const styles = StyleSheet.create({
        container: {
            flex: 1,
          backgroundColor: '#e74c3c',
          padding: 20
        },
-       input: { 
+       input: {
            height: 40,
            backgroundColor: 'rgba(255,255,255,0.4)',
             marginBottom: 15,
             color: '#FFF',
             paddingHorizontal: 10
        },
-       buttonContainer:{ 
+       buttonContainer:{
             backgroundColor: '#c0392b',
             paddingVertical: 10,
 
 
        },
-       buttonText:{ 
+       buttonText:{
         textAlign: 'center',
         color: '#FFFFFF',
         fontWeight: '700'
        },
        title:
-       { 
+       {
         paddingBottom: 90,
         textAlign: 'center',
         marginTop: 80,
@@ -94,4 +94,3 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,KeyboardAvoi
 
 
       });
-    

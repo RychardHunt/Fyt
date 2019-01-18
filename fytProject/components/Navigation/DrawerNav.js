@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
-import TabNav from './TabNav';
-import Diet from '../SampleScreens/Diet';
-import Exercise from '../SampleScreens/Exercise';
 import SideBar from './SideBar';
+import TabNav from './TabNav';
+import SettingsScreen from '../SampleScreens/SettingsScreen';
 
 export default (DrawerNav = DrawerNavigator(
   {
-    Tabs:     { screen: TabNav  },
-    Diet:     { screen: Diet    },
-    Exercise: { screen: Exercise}
+    Tabs:     { screen: TabNav   },
+    Settings: { screen: SettingsScreen }
   },
   {
-    contentComponent: props => <SideBar {...props} />
+    contentComponent: props => <SideBar {...props}/>
   }
 ));

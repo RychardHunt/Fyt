@@ -1,9 +1,13 @@
+import { Dimensions } from 'react-native';
+
 export const DEBUG_MODE_ON = false;
 export const ONBOARDING = true;
 export const EDIT_SET = "EDIT_SET";
 export const CHANGE_SET_COMPLETION_STATUS="CHANGE_SET_COMPLETION_STATUS";
 export const COLOR_1 = '#5DFC0A';
 export const COLOR_2 = '#df2222';
+export const DEVICE_HEIGHT = Dimensions.get('screen').height;
+export const DEVICE_WIDTH  = Dimensions.get('screen').width;
 export const INITIAL_STATE =  { workout: {"squat" :{
       1 : {
           "reps": 1,

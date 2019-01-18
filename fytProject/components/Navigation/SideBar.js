@@ -3,8 +3,7 @@ import { AppRegistry, Image, StatusBar } from "react-native";
 import { Container, Content, Text, List, ListItem } from "native-base";
 import { Constants } from 'expo';
 
-const routes = ["Tabs", "Diet", "Exercise"];
-
+const routes = ["Settings"];
 export default class SideBar extends React.Component {
   render() {
     return (

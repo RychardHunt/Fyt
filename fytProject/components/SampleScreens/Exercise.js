@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Text, Content } from "native-base";
+import { Container, Text, View } from "native-base";
 import { StatusBar } from "react-native";
 import Head from '../Navigation/Head';
 import { Constants } from 'expo';
@@ -10,9 +10,9 @@ export default class Diet extends React.Component {
     return (
       <Container style={{top: Constants.statusBarHeight}}>
         <Head title='Exercise' navigation = { navigate } />
-        <Content>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <Text> Exercise </Text>
-        </Content>
+        </View>
       </Container>
     );
   }

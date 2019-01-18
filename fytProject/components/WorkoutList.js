@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { List, ListItem} from 'native-base';
+import { List, ListItem, Container, Content} from 'native-base';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import  ExercisePanel  from './ExercisePanel';
+import { Constants } from 'expo';
+import ExercisePanel  from './ExercisePanel';
+import Head from './Navigation/Head';
 
 const styles=StyleSheet.create({
   scrollView: {
@@ -32,17 +34,21 @@ class WorkoutList extends React.Component {
   }
 
   render() {
+    const navigate = this.props.navigation;
     return (
-      <View>
-        <Text style={styles.workoutHeader}>
-          Workout
-        </Text>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <View >
-          {this.createExercisePanels()}
-        </View>
-      </ScrollView>
-      </View>
+      <Container style={{top:Constants.statusBarHeight}}>
+        <Head title='Workout' navigation = { navigate } />
+        <Content>
+          <Text style={styles.workoutHeader}>
+            Workout
+          </Text>
+          <ScrollView contentContainerStyle={styles.scrollView}>
+            <View>
+              {this.createExercisePanels()}
+            </View>
+            </ScrollView>
+        </Content>
+      </Container>
     );
   }
 }

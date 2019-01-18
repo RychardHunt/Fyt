@@ -1,10 +1,13 @@
 import React from 'react';
-import WorkoutPanel from './components/WorkoutPanel';
 import DrawerNav from './components/Navigation/DrawerNav';
 import { StyleSheet, Text, View } from 'react-native';
-import WorkoutContainer from './components/containers/WorkoutContainer';
 import { Provider } from 'react-redux';
 import store from './store';
+import Playlist from './components/Playlist/Playlist';
+import WorkoutContainer from './components/containers/WorkoutContainer';
+import Profile from './components/Profile/Profile';
+
+console.disableYellowBox = true
 
 const styles = StyleSheet.create({
   container: {
@@ -15,10 +18,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class App extends React.Component {
+export default class App   extends React.Component {ss
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = { loading  : true };
     console.ignoredYellowBox = ['Remote debugger'];
   }
   async componentWillMount() {
@@ -36,11 +39,9 @@ export default class App extends React.Component {
     else{
       return (
         <Provider store={store}>
-          <View style={styles.container}>
-            <DrawerNav/>
-          </View>
+          <DrawerNav/>
         </Provider>
-      );
+      );s
     }
   }
 }

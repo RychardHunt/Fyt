@@ -1,46 +1,73 @@
 import React, { Component } from 'react';
 import { TabNavigator } from "react-navigation";
-import { Button, Text, Icon, Footer, FooterTab } from "native-base";
-import Tab1 from '../SampleScreens/Tab1';
-import Tab2 from '../SampleScreens/Tab2';
-import Tab3 from '../SampleScreens/Tab3';
+import { StyleSheet } from 'react-native';
 
-export default (BottomBar = TabNavigator(
+import { Button, Text, Icon, Footer, FooterTab, StyleProvider } from 'native-base';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import platform from '../../native-base-theme/variables/platform';
+import getTheme from '../../native-base-theme/components';
+
+import { colorTheme } from '../../config/styles';
+import { backgroundColor, headerColor } from '../../config/styles';
+import Profile from '../Profile/Profile';
+import Diet from '../SampleScreens/Diet';
+import WorkoutContainer from '../containers/WorkoutContainer';
+import Playlist from '../Playlist/Playlist';
+
+
+export default (Tab = TabNavigator(
   {
-    Tab1: { screen: Tab1 },
-    Tab2: { screen: Tab2 },
-    Tab3: { screen: Tab3 }
+    Tab1: { screen: Profile },
+    Tab2: { screen: Diet },
+    Tab3: { screen: WorkoutContainer },
+    Tab4: { screen: Playlist },
   },
   {
     tabBarPosition: "bottom",
     tabBarComponent: props =>
     {
       return (
-        <Footer>
-          <FooterTab>
-            <Button
+        <StyleProvider style={getTheme(platform)}>
+          <Footer>
+            <FooterTab>
+              <Button
               vertical
               active={props.navigationState.index === 0}
               onPress={() => props.navigation.navigate("Tab1")}>
-              <Icon name="md-list" />
-              <Text>Tab1</Text>
-            </Button>
-            <Button
+                <MaterialIcons style={{fontSize:28,color:'white'}}
+                name='person'/>
+                <Text>Profile</Text>
+              </Button>
+              <Button
               vertical
               active={props.navigationState.index === 1}
               onPress={() => props.navigation.navigate("Tab2")}>
-              <Icon name="md-wine" />
-              <Text>Tab2</Text>
-            </Button>
-            <Button
+                <MaterialCommunityIcons
+                style={{fontSize:28,color:'white'}}
+                name='food-apple'/>
+                <Text>Diet</Text>
+              </Button>
+              <Button
               vertical
               active={props.navigationState.index === 2}
               onPress={() => props.navigation.navigate("Tab3")}>
-              <Icon name="md-stopwatch" />
-              <Text>Tab3</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+                <Icon name='ios-fitness'/>
+                <Text>Workout</Text>
+              </Button>
+              <Button
+              vertical
+              active={props.navigationState.index === 3}
+              onPress={() => props.navigation.navigate("Tab4")}>
+              <FontAwesome
+                style={{fontSize:28,color:'white'}}
+                name='arrows-h'/>
+                <Text>Playlist</Text>
+              </Button>
+            </FooterTab>
+          </Footer>
+        </StyleProvider>
       );
     }
   }
