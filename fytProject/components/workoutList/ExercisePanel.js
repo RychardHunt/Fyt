@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Container, Card, Content} from 'native-base';
-import SetContainer from './containers/SetContainer';
+import SetContainer from '../containers/SetContainer';
+import EditSetMenu from './EditSetMenu';
 
 const styles = StyleSheet.create({
 
@@ -39,9 +40,18 @@ class ExercisePanel extends React.Component {
 
 render(){
   return(<View style={styles.exercisePanel}>
+        <EditSetMenu
+          modalVisible= {this.props.setMenuVisible}
+          exerciseName={this.props.exerciseName}
+          weight={0}
+          reps={0}
+          editSetFunction={this.props.addSetFunction}
+          toggleModalFunction={this.props.toggleSetMenuVisibilityFunction}/>
+        <TouchableOpacity onPress={()=>{this.props.toggleSetMenuVisibilityFunction()}}>
             <Card style={styles.exerciseHeader}>
                 <Text style={styles.exerciseHeaderText}>{this.props.exerciseName}</Text>
             </Card>
+          </TouchableOpacity>
             {this.createSetPanels()}
           </View>);
 }

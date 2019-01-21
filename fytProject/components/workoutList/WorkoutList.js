@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { List, ListItem} from 'native-base';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import  ExercisePanel  from './ExercisePanel';
+import AddExerciseContainer from '../containers/AddExerciseContainer';
 import ProgressBar from './ProgressBar.js';
 
 const styles=StyleSheet.create({
@@ -11,27 +12,35 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  container: {
+    flex: 1
+  }
 });
 
 // This panel lists the sets for an excercise that a user will perform
 class WorkoutList extends React.Component {
 
 // * `exercise`  The {String} excercise that this panel is for
-  createExercisePanels(){
+  createExercisePanels= () => {
     exercisePanels = []
     for(exercise in this.props.workout){
       const exercisePanel =  (<ExercisePanel key={exercise}
                                              exerciseName={exercise}
+                                             setMenuVisible = {this.props.setMenuVisible}
                                              exerciseDetails={this.props.workout[exercise]}
+                                             addSetFunction={this.props.addSetFunction}
+                                             toggleSetMenuVisibilityFunction={this.props.toggleSetMenuVisibilityFunction}
                                             />);
       exercisePanels.push(exercisePanel);
     }
+
     return exercisePanels;
   }
 
+
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.workoutHeader}>
           Workout
         </Text>
@@ -39,7 +48,9 @@ class WorkoutList extends React.Component {
         <View >
           {this.createExercisePanels()}
         </View>
-      </ScrollView>
+        </ScrollView>
+        <AddExerciseContainer/>
+
       <ProgressBar workoutProgress={this.props.workoutProgress}/>
       </View>
     );
