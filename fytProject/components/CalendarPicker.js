@@ -1,16 +1,12 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  PanResponder,
-  Animated,
-  Alert,
-} from 'react-native';
+import { StyleSheet, TextInput, Alert } from 'react-native';
 import { Button, Card, Text, View, Form, Item, Input } from 'native-base';
 import { Constants, Calendar, Permissions } from 'expo';
+import DatePicker from 'react-native-datepicker';
 import {
   Calendar as CalendarWix,
   CalendarList,
-  Agenda,
+  Agenda
 } from 'react-native-calendars';
 import TimePicker from 'react-native-simple-time-picker';
 
@@ -18,14 +14,18 @@ export default class CalendarPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [{ key: 1, start: 0, end: 0 }],
+      users: [{ key: 1, start: 0, end: 0, name: 'placeholder' }],
+      monthusers: [{ key: 1, start: 0, end: 0, name: 'placeholder' }],
       date: '2019-01-01',
       hour: 0,
       minute: 0,
       durationhour: 0,
       durationminute: 0,
+      eventstart: 500,
+      eventend: 500,
       text: '',
       showSchedule: false,
+      items: {}
     };
   }
 
@@ -35,18 +35,23 @@ export default class CalendarPicker extends React.Component {
     for (var i = 0; calendarday.length; i++) {
       var datestart = calendarday[i].startDate;
       var dateend = calendarday[i].endDate;
+      var datename = calendarday[i].title;
       datestart = new Date(datestart);
       dateend = new Date(dateend);
       datestart = new Date(datestart);
       var dateendseconds = (dateend.getTime() / 1000 - 18000) % 86400;
+      console.log('dateend = ' + dateendseconds);
       var datestartseconds = (datestart.getTime() / 1000 - 18000) % 86400;
       console.log('datestart = ' + datestartseconds);
       var dateobject = {
         key: i + 1,
         start: datestartseconds,
         end: dateendseconds,
+        name: datename
       };
+      console.log(dateobject);
       container.push(dateobject);
+      console.log(calendarday.length);
 
       if (i == calendarday.length - 1) {
         console.log(container);
@@ -54,14 +59,84 @@ export default class CalendarPicker extends React.Component {
       }
     }
     console.log(calendarday.length);
-    if (calendarday.length == 0) {
-      this.setState({ users: [{ key: 1, start: 0, end: 0 }] });
+  }
+
+  getSpecialScheduleObjects(calendarday) {
+    var container = [];
+    var finalarray = {};
+
+    for (var i = 0; calendarday.length; i++) {
+      var datestart = calendarday[i].startDate;
+      var dateend = calendarday[i].endDate;
+      var datename = calendarday[i].title;
+      const dateString = this.formatDate(datestart);
+      datestart = new Date(datestart);
+      dateend = new Date(dateend);
+      datestart = new Date(datestart);
+      var dateendseconds = (dateend.getTime() / 1000 - 18000) % 86400;
+      var datestartseconds = (datestart.getTime() / 1000 - 18000) % 86400;
+      const dailystartobject = new Date(dateendseconds);
+      const dailyendobject = new Date(dateendseconds);
+      finalarray[dateString] =
+        typeof finalarray[dateString] != 'undefined' &&
+        finalarray[dateString] instanceof Array
+          ? finalarray[dateString]
+          : [];
+      if (this.state.date == dateString) {
+        var dateobject = {
+          key: i + 1,
+          start: datestartseconds,
+          end: dateendseconds,
+          name: datename
+        };
+        console.log(this.hourMinuteString(datestart));
+        container.push(dateobject);
+      }
+      finalarray[dateString].push({
+        key: i + 1,
+        starthour: JSON.stringify(datestart.getHours()),
+        startminute: JSON.stringify(datestart.getMinutes()),
+        start: this.hourMinuteString(datestart),
+        endhour: JSON.stringify(dateend.getHours()),
+        endminute: JSON.stringify(dateend.getMinutes()),
+        end: this.hourMinuteString(dateend),
+        height: 50,
+        name: datename
+      });
+      if (i == calendarday.length - 1) {
+        this.setState({ items: finalarray, users: container });
+      }
     }
   }
 
+  formatDate(date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+
+  hourMinuteString(d) {
+    function z(n) {
+      return (n < 10 ? '0' : '') + n;
+    }
+    var h = d.getHours();
+    return (
+      (h % 12 || 12) + ':' + z(d.getMinutes()) + ' ' + (h < 12 ? 'AM' : 'PM')
+    );
+  }
+
   async addEvent() {
+    console.log('pressed');
     if (this.insertCalendarEvent()) {
+      console.log('success');
       var permission = await Permissions.askAsync('calendar');
+      console.log(permission);
       var finaldate = new Date(this.state.date);
       finaldate = new Date(
         finaldate.setTime(finaldate.getTime() + 1 * 86400000)
@@ -73,31 +148,38 @@ export default class CalendarPicker extends React.Component {
           parseFloat(JSON.stringify(this.state.durationhour)) * 3600000 +
           parseFloat(JSON.stringify(this.state.durationminute)) * 60000
       );
+      console.log(finaldate);
+      console.log(endingdate);
       var cal = await Calendar.getCalendarsAsync();
+      console.log(this.state.date);
       var eventi = await Calendar.createEventAsync(Calendar.DEFAULT, {
         startDate: finaldate,
         endDate: endingdate,
         title: this.state.text,
-        timeZone: 'GMT-5',
+        timeZone: 'GMT-5'
       })
         .then(event => {
+          console.log('success', event);
         })
         .catch(error => {
+          console.log('failure', error);
         });
     } else {
+      console.log('failure');
     }
+    console.log('after createEventAsync'); //it never gets here on snack, throws date error in app
   }
 
-  async getEvent() {
+  async getSpecialEvent() {
     var permission = await Permissions.askAsync('calendar');
     var contain = await Calendar.getCalendarsAsync();
-    console.log(contain);
     var begindate = new Date(this.state.date);
     begindate = new Date(begindate.setTime(begindate.getTime() + 1 * 86400000));
+    begindate.setDate(1);
     begindate.setHours(0);
     begindate.setMinutes(0);
     var enddate = new Date(this.state.date);
-    enddate = new Date(enddate.setTime(begindate.getTime() + 1 * 86400000));
+    enddate = new Date(enddate.setTime(begindate.getTime() + 31 * 86400000));
     var idarray = [];
     for (var i = 0; i < contain.length; i++) {
       idarray.push(contain[i].id);
@@ -108,11 +190,10 @@ export default class CalendarPicker extends React.Component {
       begindate,
       enddate
     ).then(result => (calendarholder = result));
-    const finalholder = this.getScheduleObjects(calendarholder);
+    const finalholder = this.getSpecialScheduleObjects(calendarholder);
   }
 
   insertCalendarEvent() {
-    this.getEvent;
     var starttime =
       parseFloat(JSON.stringify(this.state.hour)) * 3600 +
       parseFloat(JSON.stringify(this.state.minute) * 60);
@@ -155,22 +236,37 @@ export default class CalendarPicker extends React.Component {
       pass = false;
       console.log('four');
     }
+    console.log('startfinal + ' + starttime);
+    console.log('endfinal + ' + endtime);
+    console.log(pass);
     return pass;
   }
-
-  async changeCalendarState() {
-    if (this.state.showSchedule == false) {
-      this.setState({ showSchedule: true });
-      await this.getEvent();
-    } else {
-      this.setState({ showSchedule: false });
-    }
-  }
-
 
   secondstoheight(height, seconds) {
     let percent = seconds / 86400;
     return height * percent;
+  }
+
+  renderItem(item) {
+    return (
+      <View style={styles.cardView}>
+        <Text>
+          name=({item.name}) start=({item.start}) end=({item.end})
+        </Text>
+      </View>
+    );
+  }
+
+  renderEmptyDate() {
+    return (
+      <View style={styles.cardView}>
+        <Text>This is empty date!</Text>
+      </View>
+    );
+  }
+
+  rowHasChanged(r1, r2) {
+    return r1.name !== r2.name;
   }
 
   render() {
@@ -198,160 +294,85 @@ export default class CalendarPicker extends React.Component {
       20,
       21,
       22,
-      23,
+      23
     ];
     const scale = 400 / 24;
-    if (this.state.showSchedule == true) {
-      return (
-        <View style={styles.container}>
-          {this.state.users.map(place => (
-            <View style={{ position: 'absolute' }}>
-              <View
-                style={{
-                  height: this.secondstoheight(400, place.end - place.start),
-                  backgroundColor: 'red',
-                  width: 1000,
-                  top:
-                    20 +
-                    this.secondstoheight(
-                      400,
-                      (place.end - place.start) / 2 + place.start
-                    ),
-                }}
-              />
-            </View>
-          ))}
-          <View style={{ position: 'absolute', top: 20 }} />
-          {timescale.map(time => (
-            <Text
-              style={{ position: 'absolute', left: 5, top: 17 + time * 16.7 }}>
-              {time}
-            </Text>
-          ))}
-
-          <View style={{ top: 460, left: 0, position: 'absolute' }}>
-            <Button title="Get Schedule" onPress={this.getEvent.bind(this)}>
-<Text>Get Schedule</Text>
-</Button>
-          </View>
-          <View style={{ top: 490, left: 0, position: 'absolute' }}>
-            <Button
-              title="Switch Screen"
-              onPress={this.changeCalendarState.bind(this)}
-            >
-<Text>Switch Screen</Text>
-</Button>
-
-          </View>
-          <View style={{ top: 510, position: 'absolute' }} />
-          <View style={{ top: 420, left: 160, position: 'absolute' }}>
-            <Text style={styles.paragraph}>
-              Pick time(Hour:0-24 Minute:0-60):
-            </Text>
-            <View style={{ height: 35 }}>
-              <TimePicker
-                style={styles.timePicker}
-                hour={this.state.hour}
-                //initial Hourse value
-                minute={this.state.minute}
-                //initial Minutes value
-                onChange={(hours, minutes) =>
-                  this.setState({ hour: hours, minute: minutes })
-                }
-              />
-            </View>
-            <Text style={styles.paragraph}>
-              Pick duration(Hour:0-24 Minute:0-60):
-            </Text>
-            <View style={{ height: 35 }}>
-              <TimePicker
-                style={styles.timePicker}
-                hour={this.state.durationhour}
-                //initial Hourse value
-                minute={this.state.durationminute}
-                //initial Minutes value
-                onChange={(hours, minutes) =>
-                  this.setState({
-                    durationhour: hours,
-                    durationminute: minutes,
-                  })
-                }
-              />
-            </View>
-            <View>
-<Form>
-<Item regular>
-              <Input
-                style={{ height: 20 }}
-                placeholder="Type Event here!"
-                onChangeText={text => this.setState({ text })}
-              />
-</Item>
-</Form>
-              <Button
-                style={styles.buttonView}
-                title="Add Event"
-                onPress={this.addEvent.bind(this)}>
-                <Text>Add Event</Text>
-              </Button>
-            </View>
-          </View>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          <CalendarWix
-            style={{ height: 300, width: 320 }}
-            // Initially visible month. Default = Date()
-            current={'2019-01-01'}
-            // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-            minDate={'2010-01-01'}
-            // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-            maxDate={'2025-01-01'}
-            // Handler which gets executed on day press. Default = undefined
+    return (
+      <View style={styles.container}>
+        <View style={{ height: 600, width: 500 }}>
+          <Agenda
+            items={this.state.items}
+            loadItemsForMonth={this.getSpecialEvent.bind(this)}
+            selected={this.state.date}
+            renderItem={this.renderItem.bind(this)}
+            renderEmptyDate={this.renderEmptyDate.bind(this)}
+            renderEmptyData={this.renderEmptyDate.bind(this)}
+            rowHasChanged={this.rowHasChanged.bind(this)}
             onDayPress={day => {
               this.setState({ date: day.dateString });
             }}
-            // Handler which gets executed on day long press. Default = undefined
-            onDayLongPress={day => {
-              this.setState({ date: day.dateString });
-            }}
-            // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-            monthFormat={'yyyy MM'}
-            // Handler which gets executed when visible month changes in calendar. Default = undefined
-            onMonthChange={month => {
-              console.log('month changed', month);
-            }}
-            // Hide month navigation arrows. Default = false
-            // Do not show days of other months in month page. Default = false
-            hideExtraDays={true}
-            // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-            firstDay={1}
-            // Hide day names. Default = false
-            hideDayNames={true}
-            // Show week numbers to the left. Default = false
-            showWeekNumbers={true}
-            // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-            onPressArrowLeft={substractMonth => substractMonth()}
-            // Handler which gets executed when press arrow icon left. It receive a callback can go next month
-            onPressArrowRight={addMonth => addMonth()}
           />
-          <View style={{ top: 410, left: 80, position: 'absolute' }}>
-            <Text>Date Selected: {this.state.date}</Text>
-          </View>
-          <View style={{ top: 490, left: 120, position: 'absolute' }}>
-            <Button
-              title="Switch Screen"
-              onPress={this.changeCalendarState.bind(this)}
-            >
-<Text>Switch Screen</Text>
-</Button>
+        </View>
 
+        <View style={{ position: 'absolute', top: 20 }} />
+
+        <View />
+        <View>
+          <Text style={styles.paragraph}>
+            Pick time(Hour:0-24 Minute:0-60):
+          </Text>
+          <View style={{ height: 35 }}>
+            <TimePicker
+              style={styles.timePicker}
+              hour={this.state.hour}
+              //initial Hourse value
+              minute={this.state.minute}
+              //initial Minutes value
+              onChange={(hours, minutes) =>
+                this.setState({ hour: hours, minute: minutes })
+              }
+            />
+          </View>
+          <Text style={styles.paragraph}>
+            Pick duration(Hour:0-24 Minute:0-60):
+          </Text>
+          <View style={{ height: 35 }}>
+            <TimePicker
+              style={styles.timePicker}
+              hour={this.state.durationhour}
+              //initial Hourse value
+              minute={this.state.durationminute}
+              //initial Minutes value
+              onChange={(hours, minutes) =>
+                this.setState({
+                  durationhour: hours,
+                  durationminute: minutes
+                })
+              }
+            />
+          </View>
+          <View>
+            <Form>
+              <Item regular>
+                <Input
+                  style={{ height: 20 }}
+                  placeholder="Type Event here!"
+                  onChangeText={text => this.setState({ text })}
+                />
+              </Item>
+            </Form>
+
+            <Button
+              style={styles.buttonView}
+              title="Add Event"
+              onPress={this.addEvent.bind(this)}
+            >
+              <Text>Add Event</Text>
+            </Button>
           </View>
         </View>
-      );
-    }
+      </View>
+    );
   }
 }
 
@@ -360,18 +381,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     position: 'absolute',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   paragraph: {
     fontSize: 12,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: '#34495e'
   },
   buttonView: {
-    backgroundColor: '#FA5845',
+    backgroundColor: '#FA5845'
   },
   timePicker: {
-    width: '50%',
+    width: '50%'
   },
+  cardView: {
+    width: '100%',
+    height: 50,
+    backgroundColor: 'white',
+    borderWidth: 5,
+    borderColor: '#d6d7da'
+  }
 });
