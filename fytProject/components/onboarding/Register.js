@@ -12,20 +12,6 @@ import {
   TouchableHighlight,
   StatusBar,
 } from 'react-native';
-import {API_KEY} from '../../env';
-import * as firebase from 'firebase';
-
-const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: 'fytdatabase.firebaseapp.com',
-  databaseURL: 'https://fytdatabase.firebaseio.com',
-  projectId: 'fytdatabase',
-  storageBucket: 'fytdatabase.appspot.com',
-};
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
 
 export default class Register extends Component {
   constructor(props) {
@@ -38,34 +24,6 @@ export default class Register extends Component {
   }
 
   signupUser = (email, password, passwordtwo) => {
-    if (password !== passwordtwo) {
-      Alert.alert(
-        'Password MisMatch',
-        'Please reconfirm your password',
-        [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-        { cancelable: false }
-      );
-      return;
-    }
-    else{
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        Alert.alert(
-          'Error',
-          errorMessage,
-          [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-          { cancelable: false }
-        );
-        // ...
-        return;
-      });
-      this.props.startOnboardingFunction();
-    }
 
     //navigate it to the login page
   };
