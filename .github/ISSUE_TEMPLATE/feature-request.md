@@ -29,3 +29,4 @@ If you can, explain how users will be able to use this and possibly write out a 
 Maybe a screenshot or design?
 
 **Acceptance Tests**
+1. Steps necessary to produce the desired result
