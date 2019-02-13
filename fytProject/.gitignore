@@ -5,5 +5,5 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-App.js
 .env
+package-lock.json
