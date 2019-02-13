@@ -1,4 +1,4 @@
-function stop(a) {
+function jokes(a) {
   if (a) {
     return a;
   } else {
