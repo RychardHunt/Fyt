@@ -1,13 +1,13 @@
 import React from "react";
 import { AppRegistry, Image, StatusBar } from "react-native";
 import { Container, Content, Text, List, ListItem } from "native-base";
-import { Constants } from 'expo';
+import { Constants } from "expo";
 
 const routes = ["Settings"];
 export default class SideBar extends React.Component {
   render() {
     return (
-      <Container style={{top: Constants.statusBarHeight}}>
+      <Container style={{ top: Constants.statusBarHeight }}>
         <Content>
           <List
             dataArray={routes}
@@ -17,7 +17,7 @@ export default class SideBar extends React.Component {
                   button
                   onPress={() => this.props.navigation.navigate(data)}
                 >
-                <Text>{data}</Text>
+                  <Text>{data}</Text>
                 </ListItem>
               );
             }}

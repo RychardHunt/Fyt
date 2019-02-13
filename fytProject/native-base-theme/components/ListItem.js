@@ -234,7 +234,7 @@ export default (variables /*: * */ = variable) => {
     ".avatar": {
       "NativeBase.Left": {
         flex: 0,
-        alignSelf: 'flex-start',
+        alignSelf: "flex-start",
         paddingTop: 14
       },
       "NativeBase.Body": {
@@ -428,7 +428,7 @@ export default (variables /*: * */ = variable) => {
     ".noIndent": {
       marginLeft: null,
       padding: variables.listItemPadding,
-      paddingLeft: variables.listItemPadding + 6,
+      paddingLeft: variables.listItemPadding + 6
     },
     alignItems: "center",
     flexDirection: "row",

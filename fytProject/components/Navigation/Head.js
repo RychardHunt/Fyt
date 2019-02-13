@@ -1,8 +1,18 @@
-import React from 'react';
-import { Header, Left, Button, Icon, Body, Title, Right, Text, View } from 'native-base';
-import { StyleSheet } from 'react-native';
-import { colorTheme, headerColor } from '../../config/styles';
-import { Constants } from 'expo';
+import React from "react";
+import {
+  Header,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Title,
+  Right,
+  Text,
+  View
+} from "native-base";
+import { StyleSheet } from "react-native";
+import { colorTheme, headerColor } from "../../config/styles";
+import { Constants } from "expo";
 
 export default class Head extends React.Component {
   render() {
@@ -12,14 +22,15 @@ export default class Head extends React.Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+            >
               <Icon name="menu" />
             </Button>
           </Left>
           <Body>
             <Title>{this.props.title}</Title>
           </Body>
-          <Right/>
+          <Right />
         </Header>
       </View>
     );

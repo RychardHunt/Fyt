@@ -1,7 +1,11 @@
 // @flow
 
 import color from "color";
-import { backgroundColor, headerColor, selectedColor } from '../../config/styles';
+import {
+  backgroundColor,
+  headerColor,
+  selectedColor
+} from "../../config/styles";
 import { Platform, Dimensions, PixelRatio } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
