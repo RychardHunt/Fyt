@@ -1,11 +1,5 @@
-// import * as firebase from "firebase";
+import * as firebase from "firebase";
 
-const firebaseConfig = require("../../config/firebaseconfig.json");
+const firebaseConfig = require("./firebaseconfig.json");
 
-console.log(firebaseConfig);
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: DATABASE_URL
-//   // databaseURL: "https://fytapp-aef50.firebaseio.com"
-// });
+export const firebaseApp = firebase.initializeApp(fireBaseconfig);

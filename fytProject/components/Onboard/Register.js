@@ -10,8 +10,8 @@ import {
   Text
 } from "native-base";
 import { Constants } from "expo";
-import containerStyle from "../../config/styles.js";
 import Head from "../Navigation/Head";
+import { signUp } from "../../actions/OnboardActions";
 
 export default class Register extends Component {
   render() {
@@ -31,7 +31,7 @@ export default class Register extends Component {
               <Input placeholder="Confirm Password" />
             </Item>
           </Form>
-          <Button rounded>
+          <Button rounded onPress={signUp}>
             <Text>Sign Up</Text>
           </Button>
         </Content>
