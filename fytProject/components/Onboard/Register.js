@@ -9,11 +9,16 @@ import {
   Button,
   Text
 } from "native-base";
+import { Constants } from "expo";
+import containerStyle from "../../config/styles.js";
+import Head from "../Navigation/Head";
+
 export default class Register extends Component {
   render() {
+    const navigate = this.props.navigation;
     return (
-      <Container>
-        <Header />
+      <Container style={{ top: Constants.statusBarHeight }}>
+        <Head title="Register" navigation={navigate} />
         <Content>
           <Form>
             <Item>

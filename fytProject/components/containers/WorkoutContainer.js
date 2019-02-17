@@ -9,7 +9,12 @@ import {
 
 class WorkoutContainer extends React.Component {
   render() {
-    return <WorkoutList workout={this.props.workout} />;
+    return (
+      <WorkoutList
+        navigation={this.props.navigation}
+        workout={this.props.workout}
+      />
+    );
   }
 }
 
