@@ -3,6 +3,7 @@ import { Container, Text, View } from "native-base";
 import { StatusBar } from "react-native";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
+import Register from "../Onboard/Register";
 
 export default class Diet extends React.Component {
   render() {
