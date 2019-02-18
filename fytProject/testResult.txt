@@ -1,0 +1,9 @@
+yarn run v1.13.0
+$ node ./node_modules/jest/bin/jest.js --watchAll
+
+
+No failed test found.
+Press `f` to quit "only failed tests" mode.
+
+
+[1B[JDone in 37.67s.
