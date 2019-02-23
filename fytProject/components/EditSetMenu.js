@@ -35,6 +35,7 @@ class EditSetMenu extends React.Component {
           <Button
             title="Enter"
             onPress={() => {
+              console.log(this.formRef.getValue())
               this.props.editSetFunction(this.formRef.getValue());
               this.props.toggleModalFunction();
               return true;
