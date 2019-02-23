@@ -24,6 +24,7 @@ export default class CalendarPicker extends React.Component {
       eventstart: 500,
       eventend: 500,
       text: '',
+	note:'',
       showSchedule: false,
       items: {}
     };
@@ -69,6 +70,7 @@ export default class CalendarPicker extends React.Component {
       var datestart = calendarday[i].startDate;
       var dateend = calendarday[i].endDate;
       var datename = calendarday[i].title;
+	var datenote=calendarday[i].notes;
       const dateString = this.formatDate(datestart);
       datestart = new Date(datestart);
       dateend = new Date(dateend);
@@ -101,7 +103,8 @@ export default class CalendarPicker extends React.Component {
         endminute: JSON.stringify(dateend.getMinutes()),
         end: this.hourMinuteString(dateend),
         height: 50,
-        name: datename
+        name: datename,
+	  note:datenote
       });
       if (i == calendarday.length - 1) {
         this.setState({ items: finalarray, users: container });
@@ -156,7 +159,8 @@ export default class CalendarPicker extends React.Component {
         startDate: finaldate,
         endDate: endingdate,
         title: this.state.text,
-        timeZone: 'GMT-5'
+        timeZone: 'GMT-5',
+	   notes:this.state.note,
       })
         .then(event => {
           console.log('success', event);
@@ -249,11 +253,16 @@ export default class CalendarPicker extends React.Component {
 
   renderItem(item) {
     return (
-      <View style={styles.cardView}>
+      <Card style={styles.cardView}>
         <Text>
-          name=({item.name}) start=({item.start}) end=({item.end})
-        </Text>
-      </View>
+          title:{item.name}</Text>
+<Text>
+start:{item.start} end:{item.end}
+</Text>
+<Text>
+          notes :{item.note}         </Text>
+
+      </Card>
     );
   }
 
@@ -356,10 +365,21 @@ export default class CalendarPicker extends React.Component {
               <Item regular>
                 <Input
                   style={{ height: 20 }}
-                  placeholder="Type Event here!"
+                  placeholder="Type Event title here!"
                   onChangeText={text => this.setState({ text })}
                 />
+			
               </Item>
+            </Form>
+<Form>
+              <Item regular>
+
+		<Input
+                  style={{ height: 20 }}
+                  placeholder="Type Event note here!"
+                  onChangeText={note => this.setState({ note })}
+                />
+</Item>
             </Form>
 
             <Button
@@ -397,8 +417,7 @@ const styles = StyleSheet.create({
   },
   cardView: {
     width: '100%',
-    height: 50,
-    backgroundColor: 'white',
+     backgroundColor: 'white',
     borderWidth: 5,
     borderColor: '#d6d7da'
   }
