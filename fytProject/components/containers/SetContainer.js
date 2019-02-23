@@ -72,17 +72,6 @@ class SetContainer extends React.Component {
   };
   render() {
     return (
-      // <Set
-      //   setNumber={this.props.setNumber}
-      //   setDetails={this.props.setDetails}
-      //   exerciseName={this.props.exerciseName}
-      //   modalVisible={this.state.modalVisible}
-      //   changeSetCompletionStatus={this.changeSetCompletionStatus}
-      //   editSetFunction={this.handleFormSubmit}
-      //   toggleModalFunction={this.toggleModal}
-      //   completionButtonColor={this.state.completionButtonColor}
-      // />
-
       <View>
         <EditSetMenu
           modalVisible={this.state.modalVisible}
