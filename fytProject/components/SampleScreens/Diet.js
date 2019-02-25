@@ -1,6 +1,12 @@
 import React from "react";
 import { Container, Text, View } from "native-base";
-import { StyleSheet, StatusBar, Image, ScrollView } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  StatusBar,
+  Image,
+  ScrollView
+} from "react-native";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
 
@@ -16,10 +22,14 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   smallWhiteRightAlign: {
-    paddingLeft: 190,
-
+    padding: 10,
+    paddingTop: -20,
+    flex: 1,
+    flexWrap: "wrap",
+    width: Dimensions.get("window").width,
     color: "#FFFFFF",
-    fontSize: 15
+    fontSize: 15,
+    justifyContent: "flex-end"
   }
 });
 
@@ -70,25 +80,55 @@ export default class Diet extends React.Component {
           <View
             style={{
               flex: 1,
-              marginTop: 20,
-              marginHorizontal: 10
+              flexDirection: "row",
+              marginTop: 10
             }}
           >
+            <Image
+              source={pic3}
+              style={{
+                justifyContent: "flex-start",
+                width: 170,
+                height: 180
+              }}
+            />
             <Text style={styles.smallWhiteRightAlign}>
-              Breakfast: Oatmeal with berries and peanut butter (Add protein
-              powder for additional protein intake)
-              <Image source={pic3} style={{ width: 170, height: 180 }} />
+              Breakfast: Oatmeal with berries and peanut butter, Protein Powder
+              Ingredients: 8 oz dried oats, 4 oz Berries, 1 teaspoon of Peanut
+              Butter, 1 scoop of Protein Powder Macros: 40g of Carbs, 3g of
+              Fats, 21g of Protein, Total Calories: 271
             </Text>
+          </View>
 
-            <Text style={styles.smallWhiteRightAlign}>
-              Lunch: Chicken Breast with sweet potato and vegetables
-            </Text>
+          <View
+            style={{
+              paddingVertical: 10,
+              flex: 1,
+              flexDirection: "row"
+            }}
+          >
             <Image source={pic4} style={{ width: 170, height: 180 }} />
             <Text style={styles.smallWhiteRightAlign}>
-              Dinner: Salmon with rice and vegetables
-              {/* Include calories, macros, and portion size after */}
+              Lunch: Chicken Breast with sweet potato and vegetables
+              Ingredients: 16 oz Chicken Breast, 1 sweet potato, 1 cup of mixed
+              vegetables Macros: 70g of Carbs, 5g of Fats, 90g of Protein, Total
+              Calories: 685
             </Text>
+          </View>
+
+          <View
+            style={{
+              paddingVertical: 10,
+              flex: 1,
+              flexDirection: "row"
+            }}
+          >
             <Image source={pic5} style={{ width: 170, height: 180 }} />
+            <Text style={styles.smallWhiteRightAlign}>
+              Dinner: Salmon with rice and vegetables Ingredients: 10 oz salmon,
+              250g of cooked rice, 1 cup of mixed vegetables Macros: 40g of
+              Carbs, 20g of Fats, 40g of Protein. Total Calories: 500
+            </Text>
           </View>
         </ScrollView>
       </Container>
