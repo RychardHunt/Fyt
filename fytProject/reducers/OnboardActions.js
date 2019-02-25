@@ -10,6 +10,10 @@ export default function onboardReducer(state = initialState, action) {
         authenticated: action.payload.authenticated
       };
 
+    case LOG_IN:
+      // Add Persistant Floating User Icon
+      return state;
+
     default:
       return state;
   }

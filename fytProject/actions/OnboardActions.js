@@ -7,8 +7,6 @@ export const signUp = (email, password) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      // then and catch are methods that we call on the Promise returned from
-      // createUserWithEmailAndPassword
       alert("Your account was created!");
       return dispatch => {
         dispatch({
@@ -19,17 +17,25 @@ export const signUp = (email, password) => {
           }
         });
       };
-    });
+    })
+    .catch(error => alert(error));
 };
 
 export const logIn = (email, password) => {
-  return dispatch => {
-    dispatch({
-      type: LOG_IN,
-      payload: {
-        email: email,
-        password: password
-      }
-    });
-  };
+  firebaseApp
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("Login Successful!");
+      return dispatch => {
+        dispatch({
+          type: LOG_IN,
+          payload: {
+            email: email,
+            password: password
+          }
+        });
+      };
+    })
+    .catch(error => alert(error));
 };

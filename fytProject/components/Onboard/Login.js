@@ -11,33 +11,26 @@ import {
 } from "native-base";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
-import { signUp } from "../../actions/OnboardActions";
+import { logIn } from "../../actions/OnboardActions";
 
-export default class Register extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: "",
-      confirmPassword: ""
+      password: ""
     };
   }
 
-  signUpPressed() {
-    let password = this.state.password;
-    let confirmPassword = this.state.confirmPassword;
-    if (password === confirmPassword) {
-      signUp(this.state.email, password);
-    } else {
-      alert("Passwords mismatch");
-    }
+  logInPressed() {
+    logIn(this.state.email, this.state.password);
   }
 
   render() {
     const navigate = this.props.navigation;
     return (
       <Container style={{ top: Constants.statusBarHeight }}>
-        <Head title="Register" navigation={navigate} />
+        <Head title="Login" navigation={navigate} />
         <Content>
           <Form>
             <Item>
@@ -55,19 +48,9 @@ export default class Register extends Component {
                 value={this.state.password}
               />
             </Item>
-            <Item>
-              <Input
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-                onChangeText={confirmPassword =>
-                  this.setState({ confirmPassword })
-                }
-                value={this.state.confirmPassword}
-              />
-            </Item>
           </Form>
-          <Button rounded onPress={() => this.signUpPressed()}>
-            <Text>Sign Up</Text>
+          <Button rounded onPress={() => this.logInPressed()}>
+            <Text>Log In</Text>
           </Button>
         </Content>
       </Container>
