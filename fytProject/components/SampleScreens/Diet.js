@@ -1,11 +1,14 @@
 import React from "react";
 import { Container, Text, View } from "native-base";
 import {
+  Alert,
+  Button,
   Dimensions,
   StyleSheet,
   StatusBar,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from "react-native";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
@@ -34,6 +37,17 @@ const styles = StyleSheet.create({
 });
 
 export default class Diet extends React.Component {
+  breakfastCall() {
+    Alert.alert("Breakfast isn't ready yet!");
+  }
+
+  lunchCall() {
+    Alert.alert("Lunch isn't ready yet!");
+  }
+
+  dinnerCall() {
+    Alert.alert("Dinner isn't ready yet!");
+  }
   render() {
     let pic = {
       uri:
@@ -129,6 +143,39 @@ export default class Diet extends React.Component {
               250g of cooked rice, 1 cup of mixed vegetables Macros: 40g of
               Carbs, 20g of Fats, 40g of Protein. Total Calories: 500
             </Text>
+          </View>
+
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row"
+            }}
+          >
+            <Text
+              style={{
+                flex: 1,
+                flexWrap: "wrap",
+                justifyContent: "center",
+                padding: 25,
+                paddingVertical: -20
+              }}
+            >
+              Order it now from _________ by pressing the image and you can have
+              this meal tomorrow!
+            </Text>
+          </View>
+          <View style={{ padding: 10 }}>
+            <TouchableOpacity onPress={() => this.breakfastCall()}>
+              <Image source={pic3} style={{ width: 100, height: 100 }} />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.lunchCall()}>
+              <Image source={pic4} style={{ width: 100, height: 100 }} />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.dinnerCall()}>
+              <Image source={pic5} style={{ width: 100, height: 100 }} />
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </Container>
