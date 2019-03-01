@@ -94,6 +94,9 @@ export default class CalendarPicker extends React.Component {
         console.log(this.hourMinuteString(datestart));
         container.push(dateobject);
       }
+	if(datename.length==0){
+	datename="My Event";
+	}
       finalarray[dateString].push({
         key: i + 1,
         starthour: JSON.stringify(datestart.getHours()),
@@ -254,14 +257,19 @@ export default class CalendarPicker extends React.Component {
   renderItem(item) {
     return (
       <Card style={styles.cardView}>
-        <Text>
-          title:{item.name}</Text>
+<View style={styles.specialBlueBox}>
+</View>
+<View style={{marginLeft:15}}>
 <Text>
-start:{item.start} end:{item.end}
+{item.name}
+</Text>
+
+        <Text style={{fontSize: 10,color:'grey'}}>
+{item.start} - {item.end}
 </Text>
 <Text>
-          notes :{item.note}         </Text>
-
+          {item.note}         </Text>
+</View>
       </Card>
     );
   }
@@ -420,5 +428,14 @@ const styles = StyleSheet.create({
      backgroundColor: 'white',
     borderWidth: 5,
     borderColor: '#d6d7da'
+  },
+specialBlueBox: {
+    width: 5,
+    top:5,
+    left:5,
+     backgroundColor: 'lightblue',
+    height:5,
+    position:'absolute'
   }
+
 });
