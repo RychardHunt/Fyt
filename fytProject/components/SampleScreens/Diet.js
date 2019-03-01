@@ -3,6 +3,7 @@ import { Container, Text, View } from "native-base";
 import {
   Alert,
   Button,
+  Linking,
   Dimensions,
   StyleSheet,
   StatusBar,
@@ -68,13 +69,43 @@ export default class Diet extends React.Component {
     let pic5 = {
       uri: "http://images.media-allrecipes.com/images/65782.jpg"
     };
+    let pic6 = {
+      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22574.jpg"
+
+      //Seasoned Turkey Breast with Roasted Butternut Squash and Green Beans
+    };
+    let pic7 = {
+      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22571.jpg"
+
+      //Salmon Teriyaki with Broccoli and Cauliflower Rice
+    };
+    let pic8 = {
+      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22534.jpg"
+
+      //Shrimp Scampi with Zucchini Noodles and Caesar Salad
+    };
+    let pic9 = {
+      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22089.jpg"
+
+      //Horseradish Crusted Salmon with Cauliflower Rice and Asparagus
+    };
+    let pic10 = {
+      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22085.jpg"
+
+      //Peruvian Chicken with Green Sauce, Chickpea Salad and Asparagus
+    };
+    let pic11 = {
+      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22217.jpg"
+
+      //Strip Steak with Whipped Potatoes and Roasted Mushrooms
+    };
     const navigate = this.props.navigation;
     return (
       <Container
         style={{ top: Constants.statusBarHeight, backgroundColor: "#303030" }}
       >
         <Head title="Diet" navigation={navigate} />
-        <ScrollView>
+        <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
           <View style={{ alignItems: "center" }}>
             <Text style={styles.bigWhite}> Transformations </Text>
           </View>
@@ -157,25 +188,81 @@ export default class Diet extends React.Component {
                 flexWrap: "wrap",
                 justifyContent: "center",
                 padding: 25,
-                paddingVertical: -20
+                paddingVertical: -20,
+                fontSize: 25,
+                color: "#FFFFFF",
+                fontStyle: "italic",
+                fontWeight: "bold"
               }}
             >
-              Order it now from _________ by pressing the image and you can have
-              this meal tomorrow!
+              Order it now from Wegmans by pressing the image below and you can
+              have this meal tomorrow!
             </Text>
           </View>
-          <View style={{ padding: 10 }}>
-            <TouchableOpacity onPress={() => this.breakfastCall()}>
-              <Image source={pic3} style={{ width: 100, height: 100 }} />
-            </TouchableOpacity>
+          <View style={{ padding: 10, flex: 1, flexDirection: "row" }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                paddingBottom: 10
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://www.wegmans.com")}
+              >
+                <Image source={pic3} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.lunchCall()}>
-              <Image source={pic4} style={{ width: 100, height: 100 }} />
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.lunchCall()}>
+                <Image source={pic4} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.dinnerCall()}>
-              <Image source={pic5} style={{ width: 100, height: 100 }} />
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.dinnerCall()}>
+                <Image source={pic5} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                paddingBottom: 10
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://www.wegmans.com")}
+              >
+                <Image source={pic6} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => this.lunchCall()}>
+                <Image source={pic7} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => this.dinnerCall()}>
+                <Image source={pic8} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                paddingBottom: 10
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://www.wegmans.com")}
+              >
+                <Image source={pic9} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => this.lunchCall()}>
+                <Image source={pic10} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => this.dinnerCall()}>
+                <Image source={pic11} style={{ width: 100, height: 100 }} />
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       </Container>
