@@ -1,4 +1,6 @@
 node_modules
+firebaseconfig.json
+firebaseadmin.json
 .expo/*
 npm-debug.*
 *.jks
@@ -6,4 +8,5 @@ npm-debug.*
 *.key
 *.mobileprovision
 .env
+.DS_Store
 package-lock.json
