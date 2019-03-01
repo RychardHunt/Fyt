@@ -7,7 +7,8 @@ import {
   Item,
   Input,
   Button,
-  Text
+  Text,
+  View
 } from "native-base";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
@@ -66,9 +67,15 @@ export default class Register extends Component {
               />
             </Item>
           </Form>
-          <Button rounded onPress={() => this.signUpPressed()}>
-            <Text>Sign Up</Text>
-          </Button>
+          <View style={{ padding: "1%" }}>
+            <Button
+              rounded
+              onPress={() => this.signUpPressed()}
+              style={{ alignSelf: "center" }}
+            >
+              <Text>Sign Up</Text>
+            </Button>
+          </View>
         </Content>
       </Container>
     );
