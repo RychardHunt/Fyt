@@ -1,3 +1,9 @@
 {
-  "devToolsPort": 19002
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 6048,
+  "expoServerNgrokUrl": "https://iu-rh6.anonymous.fyt.exp.direct",
+  "packagerNgrokUrl": "https://packager.iu-rh6.anonymous.fyt.exp.direct",
+  "ngrokPid": 6077
 }

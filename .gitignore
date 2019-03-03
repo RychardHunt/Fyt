@@ -6,4 +6,5 @@ npm-debug.*
 *.key
 *.mobileprovision
 .env
-package-lock.json
+package-lock.json 
+.directory
