@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import store from "../../store";
 import {
   Container,
   Header,
@@ -11,8 +12,7 @@ import {
   View
 } from "native-base";
 import { Constants } from "expo";
-import Head from "../Navigation/Head";
-import { signUp } from "../../actions/OnboardActions";
+import { signUp, signUpScreen } from "../../actions/OnboardActions";
 
 export default class Register extends Component {
   constructor(props) {
@@ -35,10 +35,8 @@ export default class Register extends Component {
   }
 
   render() {
-    const navigate = this.props.navigation;
     return (
       <Container style={{ top: Constants.statusBarHeight }}>
-        <Head title="Register" navigation={navigate} />
         <Content>
           <Form>
             <Item>
@@ -74,6 +72,14 @@ export default class Register extends Component {
               style={{ alignSelf: "center" }}
             >
               <Text>Sign Up</Text>
+            </Button>
+            <Button
+              small
+              transparent
+              onPress={() => signUpScreen()}
+              style={{ alignSelf: "center" }}
+            >
+              <Text>Switch to Log In</Text>
             </Button>
           </View>
         </Content>

@@ -11,8 +11,7 @@ import {
   View
 } from "native-base";
 import { Constants } from "expo";
-import Head from "../Navigation/Head";
-import { logIn } from "../../actions/OnboardActions";
+import { logIn, signUpScreen } from "../../actions/OnboardActions";
 
 export default class Login extends Component {
   constructor(props) {
@@ -28,10 +27,8 @@ export default class Login extends Component {
   }
 
   render() {
-    const navigate = this.props.navigation;
     return (
       <Container style={{ top: Constants.statusBarHeight }}>
-        <Head title="Login" navigation={navigate} />
         <Content>
           <Form>
             <Item>
@@ -57,6 +54,14 @@ export default class Login extends Component {
               style={{ alignSelf: "center" }}
             >
               <Text>Log In</Text>
+            </Button>
+            <Button
+              small
+              transparent
+              onPress={() => signUpScreen()}
+              style={{ alignSelf: "center" }}
+            >
+              <Text>Switch to Sign Up</Text>
             </Button>
           </View>
         </Content>

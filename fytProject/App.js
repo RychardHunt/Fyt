@@ -1,5 +1,6 @@
 import React from "react";
 import DrawerNav from "./components/Navigation/DrawerNav";
+import Onboard from "./components/Onboard/Onboard";
 import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -18,6 +19,11 @@ const styles = StyleSheet.create({
   }
 });
 
+function handleChange() {
+  console.log("authenticated changed " + store.getState().authenticated);
+  return store.getState().authenticated;
+}
+
 export default class App extends React.Component {
   ss;
   constructor(props) {
@@ -25,6 +31,7 @@ export default class App extends React.Component {
     this.state = { loading: true };
     console.ignoredYellowBox = ["Remote debugger"];
   }
+
   async componentWillMount() {
     await Expo.Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -33,13 +40,14 @@ export default class App extends React.Component {
     });
     this.setState({ loading: false });
   }
+
   render() {
     if (this.state.loading) {
       return <Expo.AppLoading />;
     } else {
       return (
         <Provider store={store}>
-          <DrawerNav />
+          <Onboard authenticated={store.subscribe(handleChange)} />
         </Provider>
       );
       s;
