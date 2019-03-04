@@ -1,10 +1,10 @@
 import "react-native";
 import React from "react";
-import TabNav from "../components/Navigation/TabNav";
+import App from "../App.js";
 
 import renderer from "react-test-renderer";
 
 test("renders correctly", () => {
-  const tree = renderer.create(<TabNav />).toJSON();
+  const tree = renderer.create(<App />).toJSON();
   expect(tree).toMatchSnapshot();
 });
