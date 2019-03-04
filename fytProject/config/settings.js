@@ -15,6 +15,7 @@ export const PROFILE_STATE = {
   age: "---",
   streak: "---"
 };
+
 export const INITIAL_STATE = {
   squat: {
     1: {

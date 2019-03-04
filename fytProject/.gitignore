@@ -8,3 +8,4 @@ npm-debug.*
 .env
 package-lock.json
 yarn.lock
+components/Onboard/firebaseconfig.json

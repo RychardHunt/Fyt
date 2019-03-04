@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends React.Component {
-  ss;
   constructor(props) {
     super(props);
     this.state = { loading: true };

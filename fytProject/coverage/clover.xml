@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1551683796623" clover="3.2.0">
+  <project timestamp="1551683796624" name="All files">
+    <metrics statements="305" coveredstatements="61" conditionals="403" coveredconditionals="61" methods="114" coveredmethods="5" elements="822" coveredelements="127" complexity="0" loc="305" ncloc="305" packages="12" files="68" classes="68">
+      <package name="fytProject">
+        <metrics statements="17" coveredstatements="13" conditionals="6" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <file name="App.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\App.js">
+          <metrics statements="10" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="33" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+        </file>
+        <file name="store.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\store.js">
+          <metrics statements="7" coveredstatements="5" conditionals="4" coveredconditionals="1" methods="0" coveredmethods="0"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.actions">
+        <metrics statements="14" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <file name="ProfileActions.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\actions\ProfileActions.js">
+          <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+        </file>
+        <file name="WorkoutActions.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\actions\WorkoutActions.js">
+          <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.components">
+        <metrics statements="31" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <file name="EditSetMenu.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\EditSetMenu.js">
+          <metrics statements="12" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="49" count="1" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+        </file>
+        <file name="ExercisePanel.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\ExercisePanel.js">
+          <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+        </file>
+        <file name="Set.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Set.js">
+          <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+        </file>
+        <file name="WorkoutList.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\WorkoutList.js">
+          <metrics statements="8" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.components.Navigation">
+        <metrics statements="12" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <file name="DrawerNav.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Navigation\DrawerNav.js">
+          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="16" count="0" type="stmt"/>
+        </file>
+        <file name="Head.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Navigation\Head.js">
+          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+        </file>
+        <file name="SideBar.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Navigation\SideBar.js">
+          <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+        </file>
+        <file name="TabNav.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Navigation\TabNav.js">
+          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.components.Playlist">
+        <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <file name="Controls.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Playlist\Controls.js">
+          <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+        </file>
+        <file name="Playlist.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Playlist\Playlist.js">
+          <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.components.Profile">
+        <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <file name="Profile.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\Profile\Profile.js">
+          <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="93" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.components.SampleScreens">
+        <metrics statements="23" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="15" coveredmethods="0"/>
+        <file name="Diet.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\SampleScreens\Diet.js">
+          <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+        </file>
+        <file name="SettingsScreen.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\SampleScreens\SettingsScreen.js">
+          <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+        </file>
+        <file name="UpdateProfile.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\SampleScreens\UpdateProfile.js">
+          <metrics statements="16" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="81" count="0" type="stmt"/>
+          <line num="99" count="0" type="stmt"/>
+          <line num="117" count="0" type="stmt"/>
+          <line num="135" count="0" type="stmt"/>
+          <line num="148" count="0" type="stmt"/>
+          <line num="159" count="1" type="stmt"/>
+          <line num="160" count="0" type="stmt"/>
+          <line num="168" count="1" type="stmt"/>
+          <line num="169" count="0" type="stmt"/>
+          <line num="170" count="0" type="stmt"/>
+          <line num="171" count="0" type="stmt"/>
+          <line num="172" count="0" type="stmt"/>
+          <line num="173" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.components.containers">
+        <metrics statements="14" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <file name="SetContainer.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\containers\SetContainer.js">
+          <metrics statements="11" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+        </file>
+        <file name="WorkoutContainer.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\components\containers\WorkoutContainer.js">
+          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.config">
+        <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="settings.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\config\settings.js">
+          <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+        </file>
+        <file name="styles.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\config\styles.js">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.native-base-theme.components">
+        <metrics statements="125" coveredstatements="1" conditionals="276" coveredconditionals="0" methods="45" coveredmethods="0"/>
+        <file name="Badge.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Badge.js">
+          <metrics statements="2" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+        </file>
+        <file name="Body.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Body.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="Button.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Button.js">
+          <metrics statements="11" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="85" count="0" type="stmt"/>
+          <line num="395" count="0" type="stmt"/>
+        </file>
+        <file name="Card.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Card.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+        </file>
+        <file name="CardItem.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\CardItem.js">
+          <metrics statements="4" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="195" count="0" type="stmt"/>
+        </file>
+        <file name="CheckBox.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\CheckBox.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+        </file>
+        <file name="Container.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Container.js">
+          <metrics statements="3" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+        </file>
+        <file name="Content.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Content.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+        </file>
+        <file name="Fab.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Fab.js">
+          <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+        </file>
+        <file name="Footer.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Footer.js">
+          <metrics statements="7" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="117" count="0" type="stmt"/>
+        </file>
+        <file name="FooterTab.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\FooterTab.js">
+          <metrics statements="3" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+        </file>
+        <file name="Form.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Form.js">
+          <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="89" count="0" type="stmt"/>
+        </file>
+        <file name="H1.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\H1.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="H2.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\H2.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="H3.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\H3.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="Header.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Header.js">
+          <metrics statements="4" coveredstatements="0" conditionals="97" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="396" count="0" type="stmt"/>
+        </file>
+        <file name="Icon.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Icon.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+        </file>
+        <file name="Input.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Input.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+        </file>
+        <file name="InputGroup.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\InputGroup.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="131" count="0" type="stmt"/>
+        </file>
+        <file name="Item.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Item.js">
+          <metrics statements="2" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="239" count="0" type="stmt"/>
+        </file>
+        <file name="Label.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Label.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+        </file>
+        <file name="Left.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Left.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="ListItem.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\ListItem.js">
+          <metrics statements="4" coveredstatements="0" conditionals="23" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="443" count="0" type="stmt"/>
+        </file>
+        <file name="Picker.ios.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Picker.ios.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+        </file>
+        <file name="Radio.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Radio.js">
+          <metrics statements="2" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+        </file>
+        <file name="Right.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Right.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+        </file>
+        <file name="Segment.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Segment.js">
+          <metrics statements="3" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+        </file>
+        <file name="Separator.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Separator.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+        </file>
+        <file name="Spinner.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Spinner.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+        </file>
+        <file name="Subtitle.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Subtitle.js">
+          <metrics statements="2" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+        </file>
+        <file name="SwipeRow.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\SwipeRow.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+        </file>
+        <file name="Switch.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Switch.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+        </file>
+        <file name="Tab.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Tab.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+        </file>
+        <file name="TabBar.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\TabBar.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+        </file>
+        <file name="TabContainer.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\TabContainer.js">
+          <metrics statements="4" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+        </file>
+        <file name="TabHeading.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\TabHeading.js">
+          <metrics statements="3" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+        </file>
+        <file name="Text.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Text.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+        </file>
+        <file name="Textarea.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Textarea.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+        </file>
+        <file name="Thumbnail.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Thumbnail.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+        </file>
+        <file name="Title.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Title.js">
+          <metrics statements="2" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+        </file>
+        <file name="Toast.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\Toast.js">
+          <metrics statements="3" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+        </file>
+        <file name="View.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\View.js">
+          <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="index.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\components\index.js">
+          <metrics statements="12" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="218" count="0" type="stmt"/>
+          <line num="219" count="0" type="stmt"/>
+          <line num="222" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="227" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="228" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="229" count="0" type="stmt"/>
+          <line num="231" count="0" type="stmt"/>
+          <line num="235" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="241" count="0" type="stmt"/>
+          <line num="246" count="0" type="stmt"/>
+          <line num="248" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.native-base-theme.variables">
+        <metrics statements="30" coveredstatements="5" conditionals="109" coveredconditionals="55" methods="0" coveredmethods="0"/>
+        <file name="platform.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\native-base-theme\variables\platform.js">
+          <metrics statements="30" coveredstatements="5" conditionals="109" coveredconditionals="55" methods="0" coveredmethods="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="16" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+          <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="78" count="0" type="stmt"/>
+          <line num="81" count="0" type="stmt"/>
+          <line num="84" count="0" type="stmt"/>
+          <line num="87" count="0" type="stmt"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="132" count="0" type="stmt"/>
+          <line num="135" count="0" type="stmt"/>
+          <line num="138" count="0" type="stmt"/>
+          <line num="166" count="0" type="stmt"/>
+          <line num="171" count="0" type="stmt"/>
+          <line num="188" count="0" type="stmt"/>
+          <line num="191" count="0" type="stmt"/>
+          <line num="220" count="0" type="stmt"/>
+          <line num="251" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="fytProject.reducers">
+        <metrics statements="12" coveredstatements="6" conditionals="10" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <file name="ProfileReducer.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\reducers\ProfileReducer.js">
+          <metrics statements="7" coveredstatements="3" conditionals="6" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="3" type="cond" truecount="1" falsecount="4"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="28" count="3" type="stmt"/>
+        </file>
+        <file name="WorkoutReducer.js" path="C:\Users\RedLefty\aa\Fyt\fytProject\reducers\WorkoutReducer.js">
+          <metrics statements="5" coveredstatements="3" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="3" type="cond" truecount="1" falsecount="2"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="31" count="3" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
