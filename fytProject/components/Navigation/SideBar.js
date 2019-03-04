@@ -3,7 +3,13 @@ import { AppRegistry, Image, StatusBar } from "react-native";
 import { Container, Content, Text, List, ListItem } from "native-base";
 import { Constants } from "expo";
 
-const routes = [["Settings", "Settings"], ["ChangeProfile", "Change Profile"]];
+const routes = [
+  ["Settings", "Settings"],
+  ["Register", "Register"],
+  ["Login", "Login"],
+  ["ChangeProfile", "Change Profile"]
+];
+
 export default class SideBar extends React.Component {
   render() {
     return (
