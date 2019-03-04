@@ -3,9 +3,6 @@ import DrawerNav from "./components/Navigation/DrawerNav";
 import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "./store";
-import Playlist from "./components/Playlist/Playlist";
-import WorkoutContainer from "./components/containers/WorkoutContainer";
-import Profile from "./components/Profile/Profile";
 
 console.disableYellowBox = true;
 
@@ -42,7 +39,6 @@ export default class App extends React.Component {
           <DrawerNav />
         </Provider>
       );
-      s;
     }
   }
 }

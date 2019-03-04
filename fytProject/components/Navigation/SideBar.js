@@ -3,7 +3,7 @@ import { AppRegistry, Image, StatusBar } from "react-native";
 import { Container, Content, Text, List, ListItem } from "native-base";
 import { Constants } from "expo";
 
-const routes = ["Settings"];
+const routes = [["Settings", "Settings"], ["ChangeProfile", "Change Profile"]];
 export default class SideBar extends React.Component {
   render() {
     return (
@@ -15,9 +15,9 @@ export default class SideBar extends React.Component {
               return (
                 <ListItem
                   button
-                  onPress={() => this.props.navigation.navigate(data)}
+                  onPress={() => this.props.navigation.navigate(data[0])}
                 >
-                  <Text>{data}</Text>
+                  <Text>{data[1]}</Text>
                 </ListItem>
               );
             }}

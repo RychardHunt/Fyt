@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { Icon, Text, Container } from "native-base";
+import { connect } from "react-redux";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../config/settings";
@@ -33,15 +34,25 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: "2%"
   },
-  textStyle: {
+  titleView: {
     position: "absolute",
-    top: "10%",
+    top: "10%"
+  },
+  titleTextStyle: {
     fontSize: 20,
+    padding: 5
+  },
+  contentView: {
+    position: "absolute",
+    top: "33%"
+  },
+  contentTextStyle: {
+    fontSize: 32,
     padding: 5
   }
 });
 
-export default class Profile extends Component {
+class Profile extends Component {
   render() {
     const navigate = this.props.navigation;
     return (
@@ -51,24 +62,24 @@ export default class Profile extends Component {
           <FlatList
             numColumns={2}
             data={[
-              "123",
-              "456",
-              "asdf",
-              "asdfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdf",
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "10"
+              { name: "Height", icon: "man", key: 0 },
+              { name: "Weight", icon: "body", key: 1 },
+              { name: "Age", icon: "calendar", key: 2 },
+              { name: "Workout Streak", icon: "star", key: 3 }
             ]}
             style={styles.mainStyle}
             contentContainerStyle={styles.wrapperStyle}
             renderItem={({ item }) => (
               <View style={styles.boxStyle}>
-                <Text style={styles.textStyle}>{item}</Text>
-                <View style={{ height: 5 }} />
-                <Icon name="home" style={styles.iconStyle} />
+                <View style={styles.titleView}>
+                  <Text style={styles.titleTextStyle}>{item.name}</Text>
+                </View>
+                <View style={styles.contentView}>
+                  <Text style={styles.contentTextStyle}>
+                    {this.props.profileText[item.key]}
+                  </Text>
+                </View>
+                <Icon name={item.icon} style={styles.iconStyle} />
               </View>
             )}
           />
@@ -77,3 +88,16 @@ export default class Profile extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    profileText: [
+      state.profile.height,
+      state.profile.weight,
+      state.profile.age,
+      state.profile.streak
+    ]
+  };
+}
+
+export default connect(mapStateToProps)(Profile);

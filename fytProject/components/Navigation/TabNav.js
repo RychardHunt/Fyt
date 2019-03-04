@@ -64,7 +64,10 @@ export default (Tab = TabNavigator(
                 active={props.navigationState.index === 2}
                 onPress={() => props.navigation.navigate("Tab3")}
               >
-                <Icon name="ios-fitness" />
+                <Icon
+                  name="ios-fitness"
+                  style={{ fontSize: 28, color: "white" }}
+                />
                 <Text>Workout</Text>
               </Button>
               <Button
