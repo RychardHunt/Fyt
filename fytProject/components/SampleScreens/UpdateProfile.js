@@ -79,6 +79,7 @@ class UpdateProfile extends React.Component {
                   placeholder="Modify Height..."
                   placeholderTextColor="grey"
                   onChangeText={text => this.props.changeHeight(text)}
+                  testID="01"
                 />
               </View>
               <View style={styles.rightView1}>
@@ -86,7 +87,9 @@ class UpdateProfile extends React.Component {
               </View>
               <View style={styles.rightView2}>
                 <View style={styles.boxStyle}>
-                  <Text style={styles.outputStyle}>{this.props.height}</Text>
+                  <Text testID="02" style={styles.outputStyle}>
+                    {this.props.height}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -97,6 +100,7 @@ class UpdateProfile extends React.Component {
                   placeholder="Modify Weight..."
                   placeholderTextColor="grey"
                   onChangeText={text => this.props.changeWeight(text)}
+                  testID="01"
                 />
               </View>
               <View style={styles.rightView1}>
@@ -104,7 +108,9 @@ class UpdateProfile extends React.Component {
               </View>
               <View style={styles.rightView2}>
                 <View style={styles.boxStyle}>
-                  <Text style={styles.outputStyle}>{this.props.weight}</Text>
+                  <Text testID="02" style={styles.outputStyle}>
+                    {this.props.weight}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -115,6 +121,7 @@ class UpdateProfile extends React.Component {
                   placeholder="Modify Age..."
                   placeholderTextColor="grey"
                   onChangeText={text => this.props.changeAge(text)}
+                  testID="01"
                 />
               </View>
               <View style={styles.rightView1}>
@@ -122,7 +129,9 @@ class UpdateProfile extends React.Component {
               </View>
               <View style={styles.rightView2}>
                 <View style={styles.boxStyle}>
-                  <Text style={styles.outputStyle}>{this.props.age}</Text>
+                  <Text testID="02" style={styles.outputStyle}>
+                    {this.props.age}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -133,6 +142,7 @@ class UpdateProfile extends React.Component {
                   placeholder="Modify Streak..."
                   placeholderTextColor="grey"
                   onChangeText={text => this.props.changeStreak(text)}
+                  testID="01"
                 />
               </View>
               <View style={styles.rightView1}>
@@ -140,7 +150,9 @@ class UpdateProfile extends React.Component {
               </View>
               <View style={styles.rightView2}>
                 <View style={styles.boxStyle}>
-                  <Text style={styles.outputStyle}>{this.props.streak}</Text>
+                  <Text testID="02" style={styles.outputStyle}>
+                    {this.props.streak}
+                  </Text>
                 </View>
               </View>
             </View>
