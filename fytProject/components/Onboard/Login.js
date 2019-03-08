@@ -60,6 +60,14 @@ export default class Login extends Component {
             </Button>
           </View>
         </Content>
+        <View style={{ position: "absolute", bottom: "5%", marginLeft: 10 }}>
+          <Button
+            onPress={() => this.props.navigation.navigate("Tab1")}
+            style={{ alignSelf: "center" }}
+          >
+            <Text>Return to profile...</Text>
+          </Button>
+        </View>
       </Container>
     );
   }
