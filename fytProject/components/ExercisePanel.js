@@ -34,9 +34,7 @@ class ExercisePanel extends React.Component {
       }
     }
     const objLen = Object.keys(this.props.exerciseDetails).length + 1;
-    console.log(JSON.stringify(this.props.exerciseDetails));
     for (let i = 1; i < objLen; i++) {
-      console.log(expand);
       const setPanel = expand ? (
         <SetContainer
           key={i}
