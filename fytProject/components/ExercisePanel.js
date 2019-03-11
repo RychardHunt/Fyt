@@ -18,17 +18,33 @@ const styles = StyleSheet.create({
 });
 
 class ExercisePanel extends React.Component {
-  createSetPanels() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expand: true
+    };
+  }
+
+  createSetPanels(expand) {
     setPanels = [];
+    setCompleted = true;
     for (set in this.props.exerciseDetails) {
-      const setPanel = (
+      if (!this.props.exerciseDetails[set].completed) {
+        setCompleted = false;
+      }
+    }
+    const objLen = Object.keys(this.props.exerciseDetails).length + 1;
+    console.log(JSON.stringify(this.props.exerciseDetails));
+    for (let i = 1; i < objLen; i++) {
+      console.log(expand);
+      const setPanel = expand ? (
         <SetContainer
-          key={set}
-          setNumber={set}
+          key={i}
+          setNumber={i}
           exerciseName={this.props.exerciseName}
-          setDetails={this.props.exerciseDetails[set]}
+          setDetails={this.props.exerciseDetails[i]}
         />
-      );
+      ) : null;
       setPanels.push(setPanel);
     }
     return setPanels;
@@ -38,11 +54,19 @@ class ExercisePanel extends React.Component {
     return (
       <View style={styles.exercisePanel}>
         <Card style={styles.exerciseHeader}>
-          <Text style={styles.exerciseHeaderText}>
+          <Text
+            onPress={() => {
+              this.setState({
+                expand: !this.state.expand
+              });
+              console.log(this.state.expand);
+            }}
+            style={styles.exerciseHeaderText}
+          >
             {this.props.exerciseName}
           </Text>
         </Card>
-        {this.createSetPanels()}
+        {this.createSetPanels(this.state.expand)}
       </View>
     );
   }
