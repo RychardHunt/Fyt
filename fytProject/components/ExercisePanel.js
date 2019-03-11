@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
 class ExercisePanel extends React.Component {
   createSetPanels() {
     setPanels = [];
+
     for (set in this.props.exerciseDetails) {
       const setPanel = (
         <SetContainer
