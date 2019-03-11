@@ -13,8 +13,10 @@ export const PROFILE_STATE = {
   height: "---",
   weight: "---",
   age: "---",
-  streak: "---"
+  streak: "---",
+  mode: "---"
 };
+
 export const INITIAL_STATE = {
   squat: {
     1: {

@@ -7,7 +7,10 @@ const routes = [
   ["Settings", "Settings"],
   ["Register", "Register"],
   ["Login", "Login"],
-  ["ChangeProfile", "Change Profile"]
+  ["Height", "Height"],
+  ["Weight", "Weight"],
+  ["Age", "Age"],
+  [("ChangeProfile", "Change Profile")]
 ];
 
 export default class SideBar extends React.Component {
