@@ -25,6 +25,15 @@ export const changeAge = age => {
   };
 };
 
+export const changeMode = mode => {
+  return {
+    type: "CHANGE_MODE",
+    payload: {
+      mode: mode
+    }
+  };
+};
+
 export const changeStreak = streak => {
   return {
     type: "CHANGE_STREAK",
