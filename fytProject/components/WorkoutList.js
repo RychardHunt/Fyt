@@ -21,8 +21,17 @@ const styles = StyleSheet.create({
 class WorkoutList extends React.Component {
   // * `exercise`  The {String} excercise that this panel is for
   createExercisePanels() {
-    exercisePanels = [];
-    for (exercise in this.props.workout) {
+    let exercisePanels = [];
+    let sortedWorkout = {};
+    let workout = this.props.workout;
+
+    Object.keys(workout)
+      .sort()
+      .forEach(function(key) {
+        sortedWorkout[key] = workout[key];
+      });
+
+    for (exercise in sortedWorkout) {
       const exercisePanel = (
         <ExercisePanel
           key={exercise}
