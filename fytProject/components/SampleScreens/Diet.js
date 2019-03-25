@@ -9,11 +9,13 @@ import {
   StatusBar,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from "react-native";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
 import { backgroundColor } from "../../config/styles";
+import * as firebase from "firebase";
 
 const styles = StyleSheet.create({
   bigWhite: {
@@ -38,6 +40,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDfncJDNmhPUK_oSBYPbwRgNXk8uLKzVp4",
+  authDomain: "fytapp-aef50.firebaseapp.com",
+  databaseURL: "https://fytapp-aef50.firebaseio.com/",
+  storageBucket: "gs://fytapp-aef50.appspot.com/",
+  messagingSenderId: "fytapp-aef50"
+};
+
 export default class Diet extends React.Component {
   breakfastCall() {
     Alert.alert("Breakfast isn't ready yet!");
@@ -49,6 +59,34 @@ export default class Diet extends React.Component {
 
   dinnerCall() {
     Alert.alert("Dinner isn't ready yet!");
+  }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      foodItem: "",
+      foodList: []
+    };
+  }
+
+  componentDidMount() {
+    firebase
+      .database()
+      .ref()
+      .child("Pistachios/Bravo Pasta/Garlic Breadstick")
+      .once("value", snapshot => {
+        const key = snapshot.key;
+        const value = snapshot.val();
+        if (value) {
+          const foodArray = [];
+          Object.keys(value).forEach(foodItem =>
+            foodArray.push(foodItem + " " + value[foodItem])
+          );
+          this.setState({
+            foodList: foodArray
+          });
+        }
+      });
   }
   render() {
     let pic = {
@@ -196,8 +234,8 @@ export default class Diet extends React.Component {
                 fontWeight: "bold"
               }}
             >
-              Order it now from Wegmans by pressing the image below and you can
-              have this meal tomorrow!
+              Check out the nutrition facts of these meals on the UB website by
+              clicking the image below!
             </Text>
           </View>
           <View style={{ padding: 10, flex: 1, flexDirection: "row" }}>
@@ -209,7 +247,11 @@ export default class Diet extends React.Component {
               }}
             >
               <TouchableOpacity
-                onPress={() => Linking.openURL("https://www.wegmans.com")}
+                onPress={() =>
+                  Linking.openURL(
+                    "http://nutrition.myubcard.com/NetNutrition/1"
+                  )
+                }
               >
                 <Image source={pic3} style={{ width: 100, height: 100 }} />
               </TouchableOpacity>
@@ -265,6 +307,22 @@ export default class Diet extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
+          <View>
+            <FlatList
+              data={this.state.foodList}
+              renderItem={({ item }) => (
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "column"
+                  }}
+                >
+                  <Text style={styles.smallWhite}>{item}</Text>
+                </View>
+              )}
+            />
+          </View>
+          <View style={{ flex: 1, paddingBottom: 50 }} />
         </ScrollView>
       </Container>
     );
