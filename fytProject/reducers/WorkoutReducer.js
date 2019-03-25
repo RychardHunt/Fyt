@@ -27,6 +27,23 @@ export default function workoutReducer(state = initialState, action) {
           }
         }
       };
+    case "EDIT_EXERCISE_NAME":
+      let newState = {};
+      for (let key in state) {
+        if (key == action.payload.exercise) {
+          newState[action.payload.newExerciseName] = state[key];
+        } else {
+          newState[key] = state[key];
+        }
+      }
+      return {
+        ...newState
+      };
+    case "DELETE_EXERCISE_NAME":
+      delete state[action.payload.exercise];
+      return {
+        ...state
+      };
     default:
       return state;
   }

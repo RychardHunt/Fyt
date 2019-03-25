@@ -11,9 +11,7 @@ import Login from "../Onboard/Login";
 export default (DrawerNav = DrawerNavigator(
   {
     Tabs: { screen: TabNav },
-    Settings: { screen: SettingsScreen },
-    Register: { screen: Register },
-    Login: { screen: Login },
+
     ChangeProfile: { screen: UpdateProfile }
   },
   {

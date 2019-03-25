@@ -31,6 +31,7 @@ export default (Tab = TabNavigator(
     Tab4: { screen: Playlist }
   },
   {
+    swipeEnabled: false,
     tabBarPosition: "bottom",
     tabBarComponent: props => {
       return (
