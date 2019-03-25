@@ -1,13 +1,7 @@
-import {
-  EDIT_SET,
-  CHANGE_SET_COMPLETION_STATUS,
-  INITIAL_STATE
-} from "../config/settings";
-
 export const editSet = (exercise, setNumber, reps, weight) => {
   return dispatch => {
     dispatch({
-      type: EDIT_SET,
+      type: "EDIT_SET",
       payload: {
         exercise: exercise,
         setNumber: setNumber,
@@ -21,10 +15,33 @@ export const editSet = (exercise, setNumber, reps, weight) => {
 export const changeSetCompletionStatus = (exercise, setNumber) => {
   return dispatch => {
     dispatch({
-      type: CHANGE_SET_COMPLETION_STATUS,
+      type: "CHANGE_SET_COMPLETION_STATUS",
       payload: {
         exercise: exercise,
         setNumber: setNumber
+      }
+    });
+  };
+};
+
+export const editExerciseName = (exercise, newExerciseName) => {
+  return dispatch => {
+    dispatch({
+      type: "EDIT_EXERCISE_NAME",
+      payload: {
+        exercise: exercise,
+        newExerciseName: newExerciseName
+      }
+    });
+  };
+};
+
+export const deleteExercise = exercise => {
+  return dispatch => {
+    dispatch({
+      type: "DELETE_EXERCISE_NAME",
+      payload: {
+        exercise: exercise
       }
     });
   };
