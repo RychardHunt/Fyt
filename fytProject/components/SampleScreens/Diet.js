@@ -79,8 +79,9 @@ export default class Diet extends React.Component {
         const value = snapshot.val();
         if (value) {
           const foodArray = [];
+          foodArray.push(key);
           Object.keys(value).forEach(foodItem =>
-            foodArray.push(foodItem + " " + value[foodItem])
+            foodArray.push(foodItem + ":" + value[foodItem])
           );
           this.setState({
             foodList: foodArray
