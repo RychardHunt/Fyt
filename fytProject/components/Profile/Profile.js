@@ -65,7 +65,8 @@ class Profile extends Component {
               { name: "Height", icon: "man", key: 0 },
               { name: "Weight", icon: "body", key: 1 },
               { name: "Age", icon: "calendar", key: 2 },
-              { name: "Workout Streak", icon: "star", key: 3 }
+              { name: "Streak", icon: "star", key: 3 },
+              { name: "Goal", icon: "trophy", key: 4 }
             ]}
             style={styles.mainStyle}
             contentContainerStyle={styles.wrapperStyle}
@@ -95,7 +96,8 @@ function mapStateToProps(state) {
       state.profile.height,
       state.profile.weight,
       state.profile.age,
-      state.profile.streak
+      state.profile.streak,
+      state.profile.goal
     ]
   };
 }

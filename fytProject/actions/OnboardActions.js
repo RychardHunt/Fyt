@@ -1,7 +1,22 @@
 import { firebaseApp } from "../components/Onboard/utils/connectFirebase";
-import { changeHeight, changeWeight, changeAge } from "./ProfileActions";
+import {
+  changeHeight,
+  changeWeight,
+  changeAge,
+  changeGoal,
+  changeStreak
+} from "./ProfileActions";
 import store from "../store";
 import { PROFILE_STATE } from "../config/settings";
+
+const setDay = constant => {
+  let answer = constant;
+  let date = new Date();
+  answer.year = date.getFullYear();
+  answer.month = date.getMonth();
+  answer.day = date.getDate();
+  return answer;
+};
 
 export const signUp = (email, password) => {
   firebaseApp
@@ -15,7 +30,7 @@ export const signUp = (email, password) => {
         .database()
         .ref("User/")
         .update({
-          [uid]: PROFILE_STATE
+          [uid]: setDay(PROFILE_STATE)
         });
       return dispatch => {
         dispatch({
@@ -30,6 +45,14 @@ export const signUp = (email, password) => {
     .catch(error => alert(error));
 };
 
+const loadPreferences = data => {
+  store.dispatch(changeHeight(data.height));
+  store.dispatch(changeWeight(data.weight));
+  store.dispatch(changeAge(data.age));
+  store.dispatch(changeGoal(data.goal));
+  store.dispatch(changeStreak(data.streak, data.year, data.month, data.day));
+};
+
 export const logIn = (email, password) => {
   firebaseApp
     .auth()
@@ -42,10 +65,7 @@ export const logIn = (email, password) => {
         .database()
         .ref("User/" + uid)
         .once("value", function(snapshot) {
-          let obj = snapshot.val();
-          store.dispatch(changeHeight(obj.height));
-          store.dispatch(changeWeight(obj.weight));
-          store.dispatch(changeAge(obj.age));
+          loadPreferences(snapshot.val());
         });
       return dispatch => {
         dispatch({
