@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
   AlertIOS
 } from "react-native";
-import { Container, Card, Content, Button } from "native-base";
+import { Container, Card, Content, Button, Picker } from "native-base";
 import * as workoutActions from "../actions/WorkoutActions"; //To prevent overwriting.
 import SetContainer from "./containers/SetContainer";
 import Swipeable from "react-native-swipeable";
@@ -87,7 +87,10 @@ class ExercisePanel extends React.Component {
   }
 
   deleteExercise() {
-    this.props.deleteExercise(this.props.exerciseName);
+    this.props.deleteExercise(
+      this.props.exerciseName,
+      this.props.selectedWorkout
+    );
     this.setState({
       leftActionActivated: false
     });
@@ -102,14 +105,14 @@ class ExercisePanel extends React.Component {
 
   render() {
     const leftContent = [
-      <View style={styles.leftSwipeItem}>
+      <View key={0} style={styles.leftSwipeItem}>
         <Text style={styles.swipeItemText}>Remove</Text>
         {this.state.leftActionActivated ? this.deleteExercise() : null}
       </View>
     ];
 
     const rightContent = [
-      <View style={styles.RightSwipeItem}>
+      <View key={0} style={styles.RightSwipeItem}>
         <Text style={styles.swipeItemText}>Edit</Text>
         {this.state.rightActionActivated ? this.editExercise() : null}
       </View>
@@ -126,22 +129,27 @@ class ExercisePanel extends React.Component {
             this.setState({
               isDialogVisible: false
             });
-            this.props.editExerciseName(this.props.exerciseName, inputText);
+            this.props.editExerciseName(
+              this.props.exerciseName,
+              inputText,
+              this.props.selectedWorkout
+            );
           }}
           closeDialog={() => this.setState({ isDialogVisible: false })}
         />
         <Swipeable
+          key={0}
           style={styles.exerciseHeader}
           leftContent={leftContent}
           rightContent={rightContent}
-          onLeftActionActivate={() =>
+          onLeftActionRelease={() =>
             this.setState({ leftActionActivated: true })
           }
           onLeftActionDeactivate={() =>
             this.setState({ leftActionActivated: false })
           }
           leftActionActivationDistance={220}
-          onRightActionActivate={() =>
+          onRightActionRelease={() =>
             this.setState({ rightActionActivated: true })
           }
           onRightActionDeactivate={() =>
@@ -169,7 +177,7 @@ class ExercisePanel extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { workout: state.workout };
+  return { selectedWorkout: state.workout.selectedWorkout };
 }
 
 function matchDispatchToProps(dispatch) {
