@@ -12,6 +12,7 @@ import { Container, Card, Content, Icon } from "native-base";
 import { connect } from "react-redux";
 import * as workoutActions from "../../actions/WorkoutActions"; //To prevent overwriting.
 import EditSetMenu from "../EditSetMenu";
+import Swipeable from "react-native-swipeable";
 import { COLOR_1, COLOR_2 } from "../../config/settings";
 
 const styles = StyleSheet.create({
@@ -54,14 +55,19 @@ class SetContainer extends React.Component {
         completionButtonColor: COLOR_1
       });
     }
-    this.props.changeSetCompletionStatus(exercise, setNumber);
+    this.props.changeSetCompletionStatus(
+      exercise,
+      setNumber,
+      this.props.selectedWorkout
+    );
   };
   handleFormSubmit = formInput => {
     this.props.editSet(
       this.props.exerciseName,
       this.props.setNumber,
       formInput.reps,
-      formInput.weight
+      formInput.weight,
+      this.props.selectedWorkout
     );
   };
 
@@ -92,7 +98,8 @@ class SetContainer extends React.Component {
               onPress={() =>
                 this.changeSetCompletionStatus(
                   this.props.exerciseName,
-                  this.props.setNumber
+                  this.props.setNumber,
+                  this.props.selectedWorkout
                 )
               }
             >
@@ -123,7 +130,10 @@ class SetContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { workout: state.workout };
+  return {
+    state: state,
+    selectedWorkout: state.workout.selectedWorkout
+  };
 }
 function matchDispatchToProps(dispatch) {
   return bindActionCreators(
