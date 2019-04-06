@@ -40,21 +40,11 @@ class SetContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      completionButtonColor: COLOR_2,
       modalVisible: false
     };
   }
 
   changeSetCompletionStatus = (exercise, setNumber) => {
-    if (this.state.completionButtonColor == COLOR_1) {
-      this.setState({
-        completionButtonColor: COLOR_2
-      });
-    } else {
-      this.setState({
-        completionButtonColor: COLOR_1
-      });
-    }
     this.props.changeSetCompletionStatus(
       exercise,
       setNumber,
@@ -98,15 +88,18 @@ class SetContainer extends React.Component {
               onPress={() =>
                 this.changeSetCompletionStatus(
                   this.props.exerciseName,
-                  this.props.setNumber,
-                  this.props.selectedWorkout
+                  this.props.setNumber
                 )
               }
             >
               <View
                 style={[
                   styles.circleButton,
-                  { backgroundColor: this.state.completionButtonColor }
+                  {
+                    backgroundColor: this.props.setDetails.completed
+                      ? COLOR_1
+                      : COLOR_2
+                  }
                 ]}
               >
                 <Text style={styles.circleButtonText}>
