@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     fontStyle: "italic"
   },
   smallWhite: {
-    color: "#FFFFFF",
     textAlign: "center",
     fontSize: 15
   },
@@ -59,7 +58,8 @@ export default class Diet extends React.Component {
       routes: [
         { key: "first", title: "Cutting" },
         { key: "second", title: "Maintain" },
-        { key: "third", title: "Bulking" }
+        { key: "third", title: "Bulking" },
+        { key: "fourth", title: "UBData" }
       ]
     };
   }
@@ -154,6 +154,28 @@ export default class Diet extends React.Component {
       //Strip Steak with Whipped Potatoes and Roasted Mushrooms
     };
     const navigate = this.props.navigation;
+    const UBData = () => (
+      <Container style={{ backgroundColor: "#FFFFFF" }}>
+        <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
+          <View>
+            <FlatList
+              data={this.state.foodList}
+              renderItem={({ item }) => (
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "column"
+                  }}
+                >
+                  <Text style={styles.smallWhite}>{item}</Text>
+                </View>
+              )}
+            />
+          </View>
+        </ScrollView>
+      </Container>
+    );
+
     return (
       <Container
         style={{ top: Constants.statusBarHeight, backgroundColor: "#303030" }}
@@ -165,7 +187,8 @@ export default class Diet extends React.Component {
             renderScene={SceneMap({
               first: CuttingTab,
               second: MaintenanceTab,
-              third: BulkingTab
+              third: BulkingTab,
+              fourth: UBData
             })}
             onIndexChange={index => this.setState({ index: index })}
             initialLayout={{ width: Dimensions.get("window").width }}
