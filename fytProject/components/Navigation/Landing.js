@@ -6,9 +6,6 @@ import RegisterNav from "./RegisterNav";
 import { checkLogin } from "../../actions/OnboardActions";
 
 class Landing extends Component {
-  componentWillMount() {
-    checkLogin();
-  }
   render() {
     if (this.props.authenticated) {
       return <DrawerNav />;

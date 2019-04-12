@@ -30,24 +30,22 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   iconStyle: {
-    fontSize: 40,
+    fontSize: 35,
     position: "absolute",
     bottom: "2%"
   },
   titleView: {
     position: "absolute",
-    top: "10%"
+    top: "5%"
   },
   titleTextStyle: {
-    fontSize: 20,
+    fontSize: 21,
     padding: 5
   },
-  contentView: {
-    position: "absolute",
-    top: "33%"
-  },
+  contentView: {},
   contentTextStyle: {
-    fontSize: 32,
+    textAlign: "center",
+    fontSize: 30,
     padding: 5
   }
 });
