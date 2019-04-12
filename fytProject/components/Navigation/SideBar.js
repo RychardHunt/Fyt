@@ -7,6 +7,7 @@ const routes = [
   ["Settings", "Settings"],
   ["Register", "Register"],
   ["Login", "Login"],
+  ["Logout", "Logout"],
   ["Height", "Height"],
   ["Weight", "Weight"],
   ["Age", "Age"],

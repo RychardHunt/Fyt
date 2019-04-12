@@ -1,5 +1,5 @@
 import React from "react";
-import DrawerNav from "./components/Navigation/DrawerNav";
+import Landing from "./components/Navigation/Landing";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -24,7 +24,7 @@ export default class App extends React.Component {
     } else {
       return (
         <Provider store={store}>
-          <DrawerNav />
+          <Landing />
         </Provider>
       );
     }
