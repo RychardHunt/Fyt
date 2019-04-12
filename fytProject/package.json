@@ -21,9 +21,11 @@
     "react-devtools": "^3.4.3",
     "react-native": "^0.57.8",
     "react-native-debugger": "^1.1.0",
+    "react-native-dialog-input": "^1.0.7",
     "react-native-dotenv": "^0.2.0",
     "react-native-tab-view": "^2.0.3",
     "react-native-table-component": "^1.2.0",
+    "react-native-swipeable": "^0.6.0",
     "react-navigation": "1.5.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
@@ -41,7 +43,13 @@
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
-      "node_modules/(?!react-native|native-base-shoutem-theme|@shoutem/animation|@shoutem/ui|tcomb-form-native|native-base|react-native-tab-view)/"
+      "node_modules/(?!react-native|native-base-shoutem-theme|@shoutem/animation|@shoutem/ui|tcomb-form-native|native-base|react-native-
+      
+      
+      
+      
+      
+      -view)/"
     ]
   },
   "husky": {

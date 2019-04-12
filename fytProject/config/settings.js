@@ -13,58 +13,82 @@ export const PROFILE_STATE = {
   height: "---",
   weight: "---",
   age: "---",
-  streak: "---"
+  streak: 1,
+  goal: "---"
 };
+
 export const INITIAL_STATE = {
-  squat: {
-    1: {
-      reps: 1,
-      weight: 90,
-      completed: false
+  selectedWorkout: "defaultWorkout",
+  defaultWorkout: {
+    squat: {
+      1: {
+        reps: 1,
+        weight: 90,
+        completed: false
+      },
+      2: {
+        reps: 10,
+        weight: 340,
+        completed: false
+      },
+      3: {
+        reps: 10,
+        weight: 350,
+        completed: false
+      }
     },
-    2: {
-      reps: 10,
-      weight: 340,
-      completed: false
+    Bench: {
+      1: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      },
+      2: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      },
+      3: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      }
     },
-    3: {
-      reps: 10,
-      weight: 350,
-      completed: false
+    Row: {
+      1: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      },
+      2: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      },
+      3: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      }
     }
   },
-  Bench: {
-    1: {
-      reps: 10,
-      weight: 100,
-      completed: false
-    },
-    2: {
-      reps: 10,
-      weight: 100,
-      completed: false
-    },
-    3: {
-      reps: 10,
-      weight: 100,
-      completed: false
-    }
-  },
-  Row: {
-    1: {
-      reps: 10,
-      weight: 100,
-      completed: false
-    },
-    2: {
-      reps: 10,
-      weight: 100,
-      completed: false
-    },
-    3: {
-      reps: 10,
-      weight: 100,
-      completed: false
+  lightWorkout: {
+    Bench: {
+      1: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      },
+      2: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      },
+      3: {
+        reps: 10,
+        weight: 100,
+        completed: false
+      }
     }
   }
 };
