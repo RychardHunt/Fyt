@@ -121,7 +121,7 @@ export default {
   containerBgColor: "#fff",
 
   //Date Picker
-  datePickerTextColor: "#000",
+  datePickerTextColor: "white",
   datePickerBg: "transparent",
 
   // Font
@@ -244,7 +244,7 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
+  textColor: "white",
   inverseTextColor: "#fff",
   noteFontSize: 14,
   get defaultTextColor() {
