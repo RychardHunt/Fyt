@@ -1,22 +1,42 @@
-import { ONBOARD_STATE } from "../config/settings";
-
-const initialState = ONBOARD_STATE;
+const initialState = {
+  authenticated: false,
+  signupscreen: false
+};
 
 export default function onboardReducer(state = initialState, action) {
   switch (action.type) {
     case "SIGN_UP":
+      console.log("sign _ up");
       return {
         ...state,
-        authenticated: action.payload.authenticated
+        authenticated: true
       };
 
     case "LOG_IN":
-      // Add Persistant Floating User Icon
-      return state;
+      console.log("log _ in");
+      console.log({
+        ...state,
+        authenticated: true
+      });
+      console.log("state");
+      return {
+        ...state,
+        authenticated: true
+      };
+
+    case "SIGN_UP_SCREEN":
+      console.log("switch _ screen");
+      console.log({
+        ...state,
+        signupscreen: !state.signupscreen
+      });
+      return {
+        ...state,
+        signupscreen: !state.signupscreen
+      };
 
     default:
+      console.log("default");
       return state;
   }
 }
-
-console.log(onboardReducer());

@@ -46,7 +46,8 @@ export const signUp = (email, password) => {
 };
 
 const loadPreferences = data => {
-  store.dispatch(changeHeight(data.height));
+  store.dispatch(
+    Height(data.height));
   store.dispatch(changeWeight(data.weight));
   store.dispatch(changeAge(data.age));
   store.dispatch(changeGoal(data.goal));
@@ -78,4 +79,11 @@ export const logIn = (email, password) => {
       };
     })
     .catch(error => alert(error));
+};
+
+export const signUpScreen = () => {
+  console.log("switch screen");
+  return store.dispatch({
+    type: "SIGN_UP_SCREEN"
+  });
 };

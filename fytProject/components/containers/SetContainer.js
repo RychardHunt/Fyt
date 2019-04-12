@@ -12,6 +12,7 @@ import { Container, Card, Content, Icon } from "native-base";
 import { connect } from "react-redux";
 import * as workoutActions from "../../actions/WorkoutActions"; //To prevent overwriting.
 import EditSetMenu from "../EditSetMenu";
+import Swipeable from "react-native-swipeable";
 import { COLOR_1, COLOR_2 } from "../../config/settings";
 
 const styles = StyleSheet.create({
@@ -39,29 +40,24 @@ class SetContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      completionButtonColor: COLOR_2,
       modalVisible: false
     };
   }
 
   changeSetCompletionStatus = (exercise, setNumber) => {
-    if (this.state.completionButtonColor == COLOR_1) {
-      this.setState({
-        completionButtonColor: COLOR_2
-      });
-    } else {
-      this.setState({
-        completionButtonColor: COLOR_1
-      });
-    }
-    this.props.changeSetCompletionStatus(exercise, setNumber);
+    this.props.changeSetCompletionStatus(
+      exercise,
+      setNumber,
+      this.props.selectedWorkout
+    );
   };
   handleFormSubmit = formInput => {
     this.props.editSet(
       this.props.exerciseName,
       this.props.setNumber,
       formInput.reps,
-      formInput.weight
+      formInput.weight,
+      this.props.selectedWorkout
     );
   };
 
@@ -99,7 +95,11 @@ class SetContainer extends React.Component {
               <View
                 style={[
                   styles.circleButton,
-                  { backgroundColor: this.state.completionButtonColor }
+                  {
+                    backgroundColor: this.props.setDetails.completed
+                      ? COLOR_1
+                      : COLOR_2
+                  }
                 ]}
               >
                 <Text style={styles.circleButtonText}>
@@ -123,7 +123,10 @@ class SetContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { workout: state.workout };
+  return {
+    state: state,
+    selectedWorkout: state.workout.selectedWorkout
+  };
 }
 function matchDispatchToProps(dispatch) {
   return bindActionCreators(
