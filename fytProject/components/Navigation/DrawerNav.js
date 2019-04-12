@@ -10,6 +10,7 @@ import Login from "../Onboard/Login";
 import Height from "../Onboard/Questions/Height";
 import Weight from "../Onboard/Questions/Weight";
 import Age from "../Onboard/Questions/Age";
+import Goal from "../Onboard/Questions/Goal";
 
 export default (DrawerNav = DrawerNavigator(
   {
@@ -20,6 +21,7 @@ export default (DrawerNav = DrawerNavigator(
     Height: { screen: Height },
     Weight: { screen: Weight },
     Age: { screen: Age },
+    Goal: { screen: Goal },
     ChangeProfile: { screen: UpdateProfile }
   },
   {

@@ -19,10 +19,10 @@ export default function profileReducer(state = initialState, action) {
         ...state,
         age: action.payload.age
       };
-    case "CHANGE_MODE":
+    case "CHANGE_GOAL":
       return {
         ...state,
-        mode: action.payload.mode
+        goal: action.payload.goal
       };
     case "CHANGE_STREAK":
       return {

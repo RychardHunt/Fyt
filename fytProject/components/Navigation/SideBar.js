@@ -10,6 +10,7 @@ const routes = [
   ["Height", "Height"],
   ["Weight", "Weight"],
   ["Age", "Age"],
+  ["Goal", "Goal"],
   [("ChangeProfile", "Change Profile")]
 ];
 

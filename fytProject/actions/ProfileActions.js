@@ -60,7 +60,7 @@ export const changeAge = age => {
   };
 };
 
-export const changeMode = mode => {
+export const changeGoal = goal => {
   let user = firebaseApp.auth().currentUser;
   if (user != undefined) {
     let uid = user.uid;
@@ -68,27 +68,48 @@ export const changeMode = mode => {
       .database()
       .ref("User/" + uid)
       .update({
-        mode
+        goal
       });
   }
+  console.log("changeGoal " + goal);
   return {
-    type: "CHANGE_MODE",
+    type: "CHANGE_GOAL",
     payload: {
-      mode: mode
+      goal: goal
     }
   };
 };
 
-export const changeStreak = streak => {
+export const changeStreak = (oldStreak, year, month, day) => {
   let user = firebaseApp.auth().currentUser;
+  let streak = oldStreak;
   if (user != undefined) {
-    let uid = user.uid;
-    firebaseApp
-      .database()
-      .ref("User/" + uid)
-      .update({
-        streak
-      });
+    let endOfMonth = [31, 56, 58, 93, 120, 153, 180, 217, 248, 270, 310, 330];
+    let date = new Date();
+    let regularStreak =
+      year === date.getFullYear() &&
+      month === date.getMonth() &&
+      day === date.getDate() - 1;
+    let monthPlus = month + 1;
+    let endMonthStreak =
+      endOfMonth.includes(monthPlus * day) &&
+      monthPlus === date.getMonth() &&
+      date.getDate() === 1;
+    let endYearStreak =
+      monthPlus * day === 372 &&
+      date.getFullYear() === year + 1 &&
+      date.getMonth() === 0 &&
+      date.getDate() === 1;
+    if (regularStreak || endMonthStreak || endYearStreak) {
+      let uid = user.uid;
+      streak = oldStreak + 1;
+      firebaseApp
+        .database()
+        .ref("User/" + uid)
+        .update({
+          streak
+        });
+    }
   }
   return {
     type: "CHANGE_STREAK",
