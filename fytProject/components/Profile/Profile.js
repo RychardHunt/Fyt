@@ -30,24 +30,22 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   iconStyle: {
-    fontSize: 40,
+    fontSize: 35,
     position: "absolute",
     bottom: "2%"
   },
   titleView: {
     position: "absolute",
-    top: "10%"
+    top: "5%"
   },
   titleTextStyle: {
-    fontSize: 20,
+    fontSize: 21,
     padding: 5
   },
-  contentView: {
-    position: "absolute",
-    top: "33%"
-  },
+  contentView: {},
   contentTextStyle: {
-    fontSize: 32,
+    textAlign: "center",
+    fontSize: 30,
     padding: 5
   }
 });
@@ -65,7 +63,8 @@ class Profile extends Component {
               { name: "Height", icon: "man", key: 0 },
               { name: "Weight", icon: "body", key: 1 },
               { name: "Age", icon: "calendar", key: 2 },
-              { name: "Workout Streak", icon: "star", key: 3 }
+              { name: "Streak", icon: "star", key: 3 },
+              { name: "Goal", icon: "trophy", key: 4 }
             ]}
             style={styles.mainStyle}
             contentContainerStyle={styles.wrapperStyle}
@@ -95,7 +94,8 @@ function mapStateToProps(state) {
       state.profile.height,
       state.profile.weight,
       state.profile.age,
-      state.profile.streak
+      state.profile.streak,
+      state.profile.goal
     ]
   };
 }

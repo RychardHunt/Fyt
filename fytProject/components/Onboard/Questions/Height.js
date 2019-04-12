@@ -9,33 +9,33 @@ import {
   Button,
   Text,
   View,
-  StyleProvider,
-  StyleSheet
+  StyleSheet,
+  StyleProvider
 } from "native-base";
 import { Constants } from "expo";
-import OnboardHead from "./OnboardHead";
-import { signUp } from "../../actions/OnboardActions";
-import { backgroundColor } from "../../config/styles";
-import platform from "../../native-base-theme/variables/platform";
-import getTheme from "../../native-base-theme/components";
+import OnboardHead from "../OnboardHead";
+import store from "../../../store";
+import { changeHeight } from "../../../actions/ProfileActions";
+import platform from "../../../native-base-theme/variables/platform";
+import getTheme from "../../../native-base-theme/components";
+import { backgroundColor } from "../../../config/styles";
 
-export default class Register extends Component {
+export default class Height extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      confirmPassword: ""
+      foot: 0,
+      inches: 0
     };
   }
 
-  signUpPressed() {
-    let password = this.state.password;
-    let confirmPassword = this.state.confirmPassword;
-    if (password === confirmPassword) {
-      signUp(this.state.email, password);
+  submitHeight() {
+    let height = this.state.foot * 12 + this.state.inches * 1;
+    if (typeof height === typeof 1 && height > 0) {
+      store.dispatch(changeHeight(height));
+      alert("Height Submitted");
     } else {
-      alert("Passwords mismatch");
+      alert("Please enter valid values");
     }
   }
 
@@ -49,7 +49,7 @@ export default class Register extends Component {
             backgroundColor: backgroundColor
           }}
         >
-          <OnboardHead title="Register" navigation={navigate} />
+          <OnboardHead title="Height" navigation={navigate} />
           <Text
             style={{
               fontSize: 20,
@@ -58,33 +58,26 @@ export default class Register extends Component {
               color: "white"
             }}
           >
-            First, enter an email and password
+            Please enter your height
           </Text>
           <View>
-            <Form>
+            <Form style={{ color: "white" }}>
               <Item>
                 <Input
-                  placeholder="Email"
-                  onChangeText={email => this.setState({ email })}
-                  value={this.state.email}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  onChangeText={password => this.setState({ password })}
-                  value={this.state.password}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="Confirm Password"
-                  secureTextEntry={true}
-                  onChangeText={confirmPassword =>
-                    this.setState({ confirmPassword })
+                  placeholder="Foot"
+                  onChangeText={foot =>
+                    this.setState({ foot: foot, inches: this.state.inches })
                   }
-                  value={this.state.confirmPassword}
+                  value={this.state.foot}
+                />
+              </Item>
+              <Item>
+                <Input
+                  placeholder="Inches"
+                  onChangeText={inches =>
+                    this.setState({ foot: this.state.foot, inches: inches })
+                  }
+                  value={this.state.inches}
                 />
               </Item>
             </Form>
@@ -99,15 +92,15 @@ export default class Register extends Component {
               <View style={{ padding: 10 }} />
               <Button
                 rounded
-                onPress={() => this.signUpPressed()}
+                onPress={() => this.submitHeight()}
                 style={{ alignSelf: "center" }}
               >
-                <Text>Sign Up</Text>
+                <Text>Submit</Text>
               </Button>
               <View style={{ padding: 5 }} />
               <Button
                 rounded
-                onPress={() => this.props.navigation.navigate("Intro")}
+                onPress={() => this.props.navigation.navigate("Weight")}
                 style={{ alignSelf: "center" }}
               >
                 <Text>Next</Text>

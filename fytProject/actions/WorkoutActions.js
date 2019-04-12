@@ -1,30 +1,70 @@
-import {
-  EDIT_SET,
-  CHANGE_SET_COMPLETION_STATUS,
-  INITIAL_STATE
-} from "../config/settings";
-
-export const editSet = (exercise, setNumber, reps, weight) => {
+export const changeWorkout = selectedWorkout => {
   return dispatch => {
     dispatch({
-      type: EDIT_SET,
+      type: "CHANGE_WORKOUT",
       payload: {
-        exercise: exercise,
-        setNumber: setNumber,
-        reps: reps,
-        weight: weight
+        selectedWorkout: selectedWorkout
       }
     });
   };
 };
 
-export const changeSetCompletionStatus = (exercise, setNumber) => {
+export const editSet = (exercise, setNumber, reps, weight, selectedWorkout) => {
   return dispatch => {
     dispatch({
-      type: CHANGE_SET_COMPLETION_STATUS,
+      type: "EDIT_SET",
       payload: {
         exercise: exercise,
-        setNumber: setNumber
+        setNumber: setNumber,
+        reps: reps,
+        weight: weight,
+        selectedWorkout: selectedWorkout
+      }
+    });
+  };
+};
+
+export const changeSetCompletionStatus = (
+  exercise,
+  setNumber,
+  selectedWorkout
+) => {
+  return dispatch => {
+    dispatch({
+      type: "CHANGE_SET_COMPLETION_STATUS",
+      payload: {
+        exercise: exercise,
+        setNumber: setNumber,
+        selectedWorkout: selectedWorkout
+      }
+    });
+  };
+};
+
+export const editExerciseName = (
+  exercise,
+  newExerciseName,
+  selectedWorkout
+) => {
+  return dispatch => {
+    dispatch({
+      type: "EDIT_EXERCISE_NAME",
+      payload: {
+        exercise: exercise,
+        newExerciseName: newExerciseName,
+        selectedWorkout: selectedWorkout
+      }
+    });
+  };
+};
+
+export const deleteExercise = (exercise, selectedWorkout) => {
+  return dispatch => {
+    dispatch({
+      type: "DELETE_EXERCISE_NAME",
+      payload: {
+        exercise: exercise,
+        selectedWorkout: selectedWorkout
       }
     });
   };
