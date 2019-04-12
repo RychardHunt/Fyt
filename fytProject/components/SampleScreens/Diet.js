@@ -26,13 +26,15 @@ const styles = StyleSheet.create({
   },
   smallWhite: {
     textAlign: "center",
-    fontSize: 15
+    fontSize: 15,
+    color: "#FFFFFF"
   },
   smallWhiteRightAlign: {
     padding: 10,
     paddingTop: -20,
     flex: 1,
     flexWrap: "wrap",
+    color: "#FFFFFF",
     width: Dimensions.get("window").width,
     fontSize: 15,
     justifyContent: "flex-end"
@@ -155,7 +157,7 @@ export default class Diet extends React.Component {
     };
     const navigate = this.props.navigation;
     const UBData = () => (
-      <Container style={{ backgroundColor: "#FFFFFF" }}>
+      <Container style={{ backgroundColor: "#303030" }}>
         <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
           <View>
             <FlatList
@@ -200,7 +202,7 @@ export default class Diet extends React.Component {
 }
 
 const CuttingTab = () => (
-  <Container style={{ backgroundColor: "#FFFFFF" }}>
+  <Container style={{ backgroundColor: "#303030" }}>
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
       <View
         style={{
@@ -273,7 +275,7 @@ const CuttingTab = () => (
 );
 
 const MaintenanceTab = () => (
-  <Container style={{ backgroundColor: "#FFFFFF" }}>
+  <Container style={{ backgroundColor: "#303030" }}>
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
       <View
         style={{
@@ -345,7 +347,7 @@ const MaintenanceTab = () => (
 );
 
 const BulkingTab = () => (
-  <Container style={{ backgroundColor: "#FFFFFF" }}>
+  <Container style={{ backgroundColor: "#303030" }}>
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
       <View
         style={{
