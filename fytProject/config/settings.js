@@ -13,8 +13,10 @@ export const PROFILE_STATE = {
   height: "---",
   weight: "---",
   age: "---",
-  streak: "---"
+  streak: 1,
+  goal: "---"
 };
+
 export const INITIAL_STATE = {
   selectedWorkout: "defaultWorkout",
   defaultWorkout: {

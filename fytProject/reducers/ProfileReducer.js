@@ -19,6 +19,11 @@ export default function profileReducer(state = initialState, action) {
         ...state,
         age: action.payload.age
       };
+    case "CHANGE_GOAL":
+      return {
+        ...state,
+        goal: action.payload.goal
+      };
     case "CHANGE_STREAK":
       return {
         ...state,
