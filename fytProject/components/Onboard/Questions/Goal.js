@@ -4,20 +4,24 @@ import {
   Header,
   Content,
   Form,
-  Item,
-  Picker,
   Icon,
-  Input,
+  Picker,
+  Item,
   Button,
   Text,
-  View
+  View,
+  StyleSheet,
+  StyleProvider
 } from "native-base";
 import { Constants } from "expo";
-import Head from "../../Navigation/Head";
+import OnboardHead from "../OnboardHead";
 import store from "../../../store";
 import { changeGoal } from "../../../actions/ProfileActions";
+import platform from "../../../native-base-theme/variables/platform";
+import getTheme from "../../../native-base-theme/components";
+import { backgroundColor } from "../../../config/styles";
 
-export default class Weight extends Component {
+export default class Goal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,46 +38,69 @@ export default class Weight extends Component {
   render() {
     const navigate = this.props.navigation;
     return (
-      <Container style={{ top: Constants.statusBarHeight }}>
-        <Head title="Goal" navigation={navigate} />
-        <Content>
-          <Form>
-            <Item picker>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                style={{ width: undefined }}
-                placeholder="Select your Goal"
-                placeholderStyle={{ color: "#bfc6ea" }}
-                placeholderIconColor="#007aff"
-                selectedValue={this.state.goal}
-                onValueChange={value => this.setState({ goal: value })}
-              >
-                <Picker.Item label="Lose Mass" value="Lose Mass" />
-                <Picker.Item label="Maintain Mass" value="Maintain Mass" />
-                <Picker.Item label="Gain Mass" value="Gain Mass" />
-              </Picker>
-            </Item>
-          </Form>
-          <View style={{ padding: "1%" }}>
-            <Button
-              rounded
-              onPress={() => this.submitGoal()}
-              style={{ alignSelf: "center" }}
-            >
-              <Text>Submit</Text>
-            </Button>
-          </View>
-        </Content>
-        <View style={{ position: "absolute", bottom: "5%", marginLeft: 10 }}>
-          <Button
-            onPress={() => this.props.navigation.navigate("Tab1")}
-            style={{ alignSelf: "center" }}
+      <StyleProvider style={getTheme(platform)}>
+        <Container
+          style={{
+            top: Constants.statusBarHeight,
+            backgroundColor: backgroundColor
+          }}
+        >
+          <OnboardHead title="Goal" navigation={navigate} />
+          <Text
+            style={{
+              fontSize: 20,
+              paddingLeft: "5%",
+              paddingTop: "5%",
+              color: "white"
+            }}
           >
-            <Text>Return to profile...</Text>
-          </Button>
-        </View>
-      </Container>
+            Almost done! Just choose your fitness goal
+          </Text>
+          <View>
+            <Form>
+              <Item picker>
+                <Picker
+                  mode="dropdown"
+                  iosIcon={<Icon name="arrow-down" />}
+                  style={{ width: undefined, color: "white" }}
+                  placeholder="Select your Goal"
+                  selectedValue={this.state.goal}
+                  onValueChange={value => this.setState({ goal: value })}
+                >
+                  <Picker.Item label="Lose Mass" value="Lose Mass" />
+                  <Picker.Item label="Maintain Mass" value="Maintain Mass" />
+                  <Picker.Item label="Gain Mass" value="Gain Mass" />
+                </Picker>
+              </Item>
+            </Form>
+            <View
+              style={{
+                padding: "1%",
+                top: "10%",
+                flexDirection: "row",
+                alignItems: "center"
+              }}
+            >
+              <View style={{ padding: 10 }} />
+              <Button
+                rounded
+                onPress={() => this.submitGoal()}
+                style={{ alignSelf: "center" }}
+              >
+                <Text>Submit</Text>
+              </Button>
+              <View style={{ padding: 5 }} />
+              <Button
+                rounded
+                onPress={() => this.props.navigation.navigate("Tabs")}
+                style={{ alignSelf: "center" }}
+              >
+                <Text>Finish Registration</Text>
+              </Button>
+            </View>
+          </View>
+        </Container>
+      </StyleProvider>
     );
   }
 }
