@@ -82,6 +82,13 @@ export default class Weight extends Component {
               }}
             >
               <View style={{ padding: 10 }} />
+              <Button
+                rounded
+                onPress={() => this.submitWeight()}
+                style={{ alignSelf: "center" }}
+              >
+                <Text>Submit</Text>
+              </Button>
               <View style={{ padding: 5 }} />
             </View>
           </View>
