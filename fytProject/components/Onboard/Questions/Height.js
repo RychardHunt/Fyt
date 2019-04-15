@@ -33,7 +33,11 @@ export default class Height extends Component {
     let height = this.state.foot * 12 + this.state.inches * 1;
     if (typeof height === typeof 1 && height > 0) {
       store.dispatch(changeHeight(height));
-      alert("Height Submitted");
+      if (store.getState().onboard.signup) {
+        this.props.navigation.navigate("Weight");
+      } else {
+        this.props.navigation.navigate("Tab1");
+      }
     } else {
       alert("Please enter valid values");
     }
@@ -98,13 +102,6 @@ export default class Height extends Component {
                 <Text>Submit</Text>
               </Button>
               <View style={{ padding: 5 }} />
-              <Button
-                rounded
-                onPress={() => this.props.navigation.navigate("Weight")}
-                style={{ alignSelf: "center" }}
-              >
-                <Text>Next</Text>
-              </Button>
             </View>
           </View>
         </Container>

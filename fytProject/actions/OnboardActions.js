@@ -61,16 +61,12 @@ export const signUp = (email, password) => {
             .update({
               [uid]: setDay(PROFILE_STATE)
             });
-          return dispatch => {
-            dispatch({
-              type: "SIGN_UP",
-              payload: {
-                authenticated: "true",
-                email: email,
-                password: password
-              }
-            });
-          };
+          store.dispatch({
+            type: "SIGN_UP",
+            payload: {
+              signup: true
+            }
+          });
         })
         .catch(error => alert(error));
     });
