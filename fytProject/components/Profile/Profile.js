@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon, Text, Container } from "native-base";
 import { connect } from "react-redux";
 import { Constants } from "expo";
@@ -69,7 +69,10 @@ class Profile extends Component {
             style={styles.mainStyle}
             contentContainerStyle={styles.wrapperStyle}
             renderItem={({ item }) => (
-              <View style={styles.boxStyle}>
+              <TouchableOpacity
+                style={styles.boxStyle}
+                onPress={() => this.props.navigation.navigate(item.name)}
+              >
                 <View style={styles.titleView}>
                   <Text style={styles.titleTextStyle}>{item.name}</Text>
                 </View>
@@ -79,7 +82,7 @@ class Profile extends Component {
                   </Text>
                 </View>
                 <Icon name={item.icon} style={styles.iconStyle} />
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>

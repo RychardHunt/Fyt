@@ -32,7 +32,11 @@ export default class Weight extends Component {
     let weight = this.state.weight * 1;
     if (typeof weight === typeof 1 && weight > 0) {
       store.dispatch(changeWeight(weight));
-      alert("Weight Submitted");
+      if (store.getState().onboard.signup) {
+        this.props.navigation.navigate("Age");
+      } else {
+        this.props.navigation.navigate("Tab1");
+      }
     } else {
       alert("Please enter a valid value");
     }
@@ -86,13 +90,6 @@ export default class Weight extends Component {
                 <Text>Submit</Text>
               </Button>
               <View style={{ padding: 5 }} />
-              <Button
-                rounded
-                onPress={() => this.props.navigation.navigate("Age")}
-                style={{ alignSelf: "center" }}
-              >
-                <Text>Next</Text>
-              </Button>
             </View>
           </View>
         </Container>

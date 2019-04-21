@@ -29,10 +29,15 @@ export default class Age extends Component {
   }
 
   submitAge() {
+    console.log(store.getState());
     let age = this.state.age * 1;
     if (typeof age === typeof 1 && age > 0) {
       store.dispatch(changeAge(age));
-      alert("Age Submitted");
+      if (store.getState().onboard.signup) {
+        this.props.navigation.navigate("Goal");
+      } else {
+        this.props.navigation.navigate("Tab1");
+      }
     } else {
       alert("Please enter a valid value");
     }
@@ -86,13 +91,6 @@ export default class Age extends Component {
                 <Text>Submit</Text>
               </Button>
               <View style={{ padding: 5 }} />
-              <Button
-                rounded
-                onPress={() => this.props.navigation.navigate("Goal")}
-                style={{ alignSelf: "center" }}
-              >
-                <Text>Next</Text>
-              </Button>
             </View>
           </View>
         </Container>

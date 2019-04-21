@@ -32,7 +32,7 @@ export default class Goal extends Component {
   submitGoal() {
     let goal = this.state.goal;
     store.dispatch(changeGoal(goal));
-    alert("Goal Submitted");
+    this.props.navigation.navigate("Tab1");
   }
 
   render() {
@@ -54,7 +54,7 @@ export default class Goal extends Component {
               color: "white"
             }}
           >
-            Almost done! Just choose your fitness goal
+            Please enter your goal
           </Text>
           <View>
             <Form>
@@ -90,13 +90,6 @@ export default class Goal extends Component {
                 <Text>Submit</Text>
               </Button>
               <View style={{ padding: 5 }} />
-              <Button
-                rounded
-                onPress={() => this.props.navigation.navigate("Tabs")}
-                style={{ alignSelf: "center" }}
-              >
-                <Text>Finish Registration</Text>
-              </Button>
             </View>
           </View>
         </Container>

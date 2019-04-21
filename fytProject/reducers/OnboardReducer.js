@@ -1,5 +1,6 @@
 const initialState = {
-  authenticated: true
+  authenticated: false,
+  signup: false
 };
 
 export default function onboardReducer(state = initialState, action) {
@@ -7,14 +8,16 @@ export default function onboardReducer(state = initialState, action) {
     case "SIGN_UP":
       return {
         ...state,
-        authenticated: true
+        signup: action.payload.signup
       };
+
     case "LOG_IN":
       console.log("state");
       return {
         ...state,
         authenticated: true
       };
+
     case "LOG_OUT":
       return {
         ...state,
@@ -33,6 +36,7 @@ export default function onboardReducer(state = initialState, action) {
         ...state,
         authenticated: action.payload.authenticated
       };
+
     default:
       return state;
   }
