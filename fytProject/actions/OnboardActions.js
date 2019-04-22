@@ -8,6 +8,7 @@ import {
   changeStreak
 } from "./ProfileActions";
 import store from "../store";
+import { Keyboard } from "react-native";
 import { PROFILE_STATE } from "../config/settings";
 
 const setDay = constant => {
@@ -43,7 +44,7 @@ const isLoggedIn = () => {
   });
 };
 
-export const signUp = (email, password) => {
+export const signUp = (email, password, navigation) => {
   firebaseApp
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -67,6 +68,8 @@ export const signUp = (email, password) => {
               signup: true
             }
           });
+          Keyboard.dismiss();
+          navigation.navigate("Intro");
         })
         .catch(error => alert(error));
     });

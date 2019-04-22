@@ -8,13 +8,17 @@
   <component name="ChangeListManager">
     <list default="true" id="db3fd1c0-be3a-4b06-90bd-0d57dce3398f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/FullRenderTest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/__snapshots__/FullRenderTest.js.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/RenderTestSuite.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/__snapshots__/RenderTestSuite.js.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actions/OnboardActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/actions/OnboardActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Onboard/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Onboard/Questions/Age.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Questions/Age.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Onboard/Questions/Goal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Questions/Goal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Onboard/Questions/Height.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Questions/Height.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Onboard/Questions/Intro.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Questions/Intro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Onboard/Questions/Weight.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Questions/Weight.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Onboard/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Onboard/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SampleScreens/UpdateProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SampleScreens/UpdateProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,10 +63,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,6 +184,27 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">

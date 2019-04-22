@@ -12,6 +12,7 @@ import {
   StyleSheet,
   StyleProvider
 } from "native-base";
+import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants } from "expo";
 import OnboardHead from "../OnboardHead";
 import store from "../../../store";
@@ -46,53 +47,59 @@ export default class Weight extends Component {
     const navigate = this.props.navigation;
     return (
       <StyleProvider style={getTheme(platform)}>
-        <Container
-          style={{
-            top: Constants.statusBarHeight,
-            backgroundColor: backgroundColor
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
           }}
         >
-          <OnboardHead title="Weight" navigation={navigate} />
-          <Text
+          <Container
             style={{
-              fontSize: 20,
-              paddingLeft: "5%",
-              paddingTop: "5%",
-              color: "white"
+              top: Constants.statusBarHeight,
+              backgroundColor: backgroundColor
             }}
           >
-            Please enter your weight
-          </Text>
-          <View>
-            <Form>
-              <Item>
-                <Input
-                  placeholder="Pounds"
-                  onChangeText={weight => this.setState({ weight })}
-                  value={this.state.weight}
-                />
-              </Item>
-            </Form>
-            <View
+            <OnboardHead title="Weight" navigation={navigate} />
+            <Text
               style={{
-                padding: "1%",
-                top: "10%",
-                flexDirection: "row",
-                alignItems: "center"
+                fontSize: 20,
+                paddingLeft: "5%",
+                paddingTop: "5%",
+                color: "white"
               }}
             >
-              <View style={{ padding: 10 }} />
-              <Button
-                rounded
-                onPress={() => this.submitWeight()}
-                style={{ alignSelf: "center" }}
+              Please enter your weight
+            </Text>
+            <View>
+              <Form>
+                <Item>
+                  <Input
+                    placeholder="Pounds"
+                    onChangeText={weight => this.setState({ weight })}
+                    value={this.state.weight}
+                  />
+                </Item>
+              </Form>
+              <View
+                style={{
+                  padding: "1%",
+                  top: "10%",
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
               >
-                <Text>Submit</Text>
-              </Button>
-              <View style={{ padding: 5 }} />
+                <View style={{ padding: 10 }} />
+                <Button
+                  rounded
+                  onPress={() => this.submitWeight()}
+                  style={{ alignSelf: "center" }}
+                >
+                  <Text>Submit</Text>
+                </Button>
+                <View style={{ padding: 5 }} />
+              </View>
             </View>
-          </View>
-        </Container>
+          </Container>
+        </TouchableWithoutFeedback>
       </StyleProvider>
     );
   }

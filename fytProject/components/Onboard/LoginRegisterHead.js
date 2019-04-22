@@ -22,13 +22,7 @@ export default class Head extends React.Component {
           <Left>
             <Button
               transparent
-              onPress={() => {
-                if (store.getState().onboard.signup) {
-                  this.props.navigation.goBack();
-                } else {
-                  this.props.navigation.navigate("Tab1");
-                }
-              }}
+              onPress={() => this.props.navigation.navigate("Tab1")}
             >
               <Icon name="arrow-back" />
             </Button>
