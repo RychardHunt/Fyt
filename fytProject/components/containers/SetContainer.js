@@ -33,6 +33,21 @@ const styles = StyleSheet.create({
   },
   circleButtonText: {
     fontSize: 20
+  },
+  leftSwipeItem: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingRight: 20
+  },
+  rightSwipeItem: {
+    flex: 1,
+    justifyContent: "center",
+    paddingLeft: 20
+  },
+  swipeItemText: {
+    fontSize: 30,
+    padding: 25
   }
 });
 
@@ -40,7 +55,9 @@ class SetContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      leftActionActivated: false,
+      rightActionActivated: false
     };
   }
 
@@ -61,28 +78,71 @@ class SetContainer extends React.Component {
     );
   };
 
-  toggleModal = () => {
+  deleteSet() {
+    this.props.deleteSet(
+      this.props.exerciseName,
+      this.props.setNumber,
+      this.props.selectedWorkout
+    );
     this.setState({
+      leftActionActivated: false
+    });
+  }
+
+  editSet = () => {
+    this.setState({
+      rightActionActivated: false,
       modalVisible: !this.state.modalVisible
     });
   };
+
   render() {
+    const leftContent = [
+      <View key={0} style={styles.leftSwipeItem}>
+        <Text style={styles.swipeItemText}>Remove</Text>
+        {this.state.leftActionActivated ? this.deleteSet() : null}
+      </View>
+    ];
+
+    const rightContent = [
+      <View key={0} style={styles.RightSwipeItem}>
+        <Text style={styles.swipeItemText}>Edit</Text>
+        {this.state.rightActionActivated ? this.editSet() : null}
+      </View>
+    ];
+
     return (
       <View>
-        <EditSetMenu
-          modalVisible={this.state.modalVisible}
-          setNumber={this.props.setNumber}
-          exerciseName={this.props.exerciseName}
-          weight={this.props.setDetails.weight}
-          reps={this.props.setDetails.reps}
-          editSetFunction={this.handleFormSubmit}
-          toggleModalFunction={this.toggleModal}
-        />
-        <TouchableOpacity
-          onPress={() => {
-            this.toggleModal();
-          }}
+        <Swipeable
+          key={0}
+          style={styles.exerciseHeader}
+          leftContent={leftContent}
+          rightContent={rightContent}
+          onLeftActionRelease={() =>
+            this.setState({ leftActionActivated: true })
+          }
+          onLeftActionDeactivate={() =>
+            this.setState({ leftActionActivated: false })
+          }
+          leftActionActivationDistance={220}
+          onRightActionRelease={() =>
+            this.setState({ rightActionActivated: true })
+          }
+          onRightActionDeactivate={() =>
+            this.setState({ rightActionActivated: false })
+          }
+          rightActionActivationDistance={220}
         >
+          <EditSetMenu
+            modalVisible={this.state.modalVisible}
+            setNumber={this.props.setNumber}
+            exerciseName={this.props.exerciseName}
+            weight={this.props.setDetails.weight}
+            reps={this.props.setDetails.reps}
+            editSetFunction={this.handleFormSubmit}
+            toggleModalFunction={this.editSet}
+          />
+
           <Card style={styles.setStyle}>
             <TouchableOpacity
               onPress={() =>
@@ -116,7 +176,7 @@ class SetContainer extends React.Component {
               <Text> Weight: {this.props.setDetails.weight}</Text>
             </View>
           </Card>
-        </TouchableOpacity>
+        </Swipeable>
       </View>
     );
   }
@@ -132,7 +192,8 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       changeSetCompletionStatus: workoutActions.changeSetCompletionStatus,
-      editSet: workoutActions.editSet
+      editSet: workoutActions.editSet,
+      deleteSet: workoutActions.deleteSet
     },
     dispatch
   );

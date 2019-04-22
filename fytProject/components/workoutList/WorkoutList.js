@@ -27,14 +27,7 @@ class WorkoutList extends React.Component {
   createExercisePanels= () => {
     exercisePanels = []
     for(exercise in this.props.workout){
-      const exercisePanel =  (<ExercisePanel key={exercise}
-                                             exerciseName={exercise}
-                                             setMenuVisible = {this.props.setMenuVisible}
-                                             exerciseDetails={this.props.workout[exercise]}
-                                             addSetFunction={this.props.addSetFunction}
-                                             toggleSetMenuVisibilityFunction={this.props.toggleSetMenuVisibilityFunction}
-                                            />);
-      exercisePanels.push(exercisePanel);
+
     }
 
     return exercisePanels;
@@ -54,21 +47,21 @@ class WorkoutList extends React.Component {
             <View>
               {this.createExercisePanels()}
             </View>
-            </ScrollView>
+          </ScrollView>
         </Content>
       </Container>
       <View style={styles.container}>
         <Text style={styles.workoutHeader}>
           Workout
         </Text>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <View >
-          {this.createExercisePanels()}
-        </View>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <View>
+            {this.createExercisePanels()}
+          </View>
         </ScrollView>
         <AddExerciseContainer/>
 
-      <ProgressBar workoutProgress={this.props.workoutProgress}/>
+        <ProgressBar workoutProgress={this.props.workoutProgress}/>
       </View>
     );
   }
