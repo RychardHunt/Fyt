@@ -17,7 +17,8 @@ export default (DrawerNav = DrawerNavigator(
   {
     Tabs: { screen: TabNav },
     RegisterNav: { screen: RegisterNav },
-    Login: { screen: Login }
+    Login: { screen: Login },
+    Logout: { screen: Logout }
   },
   {
     contentComponent: props => <SideBar {...props} />

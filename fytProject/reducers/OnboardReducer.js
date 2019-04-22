@@ -12,16 +12,17 @@ export default function onboardReducer(state = initialState, action) {
       };
 
     case "LOG_IN":
-      console.log("state");
+      console.log(action.payload.authenticated);
       return {
         ...state,
-        authenticated: true
+        authenticated: action.payload.authenticated
       };
 
     case "LOG_OUT":
+      console.log(action.payload.authenticated);
       return {
         ...state,
-        authenticated: false
+        authenticated: action.payload.authenticated
       };
 
     case "SIGN_UP_SCREEN":
@@ -31,7 +32,6 @@ export default function onboardReducer(state = initialState, action) {
       };
 
     case "LOG_CHECK":
-      alert("ayy");
       return {
         ...state,
         authenticated: action.payload.authenticated
