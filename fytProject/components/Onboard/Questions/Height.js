@@ -8,12 +8,17 @@ import {
   Input,
   Button,
   Text,
-  View
+  View,
+  StyleSheet,
+  StyleProvider
 } from "native-base";
 import { Constants } from "expo";
-import Head from "../../Navigation/Head";
+import OnboardHead from "../OnboardHead";
 import store from "../../../store";
 import { changeHeight } from "../../../actions/ProfileActions";
+import platform from "../../../native-base-theme/variables/platform";
+import getTheme from "../../../native-base-theme/components";
+import { backgroundColor } from "../../../config/styles";
 
 export default class Height extends Component {
   constructor(props) {
@@ -28,7 +33,11 @@ export default class Height extends Component {
     let height = this.state.foot * 12 + this.state.inches * 1;
     if (typeof height === typeof 1 && height > 0) {
       store.dispatch(changeHeight(height));
-      alert("Height Submitted");
+      if (store.getState().onboard.signup) {
+        this.props.navigation.navigate("Weight");
+      } else {
+        this.props.navigation.navigate("Tab1");
+      }
     } else {
       alert("Please enter valid values");
     }
@@ -37,48 +46,66 @@ export default class Height extends Component {
   render() {
     const navigate = this.props.navigation;
     return (
-      <Container style={{ top: Constants.statusBarHeight }}>
-        <Head title="Height" navigation={navigate} />
-        <Content>
-          <Form>
-            <Item>
-              <Input
-                placeholder="Foot"
-                onChangeText={foot =>
-                  this.setState({ foot: foot, inches: this.state.inches })
-                }
-                value={this.state.foot}
-              />
-            </Item>
-            <Item>
-              <Input
-                placeholder="Inches"
-                onChangeText={inches =>
-                  this.setState({ foot: this.state.foot, inches: inches })
-                }
-                value={this.state.inches}
-              />
-            </Item>
-          </Form>
-          <View style={{ padding: "1%" }}>
-            <Button
-              rounded
-              onPress={() => this.submitHeight()}
-              style={{ alignSelf: "center" }}
-            >
-              <Text>Submit</Text>
-            </Button>
-          </View>
-        </Content>
-        <View style={{ position: "absolute", bottom: "5%", marginLeft: 10 }}>
-          <Button
-            onPress={() => this.props.navigation.navigate("Tab1")}
-            style={{ alignSelf: "center" }}
+      <StyleProvider style={getTheme(platform)}>
+        <Container
+          style={{
+            top: Constants.statusBarHeight,
+            backgroundColor: backgroundColor
+          }}
+        >
+          <OnboardHead title="Height" navigation={navigate} />
+          <Text
+            style={{
+              fontSize: 20,
+              paddingLeft: "5%",
+              paddingTop: "5%",
+              color: "white"
+            }}
           >
-            <Text>Return to profile...</Text>
-          </Button>
-        </View>
-      </Container>
+            Please enter your height
+          </Text>
+          <View>
+            <Form style={{ color: "white" }}>
+              <Item>
+                <Input
+                  placeholder="Foot"
+                  onChangeText={foot =>
+                    this.setState({ foot: foot, inches: this.state.inches })
+                  }
+                  value={this.state.foot}
+                />
+              </Item>
+              <Item>
+                <Input
+                  placeholder="Inches"
+                  onChangeText={inches =>
+                    this.setState({ foot: this.state.foot, inches: inches })
+                  }
+                  value={this.state.inches}
+                />
+              </Item>
+            </Form>
+            <View
+              style={{
+                padding: "1%",
+                top: "10%",
+                flexDirection: "row",
+                alignItems: "center"
+              }}
+            >
+              <View style={{ padding: 10 }} />
+              <Button
+                rounded
+                onPress={() => this.submitHeight()}
+                style={{ alignSelf: "center" }}
+              >
+                <Text>Submit</Text>
+              </Button>
+              <View style={{ padding: 5 }} />
+            </View>
+          </View>
+        </Container>
+      </StyleProvider>
     );
   }
 }
