@@ -11,7 +11,8 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  SectionList
 } from "react-native";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
@@ -38,6 +39,19 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     fontSize: 15,
     justifyContent: "flex-end"
+  },
+  sectionHeader: {
+    backgroundColor: "#00bfff",
+    fontSize: 20,
+    padding: 5,
+    color: "#303030",
+    fontWeight: "bold"
+  },
+  sectionItems: {
+    fontSize: 15,
+    padding: 5,
+    color: "#FFFFFF",
+    backgroundColor: "#303030"
   }
 });
 
@@ -56,6 +70,9 @@ export default class Diet extends React.Component {
     this.state = {
       foodItem: "",
       foodList: [],
+      foodList2: [],
+      foodList3: [],
+      foodList4: [],
       index: 0,
       routes: [
         { key: "first", title: "Cutting" },
@@ -70,7 +87,7 @@ export default class Diet extends React.Component {
     firebase
       .database()
       .ref()
-      .child("Pistachios/Breadbox")
+      .child("Pistachios/Bravo Pasta")
       .once("value", snapshot => {
         const higherParent = snapshot.ref.parent.parent.key;
         const parent = snapshot.ref.parent.key;
@@ -83,7 +100,6 @@ export default class Diet extends React.Component {
           if (higherParent != null) {
             foodArray.push(higherParent);
           }
-          foodArray.push(parent + " : " + key);
           Object.keys(value).forEach(foodItem =>
             foodArray.push(
               foodItem +
@@ -103,79 +119,161 @@ export default class Diet extends React.Component {
           });
         }
       });
+
+    firebase
+      .database()
+      .ref()
+      .child("Pistachios/Breadbox")
+      .once("value", snapshot => {
+        const higherParent = snapshot.ref.parent.parent.key;
+        const parent = snapshot.ref.parent.key;
+        const key = snapshot.key;
+        const value = snapshot.val();
+        var carbs = "Total Carbohydrates";
+        var fats = "Total Fat";
+        if (value) {
+          const foodArray = [];
+          if (higherParent != null) {
+            foodArray.push(higherParent);
+          }
+
+          Object.keys(value).forEach(foodItem =>
+            foodArray.push(
+              foodItem +
+                ":" +
+                " Calories: " +
+                value[foodItem].Calories +
+                ", Total Fat: " +
+                value[foodItem].TotalFat +
+                ", Total Carbs: " +
+                value[foodItem].TotalCarbohydrates +
+                ", Protein: " +
+                value[foodItem].Protein
+            )
+          );
+          this.setState({
+            foodList2: foodArray
+          });
+        }
+      });
+
+    firebase
+      .database()
+      .ref()
+      .child("Ellicott Food Court/Sizzles")
+      .once("value", snapshot => {
+        const higherParent = snapshot.ref.parent.parent.key;
+        const parent = snapshot.ref.parent.key;
+        const key = snapshot.key;
+        const value = snapshot.val();
+        var carbs = "Total Carbohydrates";
+        var fats = "Total Fat";
+        if (value) {
+          const foodArray = [];
+          if (higherParent != null) {
+            foodArray.push(higherParent);
+          }
+
+          Object.keys(value).forEach(foodItem =>
+            foodArray.push(
+              foodItem +
+                ":" +
+                " Calories: " +
+                value[foodItem].Calories +
+                ", Total Fat: " +
+                value[foodItem].TotalFat +
+                ", Total Carbs: " +
+                value[foodItem].TotalCarbohydrates +
+                ", Protein: " +
+                value[foodItem].Protein
+            )
+          );
+          this.setState({
+            foodList3: foodArray
+          });
+        }
+      });
+
+    firebase
+      .database()
+      .ref()
+      .child("Ellicott Food Court/Sizzles Breakfast")
+      .once("value", snapshot => {
+        const higherParent = snapshot.ref.parent.parent.key;
+        const parent = snapshot.ref.parent.key;
+        const key = snapshot.key;
+        const value = snapshot.val();
+        var carbs = "Total Carbohydrates";
+        var fats = "Total Fat";
+        if (value) {
+          const foodArray = [];
+          if (higherParent != null) {
+            foodArray.push(higherParent);
+          }
+
+          Object.keys(value).forEach(foodItem =>
+            foodArray.push(
+              foodItem +
+                ":" +
+                " Calories: " +
+                value[foodItem].Calories +
+                ", Total Fat: " +
+                value[foodItem].TotalFat +
+                ", Total Carbs: " +
+                value[foodItem].TotalCarbohydrates +
+                ", Protein: " +
+                value[foodItem].Protein
+            )
+          );
+          this.setState({
+            foodList4: foodArray
+          });
+        }
+      });
   }
 
+  sectionListAlert = item => {
+    Alert.alert(item);
+  };
+
   render() {
-    let pic = {
-      uri:
-        "https://ultimateperformance.com/media/Charles-12-week-transformation-results-front.jpg"
-    };
-    let pic2 = {
-      uri:
-        "https://upfitness.co.uk/media/Kelly-18-week-front-body-transformation-results.jpg"
-    };
-    let pic3 = {
-      uri:
-        "https://www.veggieinspired.com/wp-content/uploads/2015/05/Customizable-Sweet-Creamy-Oatmeal-2.1-814x1024.jpg"
-    };
-    let pic4 = {
-      uri:
-        "https://i0.wp.com/notyournormalhealthblog.com/wp-content/uploads/2012/09/p8280370-1.jpg?fit=1170%2C878&ssl=1"
-    };
-    let pic5 = {
-      uri: "http://images.media-allrecipes.com/images/65782.jpg"
-    };
-    let pic6 = {
-      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22574.jpg"
-
-      //Seasoned Turkey Breast with Roasted Butternut Squash and Green Beans
-    };
-    let pic7 = {
-      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22571.jpg"
-
-      //Salmon Teriyaki with Broccoli and Cauliflower Rice
-    };
-    let pic8 = {
-      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22534.jpg"
-
-      //Shrimp Scampi with Zucchini Noodles and Caesar Salad
-    };
-    let pic9 = {
-      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22089.jpg"
-
-      //Horseradish Crusted Salmon with Cauliflower Rice and Asparagus
-    };
-    let pic10 = {
-      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22085.jpg"
-
-      //Peruvian Chicken with Green Sauce, Chickpea Salad and Asparagus
-    };
-    let pic11 = {
-      uri: "https://www.wegmans.com/content/dam/wegmans/recipes/2/22217.jpg"
-
-      //Strip Steak with Whipped Potatoes and Roasted Mushrooms
-    };
     const navigate = this.props.navigation;
     const UBData = () => (
-      <Container style={{ backgroundColor: "#303030" }}>
-        <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
-          <View>
-            <FlatList
-              data={this.state.foodList}
-              renderItem={({ item }) => (
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "column"
-                  }}
-                >
-                  <Text style={styles.smallWhite}>{item}</Text>
-                </View>
-              )}
-            />
-          </View>
-        </ScrollView>
-      </Container>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          backgroundColor: "#303030"
+        }}
+      >
+        <SectionList
+          sections={[
+            { title: "Pistachios : Bravo Pasta", data: this.state.foodList },
+            { title: "Pistachios : Breadbox", data: this.state.foodList2 },
+            {
+              title: "Ellicott Food Court: Sizzles",
+              data: this.state.foodList3
+            },
+            {
+              title: "Ellicott Food Court : Sizzles Breakfast",
+              data: this.state.foodList4
+            }
+          ]}
+          renderSectionHeader={({ section }) => (
+            <Text style={styles.sectionHeader}> {section.title} </Text>
+          )}
+          renderItem={({ item }) => (
+            <Text
+              style={styles.sectionItems}
+              onPress={this.sectionListAlert.bind(this, item)}
+            >
+              {" "}
+              {item}{" "}
+            </Text>
+          )}
+        />
+        <View style={{ flex: 1, padding: 10 }} />
+      </View>
     );
 
     return (
@@ -183,19 +281,18 @@ export default class Diet extends React.Component {
         style={{ top: Constants.statusBarHeight, backgroundColor: "#303030" }}
       >
         <Head title="Diet" navigation={navigate} />
-        <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
-          <TabView
-            navigationState={this.state}
-            renderScene={SceneMap({
-              first: CuttingTab,
-              second: MaintenanceTab,
-              third: BulkingTab,
-              fourth: UBData
-            })}
-            onIndexChange={index => this.setState({ index: index })}
-            initialLayout={{ width: Dimensions.get("window").width }}
-          />
-        </ScrollView>
+
+        <TabView
+          navigationState={this.state}
+          renderScene={SceneMap({
+            first: CuttingTab,
+            second: MaintenanceTab,
+            third: BulkingTab,
+            fourth: UBData
+          })}
+          onIndexChange={index => this.setState({ index: index })}
+          initialLayout={{ width: Dimensions.get("window").width }}
+        />
       </Container>
     );
   }
@@ -204,6 +301,15 @@ export default class Diet extends React.Component {
 const CuttingTab = () => (
   <Container style={{ backgroundColor: "#303030" }}>
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
+      <Text style={styles.smallWhite}>
+        Cutting is another way of saying to lose fat while maintaining as much
+        muscle mass as possible. In order to lose fat, we must be in a caloric
+        deficit. In order to lose an average of one pound a week, we must be in
+        a caloric deficit of 500 calories a day from our total daily energy
+        expenditure (TDEE). For an average person who requires around 2000
+        calories a day, we will take 500 calories away from that and that's why
+        this sample meal plan below will total 1500 calories.
+      </Text>
       <View
         style={{
           flex: 1,
@@ -270,6 +376,7 @@ const CuttingTab = () => (
           20g of Fats, 40g of Protein. Total Calories: 500
         </Text>
       </View>
+      <View style={{ flex: 1, padding: 10 }} />
     </ScrollView>
   </Container>
 );
@@ -277,6 +384,13 @@ const CuttingTab = () => (
 const MaintenanceTab = () => (
   <Container style={{ backgroundColor: "#303030" }}>
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
+      <Text style={styles.smallWhite}>
+        Maintaining is exactly as it sounds like which is maintaining our body's
+        current physique. In order to maintain our body's current physique, our
+        caloric intake must be as much as much as our total daily energy
+        expenditure (TDEE). For an average person who requires around 2000
+        calories a day, our sample maintenance meal plan will be 2000 calories.
+      </Text>
       <View
         style={{
           flex: 1,
@@ -296,7 +410,7 @@ const MaintenanceTab = () => (
           }}
         />
         <Text style={styles.smallWhiteRightAlign}>
-          Breakfast: Four Egg Omelette with 2 Strips of Bacon Ingredients: 4
+          Breakfast: Four Egg Omelette with 2 Strips of Bacon. Ingredients: 4
           eggs, 2 strips of bacon. Macros: 4g of Carbs, 28g of Fats, 27g of
           Protein. Total Calories: 500
         </Text>
@@ -318,7 +432,7 @@ const MaintenanceTab = () => (
         <Text style={styles.smallWhiteRightAlign}>
           Lunch: Ground Beef with Rice and Beans. Ingredients: 10 oz ground
           beef, Half cup of Rice, Half cup of Beans. Macros: 120g of Carbs, 40g
-          of Fats, 60g of Protein, Total Calories: 880
+          of Fats, 60g of Protein. Total Calories: 880
         </Text>
       </View>
 
@@ -342,6 +456,7 @@ const MaintenanceTab = () => (
           of Protein. Total Calories: 500
         </Text>
       </View>
+      <View style={{ flex: 1, padding: 10 }} />
     </ScrollView>
   </Container>
 );
@@ -349,6 +464,15 @@ const MaintenanceTab = () => (
 const BulkingTab = () => (
   <Container style={{ backgroundColor: "#303030" }}>
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
+      <Text style={styles.smallWhite}>
+        Bulking is a way of getting bigger by increasing caloric intake in order
+        to build muscle. In order to do a lean bulk where we are in a caloric
+        surplus to gain muscle but try to minize fat gain, we will be in a 500
+        caloric surplus from our total daily energy expenditure. For an average
+        person who requires around 2000 calories a day, we will add 500 calories
+        to that and that's why this sample meal plan below will total around
+        2500 calories.
+      </Text>
       <View
         style={{
           flex: 1,
@@ -368,8 +492,8 @@ const BulkingTab = () => (
           }}
         />
         <Text style={styles.smallWhiteRightAlign}>
-          Breakfast: Avocado Toast with Eggs Ingredients: 1 avocado, 2 slices of
-          toasted bread, 4 eggs. Macros: 30g of Carbs, 50g of Fats, 30g of
+          Breakfast: Avocado Toast with Eggs. Ingredients: 1 avocado, 2 slices
+          of toasted bread, 4 eggs. Macros: 30g of Carbs, 50g of Fats, 30g of
           Protein. Total Calories: 690
         </Text>
       </View>
@@ -391,7 +515,7 @@ const BulkingTab = () => (
         <Text style={styles.smallWhiteRightAlign}>
           Lunch: Chicken Broccoli Alfredo. Ingredients: 8 oz chicken breast, cup
           of broccoli, half cup of pasta, and alfredo sauce. Macros: 106g of
-          Carbs, 49g of Fats, 42g of Protein, Total Calories: 1040
+          Carbs, 49g of Fats, 42g of Protein. Total Calories: 1040
         </Text>
       </View>
 
@@ -410,10 +534,12 @@ const BulkingTab = () => (
           style={{ width: 170, height: 180 }}
         />
         <Text style={styles.smallWhiteRightAlign}>
-          Dinner: Steak, Asparagus, Mashed Potatoes and Gravy. Macros: 50g of
-          Carbs, 50g of Fats, 60g of Protein. Total Calories: 890
+          Dinner: Steak, Asparagus, Mashed Potatoes and Gravy. Ingredients: 8 oz
+          Sirloin Steak, 8 asparagus spears, 6 oz mashed potatoes, 2 oz gravy.
+          Macros: 50g of Carbs, 50g of Fats, 60g of Protein. Total Calories: 890
         </Text>
       </View>
+      <View style={{ flex: 1, padding: 10 }} />
     </ScrollView>
   </Container>
 );
