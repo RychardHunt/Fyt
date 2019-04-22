@@ -46,62 +46,47 @@ const isLoggedIn = () => {
 export const signUp = (email, password) => {
   firebaseApp
     .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .createUserWithEmailAndPassword(email, password)
     .then(() => {
+      alert("Your account was created!");
+      let user = firebaseApp.auth().currentUser;
+      let uid = user.uid;
       firebaseApp
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Your account was created!");
-          let user = firebaseApp.auth().currentUser;
-          let uid = user.uid;
-          firebaseApp
-            .database()
-            .ref("User/")
-            .update({
-              [uid]: setDay(PROFILE_STATE)
-            });
-          store.dispatch({
-            type: "SIGN_UP",
-            payload: {
-              signup: true
-            }
-          });
-        })
-        .catch(error => alert(error));
-    });
+        .database()
+        .ref("User/")
+        .update({
+          [uid]: setDay(PROFILE_STATE)
+        });
+      store.dispatch({
+        type: "SIGN_UP",
+        payload: {
+          signup: true
+        }
+      });
+    })
+    .catch(error => alert(error));
 };
 
 export const logIn = (email, password) => {
   firebaseApp
     .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .signInWithEmailAndPassword(email, password)
     .then(() => {
+      alert("Login Successful!");
+      let user = firebaseApp.auth().currentUser;
+      let uid = user.uid;
       firebaseApp
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Login Successful!");
-          let user = firebaseApp.auth().currentUser;
-          let uid = user.uid;
-          firebaseApp
-            .database()
-            .ref("User/" + uid)
-            .once("value", function(snapshot) {
-              loadPreferences(snapshot.val());
-            });
-          return dispatch => {
-            dispatch({
-              type: "LOG_IN",
-              payload: {
-                authenticated: "true",
-                email: email,
-                password: password
-              }
-            });
-          };
-        })
-        .catch(error => alert(error));
+        .database()
+        .ref("User/" + uid)
+        .once("value", function(snapshot) {
+          loadPreferences(snapshot.val());
+        });
+      store.dispatch({
+        type: "LOG_IN",
+        payload: {
+          authenticated: true
+        }
+      });
     })
     .catch(error => alert(error));
 };
@@ -111,17 +96,14 @@ export const logOut = () => {
     .auth()
     .signOut()
     .then(() => {
-      alert("Logout  Successful!");
-      return dispatch => {
-        dispatch({
-          type: "LOG_OUT",
-          payload: {
-            authenticated: "false",
-            email: "",
-            password: ""
-          }
-        });
-      };
+      alert("Logout Successful!");
+      loadPreferences(PROFILE_STATE);
+      store.dispatch({
+        type: "LOG_OUT",
+        payload: {
+          authenticated: false
+        }
+      });
     })
     .catch(error => alert(error));
 };
