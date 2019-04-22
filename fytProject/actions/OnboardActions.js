@@ -70,7 +70,7 @@ export const signUp = (email, password, navigation) => {
     .catch(error => alert(error));
 };
 
-export const logIn = (email, password) => {
+export const logIn = (email, password, navigation) => {
   firebaseApp
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -90,11 +90,13 @@ export const logIn = (email, password) => {
           authenticated: true
         }
       });
+      Keyboard.dismiss();
+      navigation.navigate("Tab1");
     })
     .catch(error => alert(error));
 };
 
-export const logOut = () => {
+export const logOut = navigation => {
   firebaseApp
     .auth()
     .signOut()
@@ -107,6 +109,7 @@ export const logOut = () => {
           authenticated: false
         }
       });
+      navigation.navigate("Tab1");
     })
     .catch(error => alert(error));
 };

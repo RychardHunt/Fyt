@@ -29,8 +29,8 @@ export default class Login extends Component {
     };
   }
 
-  logInPressed() {
-    logIn(this.state.email, this.state.password);
+  logInPressed(navigation) {
+    logIn(this.state.email, this.state.password, navigation);
   }
 
   render() {
@@ -75,7 +75,7 @@ export default class Login extends Component {
                 <View style={{ padding: "1%" }}>
                   <Button
                     rounded
-                    onPress={() => this.logInPressed()}
+                    onPress={() => this.logInPressed(this.props.navigation)}
                     style={{ alignSelf: "center" }}
                   >
                     <Text>Log In</Text>

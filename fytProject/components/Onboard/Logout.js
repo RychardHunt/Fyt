@@ -5,9 +5,8 @@ import Head from "../Navigation/Head";
 import { logOut } from "../../actions/OnboardActions";
 
 export default class Logout extends Component {
-  logOutPressed() {
-    logOut();
-    this.props.navigation.navigate("Tab1");
+  logOutPressed(navigate) {
+    logOut(navigate);
   }
 
   render() {
@@ -19,7 +18,7 @@ export default class Logout extends Component {
           <View style={{ padding: "1%" }}>
             <Button
               rounded
-              onPress={this.logOutPressed()}
+              onPress={this.logOutPressed(this.props.navigation)}
               style={{ alignSelf: "center" }}
             >
               <Text>Log Out</Text>
