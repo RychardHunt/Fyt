@@ -13,6 +13,7 @@ import {
   StyleSheet,
   StyleProvider
 } from "native-base";
+import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants } from "expo";
 import OnboardHead from "../OnboardHead";
 import store from "../../../store";
@@ -39,60 +40,66 @@ export default class Goal extends Component {
     const navigate = this.props.navigation;
     return (
       <StyleProvider style={getTheme(platform)}>
-        <Container
-          style={{
-            top: Constants.statusBarHeight,
-            backgroundColor: backgroundColor
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
           }}
         >
-          <OnboardHead title="Goal" navigation={navigate} />
-          <Text
+          <Container
             style={{
-              fontSize: 20,
-              paddingLeft: "5%",
-              paddingTop: "5%",
-              color: "white"
+              top: Constants.statusBarHeight,
+              backgroundColor: backgroundColor
             }}
           >
-            Please enter your goal
-          </Text>
-          <View>
-            <Form>
-              <Item picker>
-                <Picker
-                  mode="dropdown"
-                  iosIcon={<Icon name="arrow-down" />}
-                  style={{ width: undefined, color: "white" }}
-                  placeholder="Select your Goal"
-                  selectedValue={this.state.goal}
-                  onValueChange={value => this.setState({ goal: value })}
-                >
-                  <Picker.Item label="Lose Mass" value="Lose Mass" />
-                  <Picker.Item label="Maintain Mass" value="Maintain Mass" />
-                  <Picker.Item label="Gain Mass" value="Gain Mass" />
-                </Picker>
-              </Item>
-            </Form>
-            <View
+            <OnboardHead title="Goal" navigation={navigate} />
+            <Text
               style={{
-                padding: "1%",
-                top: "10%",
-                flexDirection: "row",
-                alignItems: "center"
+                fontSize: 20,
+                paddingLeft: "5%",
+                paddingTop: "5%",
+                color: "white"
               }}
             >
-              <View style={{ padding: 10 }} />
-              <Button
-                rounded
-                onPress={() => this.submitGoal()}
-                style={{ alignSelf: "center" }}
+              Please choose your goal
+            </Text>
+            <View>
+              <Form>
+                <Item picker>
+                  <Picker
+                    mode="dropdown"
+                    iosIcon={<Icon name="arrow-down" />}
+                    style={{ width: undefined, color: "white" }}
+                    placeholder="Select your Goal"
+                    selectedValue={this.state.goal}
+                    onValueChange={value => this.setState({ goal: value })}
+                  >
+                    <Picker.Item label="Lose Mass" value="Lose Mass" />
+                    <Picker.Item label="Maintain Mass" value="Maintain Mass" />
+                    <Picker.Item label="Gain Mass" value="Gain Mass" />
+                  </Picker>
+                </Item>
+              </Form>
+              <View
+                style={{
+                  padding: "1%",
+                  top: "10%",
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
               >
-                <Text>Submit</Text>
-              </Button>
-              <View style={{ padding: 5 }} />
+                <View style={{ padding: 10 }} />
+                <Button
+                  rounded
+                  onPress={() => this.submitGoal()}
+                  style={{ alignSelf: "center" }}
+                >
+                  <Text>Submit</Text>
+                </Button>
+                <View style={{ padding: 5 }} />
+              </View>
             </View>
-          </View>
-        </Container>
+          </Container>
+        </TouchableWithoutFeedback>
       </StyleProvider>
     );
   }

@@ -12,6 +12,7 @@ import {
   StyleSheet,
   StyleProvider
 } from "native-base";
+import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants } from "expo";
 import OnboardHead from "../OnboardHead";
 import store from "../../../store";
@@ -47,64 +48,70 @@ export default class Height extends Component {
     const navigate = this.props.navigation;
     return (
       <StyleProvider style={getTheme(platform)}>
-        <Container
-          style={{
-            top: Constants.statusBarHeight,
-            backgroundColor: backgroundColor
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
           }}
         >
-          <OnboardHead title="Height" navigation={navigate} />
-          <Text
+          <Container
             style={{
-              fontSize: 20,
-              paddingLeft: "5%",
-              paddingTop: "5%",
-              color: "white"
+              top: Constants.statusBarHeight,
+              backgroundColor: backgroundColor
             }}
           >
-            Please enter your height
-          </Text>
-          <View>
-            <Form style={{ color: "white" }}>
-              <Item>
-                <Input
-                  placeholder="Foot"
-                  onChangeText={foot =>
-                    this.setState({ foot: foot, inches: this.state.inches })
-                  }
-                  value={this.state.foot}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="Inches"
-                  onChangeText={inches =>
-                    this.setState({ foot: this.state.foot, inches: inches })
-                  }
-                  value={this.state.inches}
-                />
-              </Item>
-            </Form>
-            <View
+            <OnboardHead title="Height" navigation={navigate} />
+            <Text
               style={{
-                padding: "1%",
-                top: "10%",
-                flexDirection: "row",
-                alignItems: "center"
+                fontSize: 20,
+                paddingLeft: "5%",
+                paddingTop: "5%",
+                color: "white"
               }}
             >
-              <View style={{ padding: 10 }} />
-              <Button
-                rounded
-                onPress={() => this.submitHeight()}
-                style={{ alignSelf: "center" }}
+              Please enter your height
+            </Text>
+            <View>
+              <Form style={{ color: "white" }}>
+                <Item>
+                  <Input
+                    placeholder="Foot"
+                    onChangeText={foot =>
+                      this.setState({ foot: foot, inches: this.state.inches })
+                    }
+                    value={this.state.foot}
+                  />
+                </Item>
+                <Item>
+                  <Input
+                    placeholder="Inches"
+                    onChangeText={inches =>
+                      this.setState({ foot: this.state.foot, inches: inches })
+                    }
+                    value={this.state.inches}
+                  />
+                </Item>
+              </Form>
+              <View
+                style={{
+                  padding: "1%",
+                  top: "10%",
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
               >
-                <Text>Submit</Text>
-              </Button>
-              <View style={{ padding: 5 }} />
+                <View style={{ padding: 10 }} />
+                <Button
+                  rounded
+                  onPress={() => this.submitHeight()}
+                  style={{ alignSelf: "center" }}
+                >
+                  <Text>Submit</Text>
+                </Button>
+                <View style={{ padding: 5 }} />
+              </View>
             </View>
-          </View>
-        </Container>
+          </Container>
+        </TouchableWithoutFeedback>
       </StyleProvider>
     );
   }
