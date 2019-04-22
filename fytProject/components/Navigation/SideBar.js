@@ -4,7 +4,7 @@ import { Container, Content, Text, List, ListItem } from "native-base";
 import { Constants } from "expo";
 
 const routes = [
-  ["RegisterNav", "Register"],
+  ["Register", "Register"],
   ["Login", "Login"],
   ["Logout", "Logout"]
 ];
