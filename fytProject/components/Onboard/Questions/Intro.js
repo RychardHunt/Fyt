@@ -49,7 +49,7 @@ export default class Age extends Component {
                     color: "white"
                   }}
                 >
-                  First we'll ask you a few questions so we can create your
+                  First, we'll ask you a few questions so we can create your
                   personalized fitness plan.
                 </Text>
               </View>
