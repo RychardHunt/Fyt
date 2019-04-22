@@ -16,14 +16,15 @@ import DialogInput from "react-native-dialog-input";
 
 const styles = StyleSheet.create({
   exerciseHeaderText: {
-    fontSize: 40
+    fontSize: 40,
+    textAlign: "center"
   },
   exerciseHeader: {
     alignItems: "center",
     justifyContent: "center"
   },
   exercisePanel: {
-    marginBottom: 20
+    marginBottom: 10
   },
   buttons: {
     width: 70,
@@ -157,20 +158,18 @@ class ExercisePanel extends React.Component {
           }
           rightActionActivationDistance={220}
         >
-          <Card>
-            <Text
-              onPress={() => {
-                this.setState({
-                  expand: !this.state.expand
-                });
-              }}
-              style={styles.exerciseHeaderText}
-            >
-              {this.props.exerciseName}
-            </Text>
-            {this.createSetPanels(this.state.expand)}
-          </Card>
+          <Text
+            onPress={() => {
+              this.setState({
+                expand: !this.state.expand
+              });
+            }}
+            style={styles.exerciseHeaderText}
+          >
+            {this.props.exerciseName}
+          </Text>
         </Swipeable>
+        {this.createSetPanels(this.state.expand)}
       </View>
     );
   }

@@ -54,21 +54,21 @@ class WorkoutList extends React.Component {
             <View>
               {this.createExercisePanels()}
             </View>
-            </ScrollView>
+          </ScrollView>
         </Content>
       </Container>
       <View style={styles.container}>
         <Text style={styles.workoutHeader}>
           Workout
         </Text>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <View >
-          {this.createExercisePanels()}
-        </View>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <View>
+            {this.createExercisePanels()}
+          </View>
         </ScrollView>
         <AddExerciseContainer/>
 
-      <ProgressBar workoutProgress={this.props.workoutProgress}/>
+        <ProgressBar workoutProgress={this.props.workoutProgress}/>
       </View>
     );
   }
