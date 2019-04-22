@@ -27,7 +27,14 @@ class WorkoutList extends React.Component {
   createExercisePanels= () => {
     exercisePanels = []
     for(exercise in this.props.workout){
-
+      const exercisePanel =  (<ExercisePanel key={exercise}
+                                             exerciseName={exercise}
+                                             setMenuVisible = {this.props.setMenuVisible}
+                                             exerciseDetails={this.props.workout[exercise]}
+                                             addSetFunction={this.props.addSetFunction}
+                                             toggleSetMenuVisibilityFunction={this.props.toggleSetMenuVisibilityFunction}
+                                            />);
+      exercisePanels.push(exercisePanel);
     }
 
     return exercisePanels;
