@@ -9,7 +9,20 @@ export const changeWorkout = selectedWorkout => {
   };
 };
 
+export const addWorkout = (newWorkout, workoutName) => {
+  return dispatch => {
+    dispatch({
+      type: "ADD_WORKOUT",
+      payload: {
+        newWorkout,
+        workoutName
+      }
+    });
+  };
+};
+
 export const deleteSet = (exercise, setNumber, selectedWorkout) => {
+  console.log("dete set");
   return dispatch => {
     dispatch({
       type: "DELETE_SET",

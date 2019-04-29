@@ -1,10 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { List, ListItem, Container, Content, Picker } from "native-base";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Modal,
+  TouchableHighlight
+} from "react-native";
 import { Constants } from "expo";
 import { bindActionCreators } from "redux";
 import * as workoutActions from "../actions/WorkoutActions"; //To prevent overwriting.
+import DialogInput from "react-native-dialog-input";
 import ExercisePanel from "./ExercisePanel";
 import Head from "./Navigation/Head";
 
@@ -29,7 +37,8 @@ class WorkoutList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedWorkout: "defaultWorkout" //first workout shown; new feature idea ... change default workout
+      selectedWorkout: "defaultWorkout", //TODO first workout shown; new feature idea ... change default workout
+      isDialogVisible: false
     };
   }
 
@@ -79,13 +88,37 @@ class WorkoutList extends React.Component {
         workoutList.push(PickerItem);
       }
     }
+    const PickerItem = (
+      <Picker.Item key={++i} label={"Save Workout"} value={"saveWorkout"} />
+    );
+    i++; //to lazy to remake the loops :(
+    workoutList.push(PickerItem);
     return workoutList;
   }
 
   render() {
     const navigate = this.props.navigation;
+    let inputVisable = false;
     return (
       <Container style={{ top: Constants.statusBarHeight }}>
+        <DialogInput
+          isDialogVisible={this.state.isDialogVisible}
+          title={"New Workout"}
+          message={"Please enter a new workout name"}
+          hintInput={"New name"}
+          submitInput={inputText => {
+            this.props.addWorkout(
+              this.props.workout[this.state.selectedWorkout],
+              inputText
+            );
+            this.props.changeWorkout(inputText);
+            this.setState({
+              isDialogVisible: false,
+              selectedWorkout: inputText
+            });
+          }}
+          closeDialog={() => this.setState({ isDialogVisible: false })}
+        />
         <Head title="Workout" navigation={navigate} />
         <Content>
           <Text style={styles.workoutHeader}>Workout</Text>
@@ -93,8 +126,14 @@ class WorkoutList extends React.Component {
             selectedValue={this.state.selectedWorkout}
             style={styles.picker}
             onValueChange={(itemValue, itemIndex) => {
-              this.props.changeWorkout(itemValue);
-              this.setState({ selectedWorkout: itemValue });
+              if (itemValue == "saveWorkout") {
+                this.setState({
+                  isDialogVisible: true
+                });
+              } else {
+                this.props.changeWorkout(itemValue);
+                this.setState({ selectedWorkout: itemValue });
+              }
             }}
           >
             {this.createPicks()}
@@ -114,7 +153,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      changeWorkout: workoutActions.changeWorkout
+      changeWorkout: workoutActions.changeWorkout,
+      addWorkout: workoutActions.addWorkout
     },
     dispatch
   );

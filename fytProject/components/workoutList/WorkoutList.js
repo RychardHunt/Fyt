@@ -66,6 +66,11 @@ class WorkoutList extends React.Component {
             {this.createExercisePanels()}
           </View>
         </ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <View >
+          {this.createExercisePanels()}
+        </View>
+      </ScrollView>
         <AddExerciseContainer/>
 
         <ProgressBar workoutProgress={this.props.workoutProgress}/>
