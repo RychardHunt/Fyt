@@ -24,7 +24,7 @@ export default class Head extends React.Component {
               transparent
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
             >
-              <Icon name="menu" />
+              <Icon name="logout" />
             </Button>
           </Left>
           <Body>

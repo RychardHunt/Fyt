@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { StackNavigator } from "react-navigation";
+
 import Intro from "../Onboard/Questions/Intro";
 import Register from "../Onboard/Register";
-import Login from "../Onboard/Login";
 import Height from "../Onboard/Questions/Height";
 import Weight from "../Onboard/Questions/Weight";
 import Age from "../Onboard/Questions/Age";
