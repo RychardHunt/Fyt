@@ -46,48 +46,60 @@ const isLoggedIn = () => {
 export const signUp = (email, password) => {
   firebaseApp
     .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      alert("Your account was created!");
-      let user = firebaseApp.auth().currentUser;
-      let uid = user.uid;
+    .setPersistence(firebaseApp.auth.Auth.Persistence.LOCAL)
+    .then(
       firebaseApp
-        .database()
-        .ref("User/")
-        .update({
-          [uid]: setDay(PROFILE_STATE)
-        });
-      store.dispatch({
-        type: "SIGN_UP",
-        payload: {
-          signup: true
-        }
-      });
-    })
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Your account was created!");
+          let user = firebaseApp.auth().currentUser;
+          let uid = user.uid;
+          firebaseApp
+            .database()
+            .ref("User/")
+            .update({
+              [uid]: setDay(PROFILE_STATE)
+            });
+          store.dispatch({
+            type: "SIGN_UP",
+            payload: {
+              signup: true
+            }
+          });
+        })
+        .catch(error => alert(error))
+    )
     .catch(error => alert(error));
 };
 
 export const logIn = (email, password) => {
   firebaseApp
     .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(() => {
-      alert("Login Successful!");
-      let user = firebaseApp.auth().currentUser;
-      let uid = user.uid;
+    .setPersistence(firebaseApp.auth.Auth.Persistence.LOCAL)
+    .then(
       firebaseApp
-        .database()
-        .ref("User/" + uid)
-        .once("value", function(snapshot) {
-          loadPreferences(snapshot.val());
-        });
-      store.dispatch({
-        type: "LOG_IN",
-        payload: {
-          authenticated: true
-        }
-      });
-    })
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Login Successful!");
+          let user = firebaseApp.auth().currentUser;
+          let uid = user.uid;
+          firebaseApp
+            .database()
+            .ref("User/" + uid)
+            .once("value", function(snapshot) {
+              loadPreferences(snapshot.val());
+            });
+          store.dispatch({
+            type: "LOG_IN",
+            payload: {
+              authenticated: true
+            }
+          });
+        })
+        .catch(error => alert(error))
+    )
     .catch(error => alert(error));
 };
 
