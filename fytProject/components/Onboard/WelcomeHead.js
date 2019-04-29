@@ -14,25 +14,12 @@ import { StyleSheet } from "react-native";
 import { colorTheme, headerColor } from "../../config/styles";
 import { Constants } from "expo";
 
-export default class OnboardHead extends React.Component {
+export default class WelcomeHead extends React.Component {
   render() {
     return (
       <View>
         <Header style={colorTheme.header}>
-          <Left>
-            <Button
-              transparent
-              onPress={() => {
-                if (store.getState().onboard.signup) {
-                  this.props.navigation.goBack();
-                } else {
-                  this.props.navigation.navigate("Tab1");
-                }
-              }}
-            >
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
+          <Left />
           <Body>
             <Title>{this.props.title}</Title>
           </Body>

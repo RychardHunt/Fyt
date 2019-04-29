@@ -15,7 +15,7 @@ import { StyleSheet } from "react-native";
 import { colorTheme, headerColor } from "../../config/styles";
 import { Constants } from "expo";
 
-export default class Head extends React.Component {
+export default class LoginRegisterHead extends React.Component {
   render() {
     return (
       <View>
@@ -30,7 +30,7 @@ export default class Head extends React.Component {
                     signup: false
                   }
                 });
-                this.props.navigation.navigate("Tab1");
+                this.props.navigation.navigate("Welcome");
               }}
             >
               <Icon name="arrow-back" />

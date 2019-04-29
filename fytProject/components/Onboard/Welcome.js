@@ -12,14 +12,13 @@ import {
 import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants } from "expo";
 
-import DrawerNav from "./DrawerNav";
-import RegisterNav from "./RegisterNav";
-import Login from "../Onboard/Login";
+import RegisterNav from "../Navigation/RegisterNav";
+import Login from "./Login";
 import WelcomeHead from "./WelcomeHead";
 
-import { backgroundColor } from "../../../config/styles";
-import platform from "../../../native-base-theme/variables/platform";
-import getTheme from "../../../native-base-theme/components";
+import { backgroundColor } from "../../config/styles";
+import platform from "../../native-base-theme/variables/platform";
+import getTheme from "../../native-base-theme/components";
 
 export default class Age extends Component {
   render() {
@@ -37,39 +36,36 @@ export default class Age extends Component {
               backgroundColor: backgroundColor
             }}
           >
-            <WelcomeHead title="" navigation={navigate} />
+            <WelcomeHead title="Welcome to Fyt" navigation={navigate} />
             <View style={{ top: "20%", alignItems: "center" }}>
-              <Text style={{ fontSize: 30, color: "white" }}>
-                Welcome to Fyt!
+              <Text
+                style={{ fontSize: 30, color: "white", textAlign: "center" }}
+              >
+                Login or Register to get started.
               </Text>
-              <View style={{ height: "10%" }} />
-              <View style={{ alignItems: "center" }}>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    padding: 15,
-                    textAlign: "center",
-                    color: "white"
-                  }}
-                >
-                  First, we'll ask you a few questions so we can create your
-                  personalized fitness plan.
-                </Text>
-              </View>
-              <View style={{ height: "10%" }} />
+              <View style={{ height: "15%" }} />
               <Button
                 rounded
-                onPress={() => this.props.navigation.navigate("Height")}
-                style={{ alignSelf: "center" }}
+                onPress={() => this.props.navigation.navigate("Login")}
+                style={{
+                  alignSelf: "center",
+                  width: "30%",
+                  justifyContent: "center"
+                }}
               >
-                <Text>Login</Text>
+                <Text style={{ fontSize: 18 }}>Login</Text>
               </Button>
+              <View style={{ height: 15 }} />
               <Button
                 rounded
-                onPress={() => this.props.navigation.navigate("Height")}
-                style={{ alignSelf: "center" }}
+                onPress={() => this.props.navigation.navigate("Register")}
+                style={{
+                  alignSelf: "center",
+                  width: "30%",
+                  justifyContent: "center"
+                }}
               >
-                <Text>Register</Text>
+                <Text style={{ fontSize: 18 }}>Register</Text>
               </Button>
             </View>
           </Container>

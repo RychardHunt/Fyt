@@ -101,7 +101,7 @@ export const logOut = navigation => {
     .auth()
     .signOut()
     .then(() => {
-      alert("Logout Successful!");
+      //alert("Logout Successful!");
       loadPreferences(PROFILE_STATE);
       store.dispatch({
         type: "LOG_OUT",
@@ -109,7 +109,7 @@ export const logOut = navigation => {
           authenticated: false
         }
       });
-      navigation.navigate("Tab1");
+      navigation.navigate("Welcome");
     })
     .catch(error => alert(error));
 };
