@@ -12,7 +12,8 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
-  SectionList
+  SectionList,
+  RefreshControl
 } from "react-native";
 import { Constants } from "expo";
 import Head from "../Navigation/Head";
@@ -68,6 +69,7 @@ export default class Diet extends React.Component {
     super(props);
 
     this.state = {
+      refreshing: false,
       foodItem: "",
       foodList: [],
       foodList2: [],
@@ -83,7 +85,7 @@ export default class Diet extends React.Component {
     };
   }
 
-  componentDidMount() {
+  fetchData = async () => {
     firebase
       .database()
       .ref()
@@ -230,7 +232,18 @@ export default class Diet extends React.Component {
           });
         }
       });
+  };
+
+  componentDidMount() {
+    this.fetchData();
   }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.fetchData().then(() => {
+      this.setState({ refreshing: false });
+    });
+  };
 
   sectionListAlert = item => {
     Alert.alert(item);
@@ -271,7 +284,14 @@ export default class Diet extends React.Component {
               {item}{" "}
             </Text>
           )}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
         />
+
         <View style={{ flex: 1, padding: 10 }} />
       </View>
     );
