@@ -18,7 +18,7 @@ export default class WelcomeHead extends React.Component {
   render() {
     return (
       <View>
-        <Header style={colorTheme.header}>
+        <Header noLeft style={colorTheme.header}>
           <Left />
           <Body>
             <Title>{this.props.title}</Title>

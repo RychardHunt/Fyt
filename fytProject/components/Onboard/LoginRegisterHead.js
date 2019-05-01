@@ -14,6 +14,7 @@ import store from "../../store";
 import { StyleSheet } from "react-native";
 import { colorTheme, headerColor } from "../../config/styles";
 import { Constants } from "expo";
+import { Keyboard } from "react-native";
 
 export default class LoginRegisterHead extends React.Component {
   render() {
@@ -30,6 +31,7 @@ export default class LoginRegisterHead extends React.Component {
                     signup: false
                   }
                 });
+                Keyboard.dismiss();
                 this.props.navigation.navigate("Welcome");
               }}
             >

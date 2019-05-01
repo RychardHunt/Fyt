@@ -1,5 +1,6 @@
 import React from "react";
 import OnboardNav from "./components/Navigation/OnboardNav";
+import TabNav from "./components/Navigation/TabNav";
 import { Provider } from "react-redux";
 import store from "./store";
 

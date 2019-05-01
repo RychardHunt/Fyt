@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { Container, Header, Content, Button, Text, View } from "native-base";
+import { Modal } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Button,
+  Text,
+  View,
+  Spinner
+} from "native-base";
 import { Constants } from "expo";
 import { logOut } from "../../actions/OnboardActions";
 import WelcomeHead from "./WelcomeHead";
-import { backgroundColor } from "../../config/styles";
+import { backgroundColor, headerColor } from "../../config/styles";
 
 export default class Logout extends Component {
   logOutPressed(navigate) {
@@ -20,6 +29,9 @@ export default class Logout extends Component {
         }}
       >
         <WelcomeHead title="" navigation={navigate} />
+        <View style={{ top: "35%" }}>
+          <Spinner color={headerColor} />
+        </View>
       </Container>
     );
   }

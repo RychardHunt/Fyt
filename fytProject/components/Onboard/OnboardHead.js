@@ -10,9 +10,11 @@ import {
   Text,
   View
 } from "native-base";
+import store from "../../store";
 import { StyleSheet } from "react-native";
 import { colorTheme, headerColor } from "../../config/styles";
 import { Constants } from "expo";
+import { Keyboard } from "react-native";
 
 export default class OnboardHead extends React.Component {
   render() {
@@ -23,6 +25,7 @@ export default class OnboardHead extends React.Component {
             <Button
               transparent
               onPress={() => {
+                Keyboard.dismiss();
                 if (store.getState().onboard.signup) {
                   this.props.navigation.goBack();
                 } else {

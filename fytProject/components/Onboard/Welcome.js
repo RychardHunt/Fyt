@@ -36,12 +36,14 @@ export default class Age extends Component {
               backgroundColor: backgroundColor
             }}
           >
-            <WelcomeHead title="Welcome to Fyt" navigation={navigate} />
+            <WelcomeHead title="Fyt" navigation={navigate} />
             <View style={{ top: "20%", alignItems: "center" }}>
               <Text
                 style={{ fontSize: 30, color: "white", textAlign: "center" }}
               >
-                Login or Register to get started.
+                {`Welcome to Fyt.
+Login or Register
+to get started.`}
               </Text>
               <View style={{ height: "15%" }} />
               <Button

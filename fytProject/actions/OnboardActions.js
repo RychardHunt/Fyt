@@ -49,7 +49,6 @@ export const signUp = (email, password, navigation) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      alert("Your account was created!");
       let user = firebaseApp.auth().currentUser;
       let uid = user.uid;
       firebaseApp
@@ -75,7 +74,6 @@ export const logIn = (email, password, navigation) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-      alert("Login Successful!");
       let user = firebaseApp.auth().currentUser;
       let uid = user.uid;
       firebaseApp
@@ -101,7 +99,6 @@ export const logOut = navigation => {
     .auth()
     .signOut()
     .then(() => {
-      //alert("Logout Successful!");
       loadPreferences(PROFILE_STATE);
       store.dispatch({
         type: "LOG_OUT",
