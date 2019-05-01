@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { StackNavigator } from "react-navigation";
-import Intro from "../Onboard/Questions/Intro";
+
 import Register from "../Onboard/Register";
-import Login from "../Onboard/Login";
+import Intro from "../Onboard/Questions/Intro";
 import Height from "../Onboard/Questions/Height";
 import Weight from "../Onboard/Questions/Weight";
 import Age from "../Onboard/Questions/Age";
@@ -12,9 +12,9 @@ export default (RegisterNav = StackNavigator(
   {
     Register: { screen: Register },
     Intro: { screen: Intro },
-    Age: { screen: Age },
     Height: { screen: Height },
     Weight: { screen: Weight },
+    Age: { screen: Age },
     Goal: { screen: Goal }
   },
   {
