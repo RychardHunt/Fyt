@@ -15,42 +15,6 @@ import EditSetMenu from "../EditSetMenu";
 import Swipeable from "react-native-swipeable";
 import { COLOR_1, COLOR_2 } from "../../config/settings";
 
-const styles = StyleSheet.create({
-  setStyle: {
-    flexDirection: "row",
-    padding: 20
-  },
-  setInfo: {
-    flexDirection: "row",
-    padding: 10
-  },
-  circleButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  circleButtonText: {
-    fontSize: 20
-  },
-  leftSwipeItem: {
-    flex: 1,
-    alignItems: "flex-end",
-    justifyContent: "center",
-    paddingRight: 20
-  },
-  rightSwipeItem: {
-    flex: 1,
-    justifyContent: "center",
-    paddingLeft: 20
-  },
-  swipeItemText: {
-    fontSize: 30,
-    padding: 25
-  }
-});
-
 class SetContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -181,6 +145,42 @@ class SetContainer extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  setStyle: {
+    flexDirection: "row",
+    padding: 20
+  },
+  setInfo: {
+    flexDirection: "row",
+    padding: 10
+  },
+  circleButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  circleButtonText: {
+    fontSize: 20
+  },
+  leftSwipeItem: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingRight: 20
+  },
+  rightSwipeItem: {
+    flex: 1,
+    justifyContent: "center",
+    paddingLeft: 20
+  },
+  swipeItemText: {
+    fontSize: 30,
+    padding: 25
+  }
+});
 
 function mapStateToProps(state) {
   return {

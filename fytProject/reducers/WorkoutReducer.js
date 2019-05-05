@@ -5,29 +5,21 @@ const initialState = INITIAL_STATE;
 export default function workoutReducer(state = initialState, action) {
   switch (action.type) {
     case "CHANGE_WORKOUT":
-      console.log(
-        JSON.stringify(state) +
-          "selected==================" +
-          action.payload.selectedWorkout
-      );
       return {
         ...state,
         selectedWorkout: action.payload.selectedWorkout
       };
     case "ADD_WORKOUT":
-      console.log(JSON.stringify(state) + "aaaaa==================");
       return {
         ...state,
         [action.payload.workoutName]: action.payload.newWorkout
       };
+    case "DELETE_WORKOUT":
+      delete state[action.payload.workoutName];
+      return {
+        ...state
+      };
     case "DELETE_SET":
-      console.log(
-        JSON.stringify(state) +
-          "bbbbbbb==================" +
-          action.payload.selectedWorkout +
-          action.payload.exercise +
-          action.payload.setNumber
-      );
       delete state[action.payload.selectedWorkout][action.payload.exercise][
         action.payload.setNumber
       ];
@@ -57,12 +49,6 @@ export default function workoutReducer(state = initialState, action) {
         ...state
       };
     case "EDIT_SET":
-      console.log(
-        JSON.stringify(state) +
-          "bbbbbbb==================" +
-          action.payload.selectedWorkout +
-          action.payload.exercise
-      );
       return {
         ...state,
         [action.payload.selectedWorkout]: {
@@ -77,13 +63,6 @@ export default function workoutReducer(state = initialState, action) {
         }
       };
     case "CHANGE_SET_COMPLETION_STATUS":
-      console.log(
-        JSON.stringify(state) +
-          "bbbbbbb==================" +
-          action.payload.selectedWorkout +
-          action.payload.exercise +
-          action.payload.setNumber
-      );
       return {
         ...state,
         [action.payload.selectedWorkout]: {
@@ -119,7 +98,6 @@ export default function workoutReducer(state = initialState, action) {
         ...newState
       };
     case "DELETE_EXERCISE_NAME":
-      console.log(JSON.stringify(state) + "ccccccc==================");
       delete state[action.payload.selectedWorkout][action.payload.exercise];
       return {
         ...state

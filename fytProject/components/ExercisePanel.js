@@ -14,45 +14,6 @@ import SetContainer from "./containers/SetContainer";
 import Swipeable from "react-native-swipeable";
 import DialogInput from "react-native-dialog-input";
 
-const styles = StyleSheet.create({
-  exerciseHeaderText: {
-    fontSize: 40,
-    textAlign: "center"
-  },
-  exerciseHeader: {
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  exercisePanel: {
-    marginBottom: 10
-  },
-  buttons: {
-    width: 70,
-    left: 2,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  buttonText: {
-    textAlign: "center",
-    color: "white"
-  },
-  leftSwipeItem: {
-    flex: 1,
-    alignItems: "flex-end",
-    justifyContent: "center",
-    paddingRight: 20
-  },
-  rightSwipeItem: {
-    flex: 1,
-    justifyContent: "center",
-    paddingLeft: 20
-  },
-  swipeItemText: {
-    fontSize: 30,
-    padding: 25
-  }
-});
-
 class ExercisePanel extends React.Component {
   constructor(props) {
     super(props);
@@ -174,6 +135,45 @@ class ExercisePanel extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  exerciseHeaderText: {
+    fontSize: 40,
+    textAlign: "center"
+  },
+  exerciseHeader: {
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  exercisePanel: {
+    marginBottom: 10
+  },
+  buttons: {
+    width: 70,
+    left: 2,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "white"
+  },
+  leftSwipeItem: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingRight: 20
+  },
+  rightSwipeItem: {
+    flex: 1,
+    justifyContent: "center",
+    paddingLeft: 20
+  },
+  swipeItemText: {
+    fontSize: 30,
+    padding: 25
+  }
+});
 
 function mapStateToProps(state) {
   return { selectedWorkout: state.workout.selectedWorkout };
