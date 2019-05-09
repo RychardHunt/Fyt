@@ -21,14 +21,14 @@ import { backgroundColor, headerColor } from "../../config/styles";
 import Profile from "../Profile/Profile";
 import Diet from "../SampleScreens/Diet";
 import WorkoutContainer from "../containers/WorkoutContainer";
-import Playlist from "../Playlist/Playlist";
+import Calendar from "../Calendar/Calendar";
 
 export default (Tab = TabNavigator(
   {
     Tab1: { screen: Profile },
     Tab2: { screen: Diet },
     Tab3: { screen: WorkoutContainer },
-    Tab4: { screen: Playlist }
+    Tab4: { screen: Calendar }
   },
   {
     swipeEnabled: false,
@@ -78,9 +78,9 @@ export default (Tab = TabNavigator(
               >
                 <FontAwesome
                   style={{ fontSize: 28, color: "white" }}
-                  name="arrows-h"
+                  name="calendar"
                 />
-                <Text>Playlist</Text>
+                <Text>Calendar</Text>
               </Button>
             </FooterTab>
           </Footer>
