@@ -9,6 +9,16 @@ export default function workoutReducer(state = initialState, action) {
         ...state,
         selectedWorkout: action.payload.selectedWorkout
       };
+    case "ADD_WORKOUT":
+      return {
+        ...state,
+        [action.payload.workoutName]: action.payload.newWorkout
+      };
+    case "DELETE_WORKOUT":
+      delete state[action.payload.workoutName];
+      return {
+        ...state
+      };
     case "DELETE_SET":
       delete state[action.payload.selectedWorkout][action.payload.exercise][
         action.payload.setNumber
@@ -84,6 +94,7 @@ export default function workoutReducer(state = initialState, action) {
         }
       }
       return {
+        ...state,
         ...newState
       };
     case "DELETE_EXERCISE_NAME":

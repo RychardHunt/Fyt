@@ -1,35 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
 import { List, ListItem, Container, Content, Picker } from "native-base";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Modal,
+  TouchableHighlight
+} from "react-native";
 import { Constants } from "expo";
 import { bindActionCreators } from "redux";
 import * as workoutActions from "../actions/WorkoutActions"; //To prevent overwriting.
+import DialogInput from "react-native-dialog-input";
 import ExercisePanel from "./ExercisePanel";
+import Swipeable from "react-native-swipeable";
 import Head from "./Navigation/Head";
-
-const styles = StyleSheet.create({
-  scrollView: {
-    flex: 0
-  },
-  workoutHeader: {
-    fontSize: 40,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  picker: {
-    height: 60,
-    width: "100%",
-    padding: 10
-  }
-});
 
 // This panel lists the sets for an excercise that a user will perform
 class WorkoutList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedWorkout: "defaultWorkout" //first workout shown; new feature idea ... change default workout
+      selectedWorkout: "defaultWorkout", //TODO first workout shown; new feature idea ... change default workout
+      isDialogVisible: false,
+      selectWorkout: false,
+      leftActionActivated: false,
+      rightActionActivated: false
     };
   }
 
@@ -37,32 +34,55 @@ class WorkoutList extends React.Component {
     this.props.changeWorkout("defaultWorkout");
   }
 
+  deleteWorkout() {
+    let selectedWorkout = this.state.selectedWorkout;
+    this.setState(
+      {
+        leftActionActivated: false,
+        selectedWorkout: undefined
+      },
+      () => {
+        this.props.deleteWorkout(selectedWorkout);
+      }
+    );
+    for (workout in this.props.workout) {
+      if (workout !== "selectedWorkout" && workout !== selectedWorkout) {
+        this.setState({
+          selectedWorkout: workout
+        });
+        break;
+      }
+    }
+  }
+
   // * `exercise`  The {String} excercise that this panel is for
   createExercisePanels() {
-    let exercisePanels = [];
-    let sortedWorkoutList = {};
-    let workout = this.props.workout[this.state.selectedWorkout];
-    let i = 0;
-    Object.keys(workout)
-      .sort()
-      .forEach(function(key) {
-        sortedWorkoutList[key] = workout[key];
-      });
+    if (this.state.selectedWorkout) {
+      let exercisePanels = [];
+      let sortedWorkoutList = {};
+      let workout = this.props.workout[this.state.selectedWorkout];
+      let i = 0;
+      Object.keys(workout)
+        .sort()
+        .forEach(function(key) {
+          sortedWorkoutList[key] = workout[key];
+        });
 
-    for (exercise in sortedWorkoutList) {
-      const exercisePanel = (
-        <ExercisePanel
-          key={i}
-          exerciseName={exercise}
-          exerciseDetails={
-            this.props.workout[this.state.selectedWorkout][exercise]
-          }
-        />
-      );
-      exercisePanels.push(exercisePanel);
-      i++; //to lazy to remake the loops :(
+      for (exercise in sortedWorkoutList) {
+        const exercisePanel = (
+          <ExercisePanel
+            key={i}
+            exerciseName={exercise}
+            exerciseDetails={
+              this.props.workout[this.state.selectedWorkout][exercise]
+            }
+          />
+        );
+        exercisePanels.push(exercisePanel);
+        i++; //to lazy to remake the loops :(
+      }
+      return exercisePanels;
     }
-    return exercisePanels;
   }
 
   createPicks() {
@@ -79,26 +99,109 @@ class WorkoutList extends React.Component {
         workoutList.push(PickerItem);
       }
     }
+    const PickerItem = (
+      <Picker.Item key={++i} label={"Save Workout"} value={"saveWorkout"} />
+    );
+    i++; //to lazy to remake the loops :(
+    workoutList.push(PickerItem);
     return workoutList;
   }
 
   render() {
     const navigate = this.props.navigation;
+    let inputVisable = false;
+
+    const leftContent = [
+      <View key={0} style={styles.leftSwipeItem}>
+        <Text style={styles.swipeItemText}>Remove</Text>
+        {this.state.leftActionActivated ? this.deleteWorkout() : null}
+      </View>
+    ];
+
+    // const rightContent = [ TODO
+    //   <View key={0} style={styles.RightSwipeItem}>
+    //     <Text style={styles.swipeItemText}>Edit</Text>
+    //     {this.state.rightActionActivated ? this.editExercise() : null}
+    //   </View>
+    // ];
+
     return (
       <Container style={{ top: Constants.statusBarHeight }}>
+        <DialogInput
+          isDialogVisible={this.state.isDialogVisible}
+          title={"New Workout"}
+          message={"Please enter a new workout name"}
+          hintInput={"New name"}
+          submitInput={inputText => {
+            this.props.addWorkout(
+              this.props.workout[this.state.selectedWorkout],
+              inputText
+            );
+            this.props.changeWorkout(inputText);
+            this.setState({
+              isDialogVisible: false,
+              selectedWorkout: inputText
+            });
+          }}
+          closeDialog={() => this.setState({ isDialogVisible: false })}
+        />
         <Head title="Workout" navigation={navigate} />
         <Content>
           <Text style={styles.workoutHeader}>Workout</Text>
-          <Picker
-            selectedValue={this.state.selectedWorkout}
-            style={styles.picker}
-            onValueChange={(itemValue, itemIndex) => {
-              this.props.changeWorkout(itemValue);
-              this.setState({ selectedWorkout: itemValue });
-            }}
+
+          <Swipeable
+            key={0}
+            leftContent={leftContent}
+            // rightContent={rightContent}
+            onLeftActionRelease={() =>
+              this.setState({ leftActionActivated: true })
+            }
+            onLeftActionDeactivate={() =>
+              this.setState({ leftActionActivated: false })
+            }
+            leftActionActivationDistance={220}
+            // onRightActionRelease={() =>
+            //   this.setState({ rightActionActivated: true })
+            // }
+            // onRightActionDeactivate={() =>
+            //   this.setState({ rightActionActivated: false })
+            // }
+            // rightActionActivationDistance={220}
           >
-            {this.createPicks()}
-          </Picker>
+            <Text
+              onPress={() => {
+                this.setState({
+                  selectWorkout: !this.state.selectWorkout
+                });
+              }}
+              style={styles.workoutHeader}
+            >
+              {this.state.selectedWorkout}
+            </Text>
+          </Swipeable>
+          {(!this.state.selectedWorkout || this.state.selectWorkout) && (
+            <Picker
+              selectedValue={this.state.selectedWorkout}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) => {
+                if (itemValue == "saveWorkout") {
+                  this.setState({
+                    isDialogVisible: true,
+                    selectWorkout: false
+                  });
+                } else {
+                  this.props.changeWorkout(itemValue);
+                  this.setState({
+                    selectedWorkout: itemValue,
+                    selectWorkout: false
+                  });
+                }
+              }}
+            >
+              {this.createPicks()}
+            </Picker>
+          )}
+
           <ScrollView contentContainerStyle={styles.scrollView}>
             <View>{this.createExercisePanels()}</View>
           </ScrollView>
@@ -108,13 +211,46 @@ class WorkoutList extends React.Component {
   }
 }
 
+const styles = StyleSheet.create({
+  scrollView: {
+    flex: 0
+  },
+  workoutHeader: {
+    fontSize: 40,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  picker: {
+    height: 60,
+    width: "100%",
+    padding: 10
+  },
+  leftSwipeItem: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingRight: 20
+  },
+  rightSwipeItem: {
+    flex: 1,
+    justifyContent: "center",
+    paddingLeft: 20
+  },
+  swipeItemText: {
+    fontSize: 30,
+    padding: 25
+  }
+});
+
 function mapStateToProps(state) {
   return { workout: state.workout };
 }
 function matchDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      changeWorkout: workoutActions.changeWorkout
+      changeWorkout: workoutActions.changeWorkout,
+      addWorkout: workoutActions.addWorkout,
+      deleteWorkout: workoutActions.deleteWorkout
     },
     dispatch
   );
