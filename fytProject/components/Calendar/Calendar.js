@@ -9,6 +9,7 @@ import {
   Agenda
 } from "react-native-calendars";
 import TimePicker from "react-native-simple-time-picker";
+import Head from "../Navigation/Head";
 import { DEVICE_WIDTH } from "../../config/settings";
 import { DEVICE_HEIGHT } from "../../config/settings";
 
@@ -181,7 +182,7 @@ export default class CalendarPicker extends React.Component {
   renderEmptyDate() {
     return (
       <View style={styles.cardView}>
-        <Text>This is empty date!</Text>
+        <Text>Nothing scheduled on this date!</Text>
       </View>
     );
   }
@@ -220,21 +221,32 @@ export default class CalendarPicker extends React.Component {
       23
     ];
     const scale = 400 / 24;
+    const navigate = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={{ height: DEVICE_HEIGHT, width: DEVICE_WIDTH }}>
-          <Agenda
-            items={this.state.items}
-            loadItemsForMonth={this.getSpecialEvent.bind(this)}
-            selected={this.state.date}
-            renderItem={this.renderItem.bind(this)}
-            renderEmptyDate={this.renderEmptyDate.bind(this)}
-            renderEmptyData={this.renderEmptyDate.bind(this)}
-            rowHasChanged={this.rowHasChanged.bind(this)}
-            onDayPress={day => {
-              this.setState({ date: day.dateString });
-            }}
-          />
+        <View
+          style={{
+            top: Constants.statusBarHeight,
+            flex: 1,
+            height: "100%",
+            width: "100%"
+          }}
+        >
+          <Head title="Calendar" navigation={navigate} />
+          <View style={{ height: "100%", width: "100%" }}>
+            <Agenda
+              items={this.state.items}
+              loadItemsForMonth={this.getSpecialEvent.bind(this)}
+              selected={this.state.date}
+              renderItem={this.renderItem.bind(this)}
+              renderEmptyDate={this.renderEmptyDate.bind(this)}
+              renderEmptyData={this.renderEmptyDate.bind(this)}
+              rowHasChanged={this.rowHasChanged.bind(this)}
+              onDayPress={day => {
+                this.setState({ date: day.dateString });
+              }}
+            />
+          </View>
         </View>
       </View>
     );
@@ -246,7 +258,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     position: "absolute",
-    alignItems: "center"
+    alignItems: "center",
+    height: DEVICE_HEIGHT,
+    width: DEVICE_WIDTH
   },
   paragraph: {
     fontSize: 12,
