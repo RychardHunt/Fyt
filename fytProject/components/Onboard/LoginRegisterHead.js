@@ -16,7 +16,7 @@ import { colorTheme, headerColor } from "../../config/styles";
 import { Constants } from "expo";
 import { Keyboard } from "react-native";
 
-export default class OnboardHead extends React.Component {
+export default class LoginRegisterHead extends React.Component {
   render() {
     return (
       <View>
@@ -25,12 +25,14 @@ export default class OnboardHead extends React.Component {
             <Button
               transparent
               onPress={() => {
+                store.dispatch({
+                  type: "SIGN_UP",
+                  payload: {
+                    signup: false
+                  }
+                });
                 Keyboard.dismiss();
-                if (store.getState().onboard.signup) {
-                  this.props.navigation.goBack();
-                } else {
-                  this.props.navigation.navigate("Tab1");
-                }
+                this.props.navigation.navigate("Welcome");
               }}
             >
               <Icon name="arrow-back" />

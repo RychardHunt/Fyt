@@ -12,8 +12,9 @@ import {
   StyleProvider,
   StyleSheet
 } from "native-base";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import { Constants } from "expo";
-import OnboardHead from "./OnboardHead";
+import LoginRegisterHead from "./LoginRegisterHead";
 import { signUp } from "../../actions/OnboardActions";
 import { backgroundColor } from "../../config/styles";
 import platform from "../../native-base-theme/variables/platform";
@@ -29,11 +30,11 @@ export default class Register extends Component {
     };
   }
 
-  signUpPressed() {
+  signUpPressed(navigation) {
     let password = this.state.password;
     let confirmPassword = this.state.confirmPassword;
     if (password === confirmPassword) {
-      signUp(this.state.email, password);
+      signUp(this.state.email, password, navigation);
     } else {
       alert("Passwords mismatch");
     }
@@ -43,78 +44,75 @@ export default class Register extends Component {
     const navigate = this.props.navigation;
     return (
       <StyleProvider style={getTheme(platform)}>
-        <Container
-          style={{
-            top: Constants.statusBarHeight,
-            backgroundColor: backgroundColor
-          }}
-        >
-          <OnboardHead title="Register" navigation={navigate} />
-          <Text
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <Container
             style={{
-              fontSize: 20,
-              paddingLeft: "5%",
-              paddingTop: "5%",
-              color: "white"
+              top: Constants.statusBarHeight,
+              backgroundColor: backgroundColor
             }}
           >
-            First, enter an email and password
-          </Text>
-          <View>
-            <Form>
-              <Item>
-                <Input
-                  placeholder="Email"
-                  onChangeText={email => this.setState({ email })}
-                  value={this.state.email}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  onChangeText={password => this.setState({ password })}
-                  value={this.state.password}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="Confirm Password"
-                  secureTextEntry={true}
-                  onChangeText={confirmPassword =>
-                    this.setState({ confirmPassword })
-                  }
-                  value={this.state.confirmPassword}
-                />
-              </Item>
-            </Form>
-            <View
+            <LoginRegisterHead title="Register" navigation={navigate} />
+            <Text
               style={{
-                padding: "1%",
-                top: "10%",
-                flexDirection: "row",
-                alignItems: "center"
+                fontSize: 20,
+                paddingLeft: "5%",
+                paddingTop: "5%",
+                color: "white"
               }}
             >
-              <View style={{ padding: 10 }} />
-              <Button
-                rounded
-                onPress={() => this.signUpPressed()}
-                style={{ alignSelf: "center" }}
+              First, enter an email and password
+            </Text>
+            <View>
+              <Form>
+                <Item>
+                  <Input
+                    style={{ color: "white" }}
+                    placeholder="Email"
+                    onChangeText={email => this.setState({ email })}
+                    value={this.state.email}
+                  />
+                </Item>
+                <Item>
+                  <Input
+                    style={{ color: "white" }}
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    onChangeText={password => this.setState({ password })}
+                    value={this.state.password}
+                  />
+                </Item>
+                <Item>
+                  <Input
+                    style={{ color: "white" }}
+                    placeholder="Confirm Password"
+                    secureTextEntry={true}
+                    onChangeText={confirmPassword =>
+                      this.setState({ confirmPassword })
+                    }
+                    value={this.state.confirmPassword}
+                  />
+                </Item>
+              </Form>
+              <View
+                style={{
+                  padding: "1%",
+                  top: "5%",
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
               >
-                <Text>Sign Up</Text>
-              </Button>
-              <View style={{ padding: 5 }} />
-              <Button
-                rounded
-                onPress={() => this.props.navigation.navigate("Intro")}
-                style={{ alignSelf: "center" }}
-              >
-                <Text>Next</Text>
-              </Button>
+                <View style={{ padding: 10 }} />
+                <Button
+                  rounded
+                  onPress={() => this.signUpPressed(this.props.navigation)}
+                  style={{ alignSelf: "center" }}
+                >
+                  <Text>Sign Up</Text>
+                </Button>
+              </View>
             </View>
-          </View>
-        </Container>
+          </Container>
+        </TouchableWithoutFeedback>
       </StyleProvider>
     );
   }

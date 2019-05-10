@@ -8,6 +8,7 @@ import {
   changeStreak
 } from "./ProfileActions";
 import store from "../store";
+import { Keyboard } from "react-native";
 import { PROFILE_STATE } from "../config/settings";
 
 const setDay = constant => {
@@ -43,89 +44,69 @@ const isLoggedIn = () => {
   });
 };
 
-export const signUp = (email, password) => {
+export const signUp = (email, password, navigation) => {
   firebaseApp
     .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .createUserWithEmailAndPassword(email, password)
     .then(() => {
+      let user = firebaseApp.auth().currentUser;
+      let uid = user.uid;
       firebaseApp
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Your account was created!");
-          let user = firebaseApp.auth().currentUser;
-          let uid = user.uid;
-          firebaseApp
-            .database()
-            .ref("User/")
-            .update({
-              [uid]: setDay(PROFILE_STATE)
-            });
-          return dispatch => {
-            dispatch({
-              type: "SIGN_UP",
-              payload: {
-                authenticated: "true",
-                email: email,
-                password: password
-              }
-            });
-          };
-        })
-        .catch(error => alert(error));
-    });
-};
-
-export const logIn = (email, password) => {
-  firebaseApp
-    .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(() => {
-      firebaseApp
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Login Successful!");
-          let user = firebaseApp.auth().currentUser;
-          let uid = user.uid;
-          firebaseApp
-            .database()
-            .ref("User/" + uid)
-            .once("value", function(snapshot) {
-              loadPreferences(snapshot.val());
-            });
-          return dispatch => {
-            dispatch({
-              type: "LOG_IN",
-              payload: {
-                authenticated: "true",
-                email: email,
-                password: password
-              }
-            });
-          };
-        })
-        .catch(error => alert(error));
+        .database()
+        .ref("User/")
+        .update({
+          [uid]: setDay(PROFILE_STATE)
+        });
+      store.dispatch({
+        type: "SIGN_UP",
+        payload: {
+          signup: true
+        }
+      });
+      Keyboard.dismiss();
+      navigation.navigate("Intro");
     })
     .catch(error => alert(error));
 };
 
-export const logOut = () => {
+export const logIn = (email, password, navigation) => {
+  firebaseApp
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      let user = firebaseApp.auth().currentUser;
+      let uid = user.uid;
+      firebaseApp
+        .database()
+        .ref("User/" + uid)
+        .once("value", function(snapshot) {
+          loadPreferences(snapshot.val());
+        });
+      store.dispatch({
+        type: "LOG_IN",
+        payload: {
+          authenticated: true
+        }
+      });
+      Keyboard.dismiss();
+      navigation.navigate("Tab1");
+    })
+    .catch(error => alert(error));
+};
+
+export const logOut = navigation => {
   firebaseApp
     .auth()
     .signOut()
     .then(() => {
-      alert("Logout  Successful!");
-      return dispatch => {
-        dispatch({
-          type: "LOG_OUT",
-          payload: {
-            authenticated: "false",
-            email: "",
-            password: ""
-          }
-        });
-      };
+      loadPreferences(PROFILE_STATE);
+      store.dispatch({
+        type: "LOG_OUT",
+        payload: {
+          authenticated: false
+        }
+      });
+      navigation.navigate("Welcome");
     })
     .catch(error => alert(error));
 };

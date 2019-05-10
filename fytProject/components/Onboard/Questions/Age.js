@@ -12,6 +12,7 @@ import {
   StyleSheet,
   StyleProvider
 } from "native-base";
+import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants } from "expo";
 import OnboardHead from "../OnboardHead";
 import store from "../../../store";
@@ -29,10 +30,15 @@ export default class Age extends Component {
   }
 
   submitAge() {
+    console.log(store.getState());
     let age = this.state.age * 1;
     if (typeof age === typeof 1 && age > 0) {
       store.dispatch(changeAge(age));
-      alert("Age Submitted");
+      if (store.getState().onboard.signup) {
+        this.props.navigation.navigate("Goal");
+      } else {
+        this.props.navigation.navigate("Tab1");
+      }
     } else {
       alert("Please enter a valid value");
     }
@@ -42,60 +48,60 @@ export default class Age extends Component {
     const navigate = this.props.navigation;
     return (
       <StyleProvider style={getTheme(platform)}>
-        <Container
-          style={{
-            top: Constants.statusBarHeight,
-            backgroundColor: backgroundColor
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
           }}
         >
-          <OnboardHead title="Age" navigation={navigate} />
-          <Text
+          <Container
             style={{
-              fontSize: 20,
-              paddingLeft: "5%",
-              paddingTop: "5%",
-              color: "white"
+              top: Constants.statusBarHeight,
+              backgroundColor: backgroundColor
             }}
           >
-            Please enter your age
-          </Text>
-          <View>
-            <Form>
-              <Item>
-                <Input
-                  placeholder="Years"
-                  onChangeText={age => this.setState({ age })}
-                  value={this.state.age}
-                />
-              </Item>
-            </Form>
-            <View
+            <OnboardHead title="Age" navigation={navigate} />
+            <Text
               style={{
-                padding: "1%",
-                top: "10%",
-                flexDirection: "row",
-                alignItems: "center"
+                fontSize: 20,
+                paddingLeft: "5%",
+                paddingTop: "5%",
+                color: "white"
               }}
             >
-              <View style={{ padding: 10 }} />
-              <Button
-                rounded
-                onPress={() => this.submitAge()}
-                style={{ alignSelf: "center" }}
+              Please enter your age
+            </Text>
+            <View>
+              <Form>
+                <Item>
+                  <Input
+                    style={{ color: "white" }}
+                    placeholder="Years"
+                    onChangeText={age => this.setState({ age })}
+                    value={this.state.age}
+                  />
+                </Item>
+              </Form>
+              <View
+                style={{
+                  padding: "1%",
+                  top: "10%",
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
               >
-                <Text>Submit</Text>
-              </Button>
-              <View style={{ padding: 5 }} />
-              <Button
-                rounded
-                onPress={() => this.props.navigation.navigate("Goal")}
-                style={{ alignSelf: "center" }}
-              >
-                <Text>Next</Text>
-              </Button>
+                <View style={{ padding: 10 }} />
+                <Button
+                  rounded
+                  onPress={() => this.submitAge()}
+                  style={{ alignSelf: "center" }}
+                >
+                  <Text>Submit</Text>
+                </Button>
+                <View style={{ padding: 5 }} />
+              </View>
             </View>
-          </View>
-        </Container>
+          </Container>
+        </TouchableWithoutFeedback>
       </StyleProvider>
     );
   }

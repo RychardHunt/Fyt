@@ -9,6 +9,42 @@ export const changeWorkout = selectedWorkout => {
   };
 };
 
+export const addWorkout = (newWorkout, workoutName) => {
+  return dispatch => {
+    dispatch({
+      type: "ADD_WORKOUT",
+      payload: {
+        newWorkout,
+        workoutName
+      }
+    });
+  };
+};
+
+export const deleteWorkout = workoutName => {
+  return dispatch => {
+    dispatch({
+      type: "DELETE_WORKOUT",
+      payload: {
+        workoutName: workoutName
+      }
+    });
+  };
+};
+
+export const deleteSet = (exercise, setNumber, selectedWorkout) => {
+  return dispatch => {
+    dispatch({
+      type: "DELETE_SET",
+      payload: {
+        exercise: exercise,
+        setNumber: setNumber,
+        selectedWorkout: selectedWorkout
+      }
+    });
+  };
+};
+
 export const editSet = (exercise, setNumber, reps, weight, selectedWorkout) => {
   return dispatch => {
     dispatch({

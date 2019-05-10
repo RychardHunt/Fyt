@@ -11,7 +11,6 @@ export const changeHeight = height => {
         height
       });
   }
-  console.log("changeHeight " + height);
   return {
     type: "CHANGE_HEIGHT",
     payload: {
@@ -31,7 +30,6 @@ export const changeWeight = weight => {
         weight
       });
   }
-  console.log("changeWeight " + weight);
   return {
     type: "CHANGE_WEIGHT",
     payload: {
@@ -51,7 +49,6 @@ export const changeAge = age => {
         age
       });
   }
-  console.log("changeAge " + age);
   return {
     type: "CHANGE_AGE",
     payload: {
@@ -71,7 +68,6 @@ export const changeGoal = goal => {
         goal
       });
   }
-  console.log("changeGoal " + goal);
   return {
     type: "CHANGE_GOAL",
     payload: {
@@ -80,9 +76,12 @@ export const changeGoal = goal => {
   };
 };
 
+/**
+ *@TODO Update the Date for Database
+ */
 export const changeStreak = (oldStreak, year, month, day) => {
   let user = firebaseApp.auth().currentUser;
-  let streak = oldStreak;
+  let streak = parseInt(oldStreak);
   if (user != undefined) {
     let endOfMonth = [31, 56, 58, 93, 120, 153, 180, 217, 248, 270, 310, 330];
     let date = new Date();
@@ -102,7 +101,8 @@ export const changeStreak = (oldStreak, year, month, day) => {
       date.getDate() === 1;
     if (regularStreak || endMonthStreak || endYearStreak) {
       let uid = user.uid;
-      streak = oldStreak + 1;
+      streak = streak + 1;
+      streak = streak.toString();
       firebaseApp
         .database()
         .ref("User/" + uid)

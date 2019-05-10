@@ -9,6 +9,45 @@ export default function workoutReducer(state = initialState, action) {
         ...state,
         selectedWorkout: action.payload.selectedWorkout
       };
+    case "ADD_WORKOUT":
+      return {
+        ...state,
+        [action.payload.workoutName]: action.payload.newWorkout
+      };
+    case "DELETE_WORKOUT":
+      delete state[action.payload.workoutName];
+      return {
+        ...state
+      };
+    case "DELETE_SET":
+      delete state[action.payload.selectedWorkout][action.payload.exercise][
+        action.payload.setNumber
+      ];
+
+      let len =
+        Object.keys(
+          state[action.payload.selectedWorkout][action.payload.exercise]
+        ).length + 1;
+      if (len != action.payload.setNumber) {
+        for (let i = action.payload.setNumber; i < len; i++) {
+          if (
+            state[action.payload.selectedWorkout][action.payload.exercise][
+              i + 1
+            ]
+          ) {
+            state[action.payload.selectedWorkout][action.payload.exercise][i] =
+              state[action.payload.selectedWorkout][action.payload.exercise][
+                i + 1
+              ];
+          }
+        }
+        delete state[action.payload.selectedWorkout][action.payload.exercise][
+          len
+        ];
+      }
+      return {
+        ...state
+      };
     case "EDIT_SET":
       return {
         ...state,
@@ -55,6 +94,7 @@ export default function workoutReducer(state = initialState, action) {
         }
       }
       return {
+        ...state,
         ...newState
       };
     case "DELETE_EXERCISE_NAME":
