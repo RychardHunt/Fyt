@@ -74,6 +74,7 @@ export default class Age extends Component {
               <Form>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Years"
                     onChangeText={age => this.setState({ age })}
                     value={this.state.age}

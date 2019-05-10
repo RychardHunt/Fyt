@@ -66,6 +66,7 @@ export default class Register extends Component {
               <Form>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Email"
                     onChangeText={email => this.setState({ email })}
                     value={this.state.email}
@@ -73,6 +74,7 @@ export default class Register extends Component {
                 </Item>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Password"
                     secureTextEntry={true}
                     onChangeText={password => this.setState({ password })}
@@ -81,6 +83,7 @@ export default class Register extends Component {
                 </Item>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Confirm Password"
                     secureTextEntry={true}
                     onChangeText={confirmPassword =>

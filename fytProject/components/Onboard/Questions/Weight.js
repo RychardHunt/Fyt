@@ -73,6 +73,7 @@ export default class Weight extends Component {
               <Form>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Pounds"
                     onChangeText={weight => this.setState({ weight })}
                     value={this.state.weight}

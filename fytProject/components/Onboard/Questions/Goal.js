@@ -33,6 +33,12 @@ export default class Goal extends Component {
   submitGoal() {
     let goal = this.state.goal;
     store.dispatch(changeGoal(goal));
+    store.dispatch({
+      type: "SIGN_UP",
+      payload: {
+        signup: false
+      }
+    });
     this.props.navigation.navigate("Tab1");
   }
 

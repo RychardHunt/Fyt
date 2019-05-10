@@ -74,6 +74,7 @@ export default class Height extends Component {
               <Form style={{ color: "white" }}>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Foot"
                     onChangeText={foot =>
                       this.setState({ foot: foot, inches: this.state.inches })
@@ -83,6 +84,7 @@ export default class Height extends Component {
                 </Item>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Inches"
                     onChangeText={inches =>
                       this.setState({ foot: this.state.foot, inches: inches })

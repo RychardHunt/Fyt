@@ -49,6 +49,7 @@ export default class Login extends Component {
               <Form>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Email"
                     onChangeText={email => this.setState({ email })}
                     value={this.state.email}
@@ -56,6 +57,7 @@ export default class Login extends Component {
                 </Item>
                 <Item>
                   <Input
+                    style={{ color: "white" }}
                     placeholder="Password"
                     secureTextEntry={true}
                     onChangeText={password => this.setState({ password })}
